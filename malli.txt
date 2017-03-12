@@ -1,0 +1,241 @@
+
+
+hyva"ksymispa"iva" arvosana arvostelija
+
+Ohjeita opinna"ytetyo"n rakenteesta ja ulkoasusta Hannu Erkio", Jaakko Kurhila, Lea Kutvonen, Matti Nyka"nen, Matti Ma"kela", Inkeri Verkamo
+
+Helsinki 21.8.2007 HELSINGIN YLIOPISTO Tietojenka"sittelytieteen laitos
+
+Hannu Erkio", Jaakko Kurhila, Lea Kutvonen, Matti Nyka"nen, Matti Ma"kela", Inkeri Verkamo Ohjeita opinna"ytetyo"n rakenteesta ja ulkoasusta
+
+21.8.2007 10 sivua + 1 liitesivua
+
+ulkoasu, tiivistelma", la"hdeluettelo Ta"ma" kirjoitus on tarkoitettu Helsingin yliopiston Tietojenka"sittelytieteen laitoksen alempien opinna"ytteiden ja harjoitusten ulkoasun ja rakenteen ohjeeksi. Ohje soveltuu siten tieteellisen kirjoittamisen kurssille, ohjelmistotuotantoprojekteihin, seminaareihin ja pro gradu -tutkielmiin.
+
+ACM Computing Classification System (CCS): A.1 [Introductory and Survey], I.7.m [Document and text processing]
+
+Tiedekunta/Osasto -- Fakultet/Sektion -- Faculty Laitos -- Institution -- Department Tekija" -- Fo"rfattare -- Author Tyo"n nimi -- Arbetets titel -- Title
+
+Oppiaine -- La"roa"mne -- Subject Tyo"n laji -- Arbetets art -- Level Aika -- Datum -- Month and year Sivuma"a"ra" -- Sidoantal -- Number of pages Tiivistelma" -- Referat -- Abstract
+
+Avainsanat -- Nyckelord -- Keywords Sa"ilytyspaikka -- Fo"rvaringssta"lle -- Where deposited Muita tietoja -- o"vriga uppgifter -- Additional information
+
+HELSINGIN YLIOPISTO _ HELSINGFORS UNIVERSITET _ UNIVERSITY OF HELSINKI
+
+ii Sisa"lto"
+
+1 Johdanto 1 2 Kirjoituksen rakenne 1
+
+2.1 Tiivistelma" . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1 2.2 Johdanto . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 2.3 Ka"sittelyluvut . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 2.4 La"hdeviittausten ka"ytto" . . . . . . . . . . . . . . . . . . . . . . . . . 3 2.5 Yhteenveto . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 2.6 La"hdeluettelon laatiminen . . . . . . . . . . . . . . . . . . . . . . . . 3
+
+3 Ulkoasulliset seikat 5
+
+3.1 Tyo"n osien ja"rjestys . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 3.2 Tekstin yleinen sijoittelu . . . . . . . . . . . . . . . . . . . . . . . . . 6 3.3 Kuvat ja taulukot . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 3.4 Otsikot . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8 3.5 Mallin ka"ytto" . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+
+4 Yhteenveto 8 La"hteet 9 Liitteet
+
+1 Malli ABC
+
+1 1 Johdanto
+
+Kaikessa julkaistavaksi tarkoitetussa tekstissa" kirjoittajan luomisen ja esitystavan vapautta rajoittavat monet ohjeet ja tarkatkin ma"a"ra"ykset.
+
+Parhaimmillaan lukijalle ja kirjoittajalle yhteinen, tuttu sa"a"nno"sto" luo era"a"nlaisen tukiverkoston, joka tukee sanoman siirtymista" va"a"ristyma"tta". Kirjoituksen lukija lo"yta"a" kirjoituksesta helpommin olennaisen sisa"llo"n, jos kirjoituksen ulkoasu ja sisa"llo"n rakenne vastaavat ha"nen tottumuksiaan. Sama koskee myo"s kirjoittajaa. Noudattaessaan valmista esitystapamallia kirjoittajan ei tarvitse ka"ytta"a" aikaansa itse tyo"n kannalta toissijaisten seikkojen miettimiseen, vaan ha"n voi keskittya" hiomaan tekstin sisa"lto"a". Siksi kannattaa harjoitella myo"s tyo"n ulkoasua koskevien ohjeiden noudattamista, vaikka omasta mielesta"a"n osaisikin valita esitykselleen ohjetta paremman muodon.
+
+Ta"ma" kirjoitus on tarkoitettu Helsingin yliopiston Tietojenka"sittelytieteen laitoksen alempien opinna"ytteiden ja harjoitusten ulkoasun ja rakenteen ohjeeksi. Ohje soveltuu siten tieteellisen kirjoittamisen kurssille, ohjelmistotuotantoprojekteihin ja pro gradu -tutkielmiin. (Kirjoitus on pa"ivitetty uusintapainos aiemmista ohjeista, jotka kurssin luennoijat ovat laatineet [EMN01, ErM96, Erk94, Ver92].)
+
+Ta"ma"n kirjoituksen tukena sopii ka"ytetta"va"ksi pian laitoksen www-sivuilla julkaistava LATEX-ohje ja LATEX-tyyli.
+
+2 Kirjoituksen rakenne Tarkastellaan aluksi tieteelliselta" tekstilta" odotettuja kirjoituksen osia. Samoihin asioihin on luonnollisesti syyta" kiinnitta"a" huomiota myo"s muussa teknisessa" kirjoittamisessa.
+
+2.1 Tiivistelma" Tiivistelma"sivu sisa"lta"a" seuraavat osat: tyo"n bibliografiset tiedot, tiivistelma"teksti, aiheluokat ja avainsanat. Bibliografiset tiedot koostuvat tyo"n otsikosta, tekija"n nimesta", julkaisupaikan tiedoista, julkaisuajankohdasta ja sivuma"a"ra"sta".
+
+Tiivistelma"teksti on lyhyt, yleensa" yhden kappaleen mittainen (maksimissaan noin 100 sanaa) selvitys kirjoituksen ta"rkeimma"sta" sisa"llo"sta": mita" on tutkittu, miten on tutkittu ja mita" tuloksia on saatu.
+
+2 Aiheluokat kuvataan ACM Computing Classification System -luokituksen (CCS) luokituksen mukaisesti. Luokittelussa ka"yteta"a"n alimman tason (kolmannen) nimekkeita". Kirjain- ja numerokoodin lisa"ksi on syyta" ilmoittaa myo"s luokan nimi tekstimuodossa. Avainsanoiksi valitaan kirjoituksen sisa"lto"a" keskeisesti kuvaavia ka"sitteita".
+
+2.2 Johdanto Johdannon tarkoituksena on kertoa yleiskielisesti tyo"n tavoite. Kerrotaan (kuten tiivistelma"ssa"kin, mutta laveammin), mita" on tutkittu, miten on tutkittu ja mita" tuloksia on saatu.
+
+Johdannon pituus ma"a"ra"ytyy suhteessa koko kirjoitelman pituuteen. Parisivuinen kirjoitus ei erillista" johdantoa kaipaa, silla" se itsessa"a"n on laajennettu tiivistelma". Kymmensivuisen kirjoituksen johdanto voi olla vaikkapa sivun tai puolentoista mittainen. Pro gradu -tutkielman 50-70-sivuiseen kokonaisuuteen tuntuu 2-4-sivuinen johdanto kohtuulliselta.
+
+Johdanto kertoo siis lyhyessa", yleistajuisessa muodossa koko kirjoitelman kysymyksenasettelun, juonen ja johtopa"a"telma"t. Ta"ma"n luettuaan lukija voi pa"a"tella", haluaako syventya" asiaan tarkemmin lukemalla koko kirjoituksen.
+
+2.3 Ka"sittelyluvut Ka"sittelylukujen tyo"njako ma"a"ra"ytyy ka"sitelta"va"n asian luonteen mukaisesti. Lukijan ohjailemiseksi kukin pa"a"luku kannattaa aloittaa lyhyella" kappaleella, joka paljastaa mika" kyseisen luvun keskeisin sisa"lto" on ja kuinka aliluvuissa asiaa kehitella"a"n eteenpa"in.
+
+Ja"sentelyongelmista kieliva"t tilanteet, joissa alilukuja on vain yksi, tai joissa ka"yteta"a"n useampaa kuin kahta tasoa (pa"a"luku ja sen aliluvut). Kolmitasoisia otsikointeja saatetaan tarvita joissakin teknisissa" dokumenteissa perustellusti, mutta na"ma" muodostavat poikkeuksen.
+
+3 2.4 La"hdeviittausten ka"ytto"
+
+La"hdeviittauksiin ka"yteta"a"n ns. mnemonisia viitteita", jotka rakennetaan kuten la"hdeluettelon osalta on kerrottu. La"hdeviitteeseen liiteta"a"n tarkentavat sivunumerot, mika"li lukijan olisi tyo"la"sta" lo"yta"a" asianomainen kohta viitatusta la"hteesta".
+
+La"hdeviitteet sijoitetaan aina virkkeen sisa"puolelle. Siten esimerkiksi kappaleen lopussa irrallaan oleva viite ei ole asiallinen.
+
+Tekstin ja"sentelyn on tuotava selkea"sti esiin, mihin asiaan viite liittyy. Samalla tulee ymma"rretta"va"ksi se, kuinka pitka"a"n tekstikatkelmaan kyseessa" oleva viite liiteta"a"n.
+
+2.5 Yhteenveto Yhteenveto voi olla vaatimattomimmillaan lyhyt kertaus kirjoituksen keskeisista" asioista. Arvokkaamman yhteenvedon saa aikaan kommentoimalla mm. tyo"n tulosten arvoa, tyo"n liittymista" ympa"risto"o"n tai tulevaisuudenna"kymia". Ta"llaiset arviot on kuitenkin syyta" huolellisesti perustella, silla" muuten vaikutelma voi olla koominenkin.
+
+2.6 La"hdeluettelon laatiminen Tieteellisen kirjoittamisen kurssin to"iden la"hdeluetteloiden laatimisessa noudatetaan seuraavia ohjeita.
+
+Ohjeiden taustalla on kaksi keskeista" pyrkimysta": tehda" viitatun la"hteen hankkiminen luettavaksi mahdollisimman helpoksi ja ilmaista, millaisen arviointiprosessin la"pi ka"yneeseen kirjoitukseen vedotaan. Na"ista" syista"
+
+* la"hdeviitteen tulee aina olla niin tarkka, etta" la"hde on sen perusteella tunnistettavissa ja lo"ydetta"vissa" luetteloista ja kirjastoista
+
+* erityyppisten la"hteiden (kirjat, konferenssit, lehdet) on erotuttava toisistaan
+
+ja
+
+* luettelon eri osien tulee olla mahdollisimman yhdenmukaisia, erityisesti la"hdetyypin sisa"lla".
+
+La"hteet ovat luettelossa tekija"n nimen mukaisessa aakkosja"rjestyksessa", saman tekija"n (tekija"ryhma"n) tyo"t julkaisuajan mukaisessa ja"rjestyksessa". Jos jollakin la"hteella"
+
+4 ei ole henkilo"tekija"a", se aakkostetaan julkaisun nimen mukaisesti. La"hteen tunnisteena ka"yteta"a"n mnemonista lyhennetta", joka koostuu kolmesta kirjaimesta ja kahdesta numerosta. Kirjaimet ovat tekija"n tai tekijo"iden sukunimen alkukirjaimia ja numerot ovat vuosiluvun kaksi viimeista" numeroa. Jos samalta tekija"lta" on luettelossa useita samana vuonna julkaistuja to"ita", na"ma" erotetaan toisistaan vuosiluvun ja"lkeen sijoitettavalla pienella" aakkosella.
+
+Kustakin la"hteesta" annetaan seuraavat tiedot:
+
+* tekija"n tai tekijo"iden nimet (sukunimi, etunimien alkukirjaimet) alkupera"isessa" ja"rjestyksessa"a"n; jos tekijo"ita" on enemma"n kuin kolme, voidaan toimia siten, etta" vain ensimma"inen tekija" nimeta"a"n ja muiden tilalle kirjoitetaan et al.
+
+* julkaisun tai artikkelin nimi alkupera"isessa" muodossaan
+
+* julkaisupaikan tiedot:
+
+- kirjasta: kustantaja, julkaisupaikka (voidaan ja"tta"a" pois, jos kyseessa" on
+
+tunnettu kustantaja), vuosi
+
+- lehtiartikkelista: lehden nimi, volyymi, numero, vuosiluku ja kuukausi
+
+(suluissa)
+
+- artikkelikokoelmassa (esim. konferenssijulkaisussa) ilmestyneesta" artikkelista:
+
+* kokoelman nimi, toimittaja, kustantaja, julkaisupaikka ja vuosi tai*
+
+konferenssin nimi, ja"rjesta"ja", paikka ja aika, - raportista: julkaisusarja, raportin numero, julkaisupaikka, julkaisija ja
+
+vuosi
+
+- www-la"hteesta": verkko-osoite, voimassaoloajankohta, mahdollisesti viittausajankohta hakasuluissa
+
+* sivunumerot, mika"li la"hteena" on artikkeli tai kokoomateoksen itsena"inen luku.
+
+Julkaisun tai artikkelin nimen pera"a"n tulee piste, samoin kunkin la"hteen bibliografisten tietojen pera"a"n. Muut tiedot erotetaan toisistaan pilkulla. Normaaliin suomalaiseen tapaan artikkelin nimessa" ainoastaan ensimma"inen sana kirjoitetaan isolla alkukirjaimella, sen sijaan konferenssien ja kokoelmajulkaisujen nimissa" ka"yteta"a"n isoa alkukirjainta jokaisen sanan alussa (artikkelisanoja ja prepositioita lukuunottamatta). Katso mallia oheisista esimerkeista". Kokoelman nimen edessa" on syyta" selvyyden vuoksi ka"ytta"a" sanaa Teoksessa, paitsi kun on kysymys konferenssijulkaisusta,
+
+5 jonka nimi alkaa lyhenteella" Proc. (sanasta Proceedings). Ta"llo"in ei tarvita mita"a"n ta"ydennysta". Ta"ma"n eron na"kee esimerkiksi vertaamalla la"hdeviitteiden "[DaT90]" ja "[Gan89]" ulkoasuja.
+
+WWW-la"hteiden ka"yto"ssa" on syyta" muistaa, etta" verkossa julkaisukynnys on olematon. Kannattaa siten keskittya" tunnettujen tieteellisten kustantajien julkaisuihin ja niihin teknisiin standardeihin, joille WWW on ainoa julkaisukanava. Mika"li sama julkaisu on saatavissa myo"s perinteisessa" muodossa, viitataan ensisijaisesti siihen ja ka"yteta"a"n verkko-osoitetta lisa"tietona. La"hdeluettelossa on annettu esimerkit useita kanavia julkaistusta kirjoituksesta [AQM97, Die99] seka" pelka"sta"a"n WWWjulkaisuna levia"va"sta" standardista [BPS98].
+
+WWW-la"hteita" ja niihin viittaamista ka"sitella"a"n tarkemmin erillisessa" ohjeessa [Kil00]. Kirjoituksen la"hdeluettelossa luetellaan ta"sma"lleen ne la"hteet, joihin viitataan kirjoituksen tekstiosassa. Ta"ma"n kirjoituksen la"hdeluettelo on tarkoitettu la"hinna" esitystavan esimerkiksi, mista" syysta" siina" on "ylima"a"ra"isia"" la"hteita".
+
+3 Ulkoasulliset seikat Ta"ssa" luvussa ka"sitella"a"n yleisimpia" tekstin tekniseen esitta"miseen liittyvia" seikkoja.
+
+3.1 Tyo"n osien ja"rjestys Kirjoituksen alussa on aina erillinen, mallin mukainen kansilehti. Toisena sivuna on tiivistelma"sivu, sen ja"lkeen sisa"llysluettelo (yksi tai useampia sivuja) ja sitten varsinainen teksti. Sivunumerointi aloitetaan vasta ensimma"iselta" tekstisivulta (arabialaisella ykko"sella"). (Tarkat ja"tta"va"t ykko"ssivun numeromerkitta".) Sisa"llysluetteloon merkita"a"n kaikki (numeroidut) otsikot ja vastaavat sivunumerot. Monet tekstinka"sittelyja"rjestelma"t muodostavat itse sisa"llysluettelon, jolloin kirjoittajan ei tarvitse huolehtia luettelon sivunumeroiden pa"ivitta"misesta" tekstin kehittyessa". Sisa"llysluettelosivu ja sita" edelta"va"t sivut voidaan haluttaessa numeroida erikseen (roomalaisin numeroin) esimerkiksi ta"ma"n mallin mukaisesti.
+
+Varsinaisen tekstin ja"ljessa", mutta itse tyo"ho"n kuuluvana on ensimma"isena" la"hdeluettelo, jonka otsikkoa ei numeroida. La"hdeluettelon ja"lkeen sijoitetaan mahdolliset liitteet, jotka otsikoidaan ja varustetaan sisa"isilla" sivunumeroilla.
+
+Mika"li kuvista, algoritmeista ja taulukoista halutaan tehda" yhtena"inen luettelo, sijoitetaan luettelot sisa"llysluettelon ja"lkeen. Luetteloiden ka"ytto"arvosta on eria"via"
+
+6 mielipiteita", joten niiden laatimiseen ei varsinkaan ilman tekstinka"sittelyja"rjestelma"n tukea kannata ryhtya" ilman tarkastajan erityista" toivetta.
+
+Mika"li kirjoitukseen erityissyista" halutaan liitta"a" aakkosellinen hakemisto, sijoitetaan se la"hdeluettelon ja"lkeen ennen liitteita". Indeksi merkita"a"n sisa"llysluetteloon samoin kuin la"hdeluettelo (numeroimaton luku). Mika"li indeksin tekemiseen ryhdyta"a"n, on syyta" ka"ytta"a" tekstinka"sittelyja"rjestelma"n tarjoamaa automatiikkaa.
+
+3.2 Tekstin yleinen sijoittelu Tulosta tekstia" vain yhdelle puolelle paperia. Ka"yta" va"lja"hko"a" riviva"lia" (1.5-2), jotta tarkastaja voi kirjoittaa kommentteja tekstirivien va"liin. Omissa va"liversioissasi voi olla tarpeen ka"ytta"a" viela"kin suurempaa riviva"lia". Myo"s molempien marginaalien on hyva" olla melko levea"t (noin 3 cm): vasen marginaali tarvitaan kirjoitelman nitomista varten ja oikealle puolelle tarkastaja voi kirjoittaa merkinto"ja"a"n. Ja"ta" myo"s yla"- ja alareunaan riitta"va"sti tilaa (2-3 cm).
+
+Kirjoituksen lukujen, kuvien ym. osien erottumisen kannalta ta"rkein keino on riitta"va"n va"lja" tilan ka"ytto". Erota kappaleet toisistaan yhdella" ja luvut muutamalla tyhja"lla" rivilla". Jos uusi luku tulisi alkamaan aivan sivun alareunasta (vain yksi tai kaksi rivia" varsinaista tekstia"), aloita mieluummin uusi sivu. Jokaista uutta lukua ei kuitenkaan ole tarpeen -- etenka"a"n lyhyessa" kirjoituksessa -- aloittaa uudelta sivulta: jos kirjoituksessa on paljon melkein tyhjia" sivuja, lukija voi epa"illa", etta" kirjoittaja on yritta"nyt saada kirjoituksensa na"ytta"ma"a"n pitemma"lta" kuin se onkaan.
+
+Tyhja"a" tilaa kannattaa ka"ytta"a" hyo"dyksi myo"s kuvien ja taulukoiden yhteydessa". Erityisesti jos kirjoituksessa ka"yteta"a"n kauttaaltaan samaa tekstityyppia", tyhja"t rivit ovat va"ltta"ma"tto"mia" erottamaan esimerkiksi tekstia" ja taulukkoa toisistaan. Tyhja" tila on halpaa, mutta se lisa"a" selkeytta" ja luettavuutta.
+
+3.3 Kuvat ja taulukot Kuva tai taulukko sijoitetaan mahdollisimman la"helle (ensimma"ista") tekstikohtaa, jossa siihen viitataan, ei kuitenkaan kyseista" viittausta aikaisemmaksi. Tekstissa" on syyta" myo"s kertoa, mita" kuvalla halutaan havainnollistaa. Kuvan voi lukea monella eri tavalla, joten lukijaa on ohjattava.
+
+Kuvaa ei pida" sijoittaa va"litto"ma"sti luvun otsikon alle, vaan on aloitettava tekstilla". Kuvaa ei pida" sijoittaa keskelle tekstikappaletta (saati virketta"), paitsi jos kuva tulee sivun alkuun tai loppuun eika" kappaleen jatkumisesta tule epa"selvyytta".
+
+7 Kuvan ei aina tarvitse olla va"litto"ma"sti viittaavan kappaleen pera"ssa". Esimerkiksi viittauskohdan ja vasta seuraavalle sivulle mahtuvan kuvan va"liin ja"a"va"a" sivun loppuosaa ei ja"teta" tyhja"ksi. Kuvaa ei kuitenkaan pida" vieda" seuraavaa sivua kauemmas viittauskohdasta.
+
+Varsinaista kuvan esitta"mista" havainnollistaa kuva 1. Huomiota on kiinnitetta"va" kuvan osien ja tekstimerkinto"jen na"kyvyyteen, kuvan numerointiin ja otsikointiin.
+
+0 500 1000 1500 2000 2500 3000 3500
+
+1 2 3 4 5 6 7 8 9 10 Queries / second
+
+Number of clients
+
+Test #1Test #2 Test #3
+
+Kuva 1: Kuvan elementit. Kuvien kokoon on kiinnitetta"va" huomiota. Ka"ytettyjen merkinto"jen on oltava helposti luettavissa ja selkea"t. Esimerkiksi suorituskykyka"yria" esitetta"essa" akselit on nimetta"va", asteikot merkitta"va" ja ka"ytetyt yksiko"t tuotava selkea"sti esiin. Samankaltaisia asioita esitetta"essa" useammalla kuvalla on syyta" ka"ytta"a" samaa mittakaavaa vertailun helpottamiseksi.
+
+Kuvan otsikko kirjoitetaan kuvan alle ja sen tulee olla mieluummin lyhyt ja ytimeka"s kuin liian selitteleva". Samoin toimitaan taulukoiden otsikoinnissa.
+
+Kuvat ja taulukot numeroidaan juoksevasti. Pitkissa" teksteissa" ka"yteta"a"n kaksitasoista numerointia (esimerkiksi Kuva 3.1) pa"a"luvuittain, lyhyissa" riitta"a" yksitasoinen numerointi.
+
+8 Kuva- ja taulukko-otsikoiden yhdenmukaiseen esitystyyliin on syyta" kiinnitta"a" huomiota, samoin mm. va"limerkkeihin. Luontevaa on ka"ytta"a" kuvatekstin lopussa pistetta", ovathan useimmat kuvateksteista" virkkeita".
+
+(Kuvien ja taulukoiden otsikointityyli vaihtelee kustantajittain ja julkaisuittain. Samoin tuntuu suositeltava ka"yta"nto" Tietojenka"sittelytieteen laitoksen sisa"lla" vaihtelevan taulukon otsikon sijainnin suhteen.)
+
+3.4 Otsikot Otsikoissa voi ka"ytta"a" muusta tekstista" poikkeavaa kirjasintyyppia", alleviivausta, suurempaa kirjasinkokoa tms. erotuskeinoa, yleensa" kuitenkin vain yhta" na"ista", koska kovin monta erilaista kirjasintyyppia" ja -kokoa tekee ulkoasusta helposti sekavan. Otsikoiden esitystavan on oltava johdonmukainen la"pi koko kirjoituksen. Numeroimattomia "ylima"a"ra"isia"" otsikoita ei tule yleensa" ka"ytta"a".
+
+3.5 Mallin ka"ytto" Voit ka"ytta"a" ta"ta" kirjoitusta mallina oman opinna"ytteesi ulkoasua varten. Eri tekstinka"sittelyja"rjestelmissa" ka"yto"ssa" olevat kirjasintyypit ja -koot, riviva"lit ym. poikkeavat toisistaan, joten pienet poikkeamat ovat toki hyva"ksytta"via".
+
+Tieteellisen kirjoittamisen kurssin luennoilla ja liitteena" olevassa ohjeessa annetut to"iden ohjeelliset sivuma"a"ra"t koskevat tyo"ta", joka vastaa ulkoasultaan ta"ta" ohjetta (kirjasinkoko 12 pistetta"). Ta"ssa" tekstissa" keskima"a"ra"inen rivin pituus lienee noin 80 merkkia" ja sivun pituus 30 rivia". Sivuma"a"riin lasketaan varsinaisen tekstiosuuden pituus ja la"hdeluettelo (arabialaisin numeroin numeroitu osuus), ei kansilehtea", tiivistelma"a" eika" sisa"llysluetteloa.
+
+4 Yhteenveto Ta"ma"n kirjoituksen tarkoituksena on toimia muistilistana era"ista" esitystavallisista sa"a"nno"ista", joihin harjoitusten ja tutkielmien kohdalla on syyta" kiinnitta"a" huomiota.
+
+9 La"hteet
+
+AQM97 Abiteboul, S., Quass, D., McHugh, J., Widom, J. ja Wiener,
+
+J., The lorel query language for semistructured data. International Journal on Digital Libraries, 1,1(1997), sivut 68- 88. [Myo"s http://link.springer.de/link/service/journals/ 00799/bibs/7001001/70010068.htm, 18.1.2000].
+
+BPS98 Bray, T., Paoli, J. ja Sperberg-McQueen, C., Extensible Markup Language (XML) 1.0. W3C Recommendation 10-February-1998. http: //www.w3.org/TR/1998/REC-xml-19980210. [18.1.2000]
+
+CDM98 Crowder, H., Dembo, R. ja Mulvey, J., On reporting computational
+
+experiments with mathematical software. ACM Transactions on Mathematical Software, 5,2(1979), sivut 193-203.
+
+Die99 Dietinger, T. et al., Dynamic Background Libraries - New Developments in Distance Education Using HIKS (Hierarchical Interactive Knowledge System). Journal of Universal Computer Science, 5,1(1999). [Myo"s http://www.iicm.edu/jucs.5.1/dynamic. background.libraries.new, 18.1.2000].
+
+DaT90 Dan, A. ja Towsley, D., An approximate analysis of the LRU and FIFO
+
+buffer replacement schemes. Proc. ACM Conf. Measurement and Modeling of Computer Systems, Boulder, Colorado, USA, toukokuu 1990, sivut 143-152.
+
+ErM96 Erkio", H. ja Ma"kela", M., Opinna"ytetyo"n ulkoasun malli. Tieteellisen
+
+kirjoittamisen kurssiin liittyva" julkaisematon moniste, Tietojenka"sittelytieteen laitos, Helsinki, 1996.
+
+EMN01 Erkio", H., Ma"kela", M., Nyka"nen, M. ja Verkamo, I., Opinna"ytetyo"n ulkoasun malli. Tieteellisen kirjoittamisen kurssiin liittyva" julkaisematon moniste, Tietojenka"sittelyopin laitos, Helsinki, 2001.
+
+Erk94 Erkio", H., Opinna"ytetyo"n ulkoasun malli. Tieteellisen kirjoittamisen
+
+kurssiin liittyva" julkaisematon moniste, Tietojenka"sittelyopin laitos, Helsinki, 1994.
+
+FHS89 Fogelberg, P., Herranen, M. ja Sinikara, K., Tuumasta toimeen, tutkielman tekija"n opas. Yliopistopaino, Helsinki, 1989.
+
+10 Gan89 Gannon, D. et al., Programming environments for parallel algorithms.
+
+Teoksessa Parallel and Distributed Algorithms, Cosnard, M. et al., toimittajat, North-Holland, 1989, sivut 101-108.
+
+Gri87 Grimm, S. S., How to write computer documentation for users. Van
+
+Nostrand Reinhold Co., New York, 1987.
+
+HaP82 Harkins, C. ja Plung, D. L., toimittajat, A guide for writing better
+
+technical papers. IEEE Press, 1982.
+
+Jul81 Julkaisusarjoja ja opinna"ytteiden tiivistelmia" koskevat ohjeet ja suositukset. Helsingin yliopiston kirjastolaitoksen julkaisu A 3, Helsinki, 1981.
+
+Kil00 Kilpela"inen, P., WWW-la"hteisiin viittaaminen tutkielmatekstissa",
+
+2000. http://www.cs.helsinki.fi/u/kilpelai/TiKi/wwwlahteet. html. [19.1.2000]
+
+Smi78b Smith, A. J., Sequential program prefetching in memory hierarchies.
+
+Computer, 11,11(1978), sivut 7-21.
+
+Smi78a Smith, A. J., Sequentiality and prefetching in database systems. ACM
+
+Transactions on Database Systems, 3,3(1978), sivut 223-247.
+
+Ver92 Verkamo, A. I., Opinna"ytetyo"n ulkoasun malli. Tieteellisen kirjoittamisen kurssiin liittyva" julkaisematon moniste, Tietojenka"sittelyopin laitos, Helsinki, 1992.
+
+Liite 1. Malli ABC Liitteet ovat ta"ssa" vain sisa"llysluettelon ja esitystavan mallina. Jokainen liite aloitetaan yleensa" uudelta sivulta, jonka alkuun tulee liitteen numero ja nimi. Kunkin liitteen sivut numeroidaan erikseen.
+
+Liite on paitsi dokumenttia ta"ydenta"va" osuus myo"s itsena"inen kokonaisuus. Liite ei siten voi olla pelka"sta"a"n kuva tai ohjelmanpa"tka", vaan liitteessa" on ilmaistava sen sisa"llo"n laatu ja tarkoitus.

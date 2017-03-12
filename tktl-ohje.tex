@@ -1,0 +1,713 @@
+%%
+%% This is file `tktl-ohje.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% tktl.dtx  (with options: `ohjeet')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2002 Mikael Puolakka.
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.2 of this license or (at your option) any later
+%% version. The latest version of this license is in
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.2 or later is part of all distributions of
+%% LaTeX version 1999/12/01 or later.
+%% 
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                         %
+%% BibTeX-tyylin tktl käyttöohje                                           %
+%% Mikael Puolakka 16.9.2002                                                %
+%%                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[gradu,emptyfirstpagenumber]{tktltiki}
+\usepackage{url}
+
+\newcommand{\filedate}{16.9.2002}
+
+\newcommand{\koodi}[1]{\texttt{#1}}
+
+\newcommand{\luokka}{\koodi{tktltiki}}
+
+\newcommand{\bibtyyli}{\koodi{tktl}}
+
+\newcommand{\koodikoko}{\footnotesize}
+
+\def\BibTeX{{\rmfamily B\kern-.05em%
+  \textsc{i\kern-.025em b}\kern-.08em%
+  T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{\BibTeX-tyylin \bibtyyli\ käyttöohje}
+\author{Mikael Puolakka}
+\date{\filedate}
+\faculty{Matemaattis-luonnontieteellinen}
+\department{Tietojenkäsittelytieteen laitos}
+\level{Käyttöohje}
+\additionalinformation{Tämä on \BibTeX-tyylin \bibtyyli\ käyttöohje.}
+\numberofpagesinformation{\numberofpages\ sivua}
+\classification{A.1, I.7.m}
+\keywords{käyttöohje, \LaTeX-dokumenttiluokka, \BibTeX-tyyli}
+
+\maketitle
+
+\begin{abstract}
+\BibTeX -tyyli \bibtyyli\ perustuu \LaTeX-ladontajärjestelmän
+standardityyliin \koodi{alpha}. \BibTeX-tyyli \bibtyyli\ tarjoaa kuitenkin
+monia uusia ominaisuuksia, kuten mahdollisuuden tehdä ruotsin- tai
+suomenkielinen lähdeluettelo, WWW-versiot kaikista merkintätyypeistä ja
+mahdollisuuden määrittää lähdeviitteen tunniste itse.
+\end{abstract}
+
+\mytableofcontents
+
+\section{Johdanto}
+
+Tämä dokumentti on \BibTeX -tyylin \bibtyyli\ käyttöohje. Lisäksi tässä
+dokumentissa käsitellään lyhyesti \BibTeX-ohjelman käyttöä.
+
+\section{\BibTeX-tyylin \bibtyyli\ käyttö}
+
+Tyyli \bibtyyli\ on tyylistä \koodi{alpha} muunneltu \BibTeX -tyyli. Tyyli
+\bibtyyli\ käyttää kielisensitiivisissä kohdissa joko suomen, ruotsin tai
+englannin kieltä sen mukaan, mikä näistä kielistä on
+\koodi{Babel}-pakkauksen käytössä kirjallisuus- tai lähdeluettelon
+luontihetkellä. Tyylin \bibtyyli\ käytön ehtona on siis se, että paketti
+\koodi{Babel} on käytössä ja joko suomen, ruotsin tai englannin kieli on
+aktiivisena. Jos valittuna on joku muu kieli kuin suomi, ruotsi tai
+englanti, kielisensitiivisissä kohdissa käytetään suomen kieltä.
+
+Mikäli \LaTeX-käsikirjoitustiedostossasi \verb|\documentclass|-komennolla
+valitsemasi\linebreak luokka ei lataa automaattisesti \koodi{Babel}-pakkausta, voit
+tehdä tämän itse komennolla
+\begin{verbatim}
+    \usepackage[<kieli>]{babel}
+\end{verbatim}
+jossa kieli on \koodi{finnish} (suomi), \koodi{english} (englanti) tai
+\koodi{swedish} (ruotsi). Esimerkiksi \verb|\usepackage[finnish]{babel}|
+ottaa käyttöön \koodi{Babel}-pakkauksen ja valitsee kieleksi suomen.
+
+\subsection{Merkintätyypit (entry types)}
+\label{merkintatyypit}
+
+Kun \BibTeX-ohjelmaa käytetään lähdeluettelon tuottamiseen, lähteet täytyy
+kirjata erityiseen tietokantaan, josta \BibTeX\ poimii viitattujen lähteiden
+tiedot. Tällaisena \BibTeX-tietokantana toimii \koodi{BIB}-päätteiset
+tiedostot, esim.\ \koodi{lahteet.bib}. Tietokantatiedoston nimenä voi toki
+olla mikä tahansa tiedoston nimeksi kelpaava nimi.
+
+Kun lähdeviitteitä merkitään tietokantaan, on päätettävä minkätyyppinen
+tietokantamerkintä on kyseessä. Merkintätyyppi
+(\foreignlanguage{english}{entry type}) tarkoittaa siis viitattavan
+lähteen tyyppiä, joka voi olla artikkeli, kirja, väitöskirja, tekninen
+raportti tai jokin muu. Merkinnässä {\koodikoko
+\begin{verbatim}
+    @BOOK(fogelbergetal89,
+      AUTHOR    = "Fogelberg, P. and Herranen, M. and Sinikara, K.",
+      TITLE     = "Tuumasta toimeen, tutkielman tekijän opas",
+      PUBLISHER = "Yliopistopaino",
+      YEAR      = 1989,
+      ADDRESS   = "Helsinki")
+\end{verbatim}
+}
+\koodi{@BOOK} ilmoittaa, että tämän merkinnän tyyppi on \emph{kirja}.
+Merkkijono \koodi{fogelberge\-tal89} on puolestaan se tunniste, jonka
+avulla \LaTeX-käsikirjoitustiedostossa viitataan kyseiseen lähteeseen.
+Lähteisiin viittaaminen käsikirjoitustiedostossa tapahtuu
+\verb|\cite|-komennolla, joten esimerkkilähteeseen viitataan
+kirjoittamalla\linebreak \verb|\cite{fogelbergetal89}|
+\LaTeX-käsikirjoitustiedostoon.
+
+Käytettävissä olevat merkintätyypit riippuvat siitä, mitä
+\BibTeX-tyyliä käytetään lähdeluettelon luonnissa. Käytetty \BibTeX-tyyli
+määritetään puolestaan varsinaisessa \LaTeX-käsikirjoitustiedostossa
+komennolla \verb|\bibliographystyle{<tyyli>}|, jossa tyyli on käytettävä
+\BibTeX-tyyli. Esimerkiksi käsikirjoitustiedostoon kirjoitettu komento
+\verb|\bibliographystyle{tktl}| merkitsee sitä, että lähdeluettelon
+luonnissa käytettävä tyyli on \koodi{tktl}.
+
+\BibTeX -tyylissä \bibtyyli\ on käytössä kaikki samat merkintätyypit kuin
+standardityylissä \koodi{alpha}. Lisäksi jokaisesta merkintätyypistä on
+olemassa ''WWW-versio'', joka eroaa kahdella tavalla alkuperäisestä
+merkintätyypistä:
+\begin{enumerate}
+\item Kenttä \koodi{URL} on pakollinen.
+\item Uudella kentällä \koodi{valid} ilmoitetaan päivämäärä, jolloin linkin
+voimassaolo ja lähteen sisältö on tarkastettu.
+\end{enumerate}
+Merkintätyyppien WWW-versiot aloitetaan kirjoittamalla
+\koodi{BIB}-tiedostoon\linebreak \verb|@WWW-<merkintätyyppi>(...|, jossa
+\verb|<merkintätyyppi>| korvataan sen merkintätyypin nimellä, jonka
+WWW-versiota halutaan käyttää. Näin ollen WWW-lähteisiin viittaavat
+tietokantamerkinnät alkavat seuraavasti: \verb|@WWW-ARTICLE|,
+\verb|@WWW-BOOK|,\linebreak \verb|@WWW-BOOKLET|, jne.
+
+Alla olevassa listassa on lueteltu tyylin \bibtyyli\ mahdolliset
+merkintätyypit lukuunottamatta merkintätyyppien WWW-versioita. Jokaisen
+merkintätyypin yhteydessä on lueteltu merkintätyypin tarpeelliset ja
+valinnaiset kentät.\footnote{Kenttiä käsitellään tarkemmin
+luvussa~\ref{kentat}.}
+
+Tarpeellinen kenttä on sellainen, joka tulisi sisällyttää
+tietokantamerkintään. Sen poisjättäminen saattaa johtaa huonosti
+muotoiltuun lähdeluettelomerkintään.\linebreak \BibTeX-ohjelma tuottaa
+virheilmoituksen puuttuvasta tarpeellisesta kentästä.
+
+Valinnainen kenttä on sellainen, jonka poisjättämisestä ei aiheudu
+ongelmia. Viitteen tulisi kuitenkin sisältää kaikki tiedot, jotka
+saattaisivat auttaa lukijaa, joten on suositeltavaa sisällyttää myös
+kaikki valinnaiset kentät tietokantamerkintään mikäli mahdollista.
+
+\begin{description}
+\item[article] \texttt{} \\
+Artikkeli jonkintyyppisestä aikakausjulkaisusta tai lehdestä. Tarpeelliset
+kentät: \koodi{author}, \koodi{title}, \koodi{journal}, \koodi{year}.
+Valinnaiset kentät: \koodi{volume}, \koodi{number}, \koodi{pages},
+\koodi{month}, \koodi{note}, \koodi{url}, \koodi{bibitemlabel}.
+\item[book] \texttt{} \\
+Kirja selvästi ilmaistulla kustantajalla. Tarpeelliset kentät:
+\koodi{author} tai \koodi{editor}, \koodi{title}, \koodi{publisher},
+\koodi{year}. Valinnaiset kentät: \koodi{volume} tai \koodi{number},
+\koodi{series}, \koodi{address}, \koodi{edition}, \koodi{month},
+\koodi{note}, \koodi{url}, \koodi{bibitemlabel}.
+\item[booklet] \texttt{} \\
+Työ, joka on painettu ja sidottu mutta ilman nimettyä julkaisijaa tai
+kustantavaa instituutiota. Tarpeellinen kenttä: \koodi{title}. Valinnaiset
+kentät: \koodi{author}, \koodi{howpublished}, \koodi{address},
+\koodi{month}, \koodi{year}, \koodi{note}, \koodi{url},
+\koodi{bibitemlabel}.
+\item[conference] \texttt{} \\
+Sama kuin \textbf{inproceedings}.
+\item[inbook] \texttt{} \\
+Osa kirjasta, tavallisesti ilman nimikettä tai otsikkoa. Saattaa olla luku
+(tai muu jaksollinen yksikkö) ja/tai joukko sivuja. Tarpeelliset kentät:
+\koodi{author} tai \koodi{editor}, \koodi{title}, \koodi{chapter} ja/tai
+\koodi{pages}, \koodi{publisher}, \koodi{year}. Valinnaiset kentät:
+\koodi{volume} tai \koodi{number}, \koodi{series}, \koodi{type},
+\koodi{address}, \koodi{edition}, \koodi{month}, \koodi{note}, \koodi{url},
+\koodi{bibitemlabel}.
+\item[incollection] \texttt{} \\
+Osa kirjasta omalla otsikollaan. Tarpeelliset kentät: \koodi{author},
+\koodi{title}, \koodi{booktitle}, \koodi{publisher}, \koodi{year}.
+Valinnaiset kentät: \koodi{editor}, \koodi{volume} tai \koodi{number},
+\koodi{series}, \koodi{type}, \koodi{chapter}, \koodi{pages},
+\koodi{address}, \koodi{edition}, \koodi{month}, \koodi{note}, \koodi{url},
+\koodi{bibitemlabel}.
+\item[inproceedings] \texttt{} \\
+Artikkeli konferenssijulkaisussa. Tarpeelliset kentät: \koodi{author},
+\koodi{title}, \koodi{booktitle}, \koodi{year}. Valinnaiset kentät:
+\koodi{editor}, \koodi{volume} tai \koodi{number}, \koodi{series},
+\koodi{pages}, \koodi{address}, \koodi{month}, \koodi{organization},
+\koodi{publisher}, \koodi{note}, \koodi{url}, \koodi{bibitemlabel}.
+\item[manual] \texttt{} \\
+Tekninen dokumentaatio. Tarpeellinen kenttä: \koodi{title}. Valinnaiset
+kentät: \koodi{author}, \koodi{organization}, \koodi{address},
+\koodi{edition}, \koodi{month}, \koodi{year}, \koodi{note}, \koodi{url},
+\koodi{bibitemlabel}.
+\item[mastersthesis] \texttt{} \\
+Pro gradu -tutkielma tai vastaava. Tarpeelliset kentät: \koodi{author},
+\koodi{title}, \koodi{school}, \koodi{year}. Valinnaiset kentät:
+\koodi{type}, \koodi{address}, \koodi{month}, \koodi{note}, \koodi{url},
+\koodi{bibitemlabel}.
+\item[misc] \texttt{} \\
+Käytä tätä merkintätyyppiä, kun mikään muu ei ole sopiva. Valinnaiset
+kentät: \koodi{author}, \koodi{title}, \koodi{howpublished}, \koodi{month},
+\koodi{year}, \koodi{note}, \koodi{url}, \koodi{bibitemlabel}.
+\item[phdthesis] \texttt{} \\
+Väitöskirja tai vastaava. Tarpeelliset kentät: \koodi{author},
+\koodi{title}, \koodi{school}, \koodi{year}. Valinnaiset kentät:
+\koodi{type}, \koodi{address}, \koodi{month}, \koodi{note}, \koodi{url},
+\koodi{bibitemlabel}.
+\item[proceedings] \texttt{} \\
+Konferenssijulkaisu. Tarpeelliset kentät: \koodi{title}, \koodi{year}.
+Valinnaiset kentät: \koodi{editor}, \koodi{volume} tai \koodi{number},
+\koodi{series}, \koodi{address}, \koodi{month}, \koodi{organization},
+\koodi{publisher}, \koodi{note}, \koodi{url}, \koodi{bibitemlabel}.
+\item[techreport] \texttt{} \\
+Koulun tai muun instituution julkaisema raportti, tavallisesti numeroitu
+sarjassa. Tarpeelliset kentät: \koodi{author}, \koodi{title},
+\koodi{institution}, \koodi{year}. Valinnaiset kentät: \koodi{type},
+\koodi{number}, \koodi{address}, \koodi{month}, \koodi{note}, \koodi{url},
+\koodi{bibitemlabel}.
+\item[unpublished] \texttt{} \\
+Dokumentti kirjoittajalla ja nimellä, mutta ei virallisesti julkaistu.
+Tarpeelliset kentät: \koodi{author}, \koodi{title}, \koodi{note}.
+Valinnaiset kentät: \koodi{month}, \koodi{year}, \koodi{url},
+\koodi{bibitemlabel}.
+\end{description}
+
+WWW-lähde ilmoitetaan asianomaisen merkintätyypin WWW-versiolla.
+Merkintätyyppien WWW-versioista kerrotaan enemmän tämän aliluvun alussa.
+
+\subsection{Kentät (fields)}
+\label{kentat}
+
+Tietokantamerkintöjen ominaisuudet ilmoitetaan kentillä
+(\foreignlanguage{english}{fields}). Esimerkiksi kirjalla on kirjoittaja,
+nimi, kustantaja ja julkaisuvuosi, jotka ilmoitetaan kenttien
+\koodi{author}, \koodi{title}, \koodi{publisher} ja \koodi{year} avulla.
+Merkinnästä
+{\koodikoko
+\begin{verbatim}
+    @INPROCEEDINGS(dantowsley90,
+      AUTHOR    = "Dan, A. and D. Towsley",
+      TITLE     = "An approximate analysis of the {LRU} and {FIFO}
+                   buffer replacement schemes",
+      BOOKTITLE = "Proc. {ACM} Conf.\ Measurement and
+                   Modeling of Computer Systems",
+      YEAR      = 1990,
+      PAGES     = "143--152",
+      ADDRESS   = "Boulder, Colorado, {USA}",
+      MONTH     = may)
+\end{verbatim}
+}
+näemme monia yksityiskohtia liittyen kenttien käyttöön. Näistä tärkeimmät
+ja pari ylimääräistäkin on lueteltu alla olevassa listassa.
+
+\begin{itemize}
+\item
+Merkkijonot kirjoitetaan joko \verb|"|-merkkien tai toisiaan vastaavien
+\verb|{|- ja \verb|}|-merk\-kien väliin.
+\item
+Lainausmerkit tai sulut voi jättää pois pelkkiä numeroita sisältävistä
+teksteistä.
+\item
+Kuukaudet kirjoitetaan ilman lainausmerkkejä tai sulkuja käyttäen
+kolmikirjaimisia englanninkielisiä lyhenteitä \koodi{jan}, \koodi{feb},
+\koodi{mar}, \koodi{apr}, \koodi{may}, \koodi{jun}, \koodi{jul},
+\koodi{aug}, \koodi{sep}, \koodi{oct}, \koodi{nov} ja \koodi{dec}.
+\item
+Nimet voi kirjoittaa joko \koodi{"Etunimi Sukunimi"} tai \koodi{"Sukunimi,
+Etunimi"}. Jos sukunimi koostuu useasta isolla kirjaimella alkavasta osasta,
+jälkimmäistä, pilkullista muotoa tulisi käyttää. Esimerkiksi Jackie Onassis
+Kennedy tulisi syöttää muodossa \koodi{"Onassis Kennedy, Jackie"}. Jos
+kirjoitat \koodi{"Jackie Onassis Kennedy"}, \BibTeX\ luulee, että
+''Onassis'' on hänen toinen etunimensä.
+\item
+''Juniorit'' kirjoitetaan seuraavalla tavalla: \koodi{"Ford, Jr., Henry"}.
+\item
+Jos kirjoittajia tai toimittajia on useita, heidän nimensä erotellaan
+sanalla \koodi{and}. Esimerkiksi henkilöiden Bray, Paoli ja Sperberg-McQueen
+toimittaman työn \koodi{EDITOR}-kenttä saa seuraavanlaisen muodon:
+\begin{verbatim}
+    EDITOR = "Bray, T. and Paoli, J. and Sperberg-McQueen, C.M."
+\end{verbatim}
+\item
+Jos kirjoittajien tai toimittajien nimiä on enemmän kuin jaksat kirjoittaa,
+lopeta nimien lista kirjoittamalla \koodi{and others}. Standardityylit ja
+\bibtyyli\ muuttavat tämän lähdeluetteloon tekstiksi ''et~al.''
+\item
+Kirjojen ynnä muiden teosten nimet tulisi kirjoittaa alkuperäismuodossaan,
+isot ja pienet kirjaimet oikeilla paikoillaan. Tarvittaessa \BibTeX\
+kuitenkin muuttaa isoja kirjaimia pieniksi, joten ne isot kirjaimet tai
+sanat joita ei saa muuttaa, pitäisi sulkea aaltosulkeisiin. Seuraavat kaksi
+nimeä ovat yhtäpitäviä eli kirjainta \emph{A} sanassa \emph{Africa} ei
+muuteta pieneksi kirjaimeksi:
+\begin{verbatim}
+    "The Gnats and Gnus of {Africa}"
+    "The Gnats and Gnus of {A}frica"
+\end{verbatim}
+\item
+Tyyliä \bibtyyli\ käytettäessä {1.\ --~5.\ painoksen} voi ilmoittaa
+englanninkielisillä järjestyssanoilla \koodi{"First"}, \koodi{"Second"},
+\koodi{"Third"}, \koodi{"Fourth"} ja \koodi{"Fifth"}. Painoksen voi aina
+ilmoittaa myös pelkän numeron avulla, joten seuraavat merkinnät ovat
+yhtäpitäviä:
+\begin{verbatim}
+    EDITION = 3
+    EDITION = "First"
+\end{verbatim}
+\end{itemize}
+
+Alla olevassa listassa on lueteltu \BibTeX -tyylin \bibtyyli\ tunnistamat
+kentät. Kentät ovat samat kuin standardityylissä \koodi{alpha} lisättynä
+kentällä \koodi{url}, joka saa arvokseen \mbox{URL}-osoitteen\footnote{
+\mbox{URLin} mainitsemista käsitellään tarkemmin luvussa~\ref{url}.} ja
+kentällä \koodi{bibitemlabel}, joka saa arvokseen käyttäjän määrittelemän
+tunnisteen kyseiselle lähteelle.
+
+\begin{description}
+\item[address] \texttt{} \\
+Yleensä kentän \koodi{publisher} kustantajan tai kentän
+\koodi{institution} instituution osoite.
+\item[author] \texttt{} \\
+Kirjoittajan nimi. Jos useita kirjoittajia, kirjoittajien nimet
+eroteltuina sanalla \koodi{and}.
+\item[bibitemlabel] \texttt{} \\
+Lähteen tunniste. Korvaa automaattisesti tuotetun tunnisteen.
+\item[booktitle] \texttt{} \\
+Kirjan nimi, otsikoitu osa jota lainataan. Käytetään ainoastaan
+merkintätyypeillä \koodi{incollection} ja \koodi{inproceedings}.
+\item[chapter] \texttt{} \\
+Luvun (tai muun jaksollisen yksikön) numero.
+\item[crossref] \texttt{} \\
+Sen tietokantamerkinnän tunniste, johon ristiviitataan.
+\item[edition] \texttt{} \\
+Kirjan painos. \BibTeX-tyylissä \bibtyyli\ painokset ilmoitetaan helpoiten
+pelkän numeron avulla, esim.\ \koodi{2}.
+\item[editor] \texttt{} \\
+Toimittajan nimi. Jos useita toimittajia, toimittajien nimet
+eroteltuina sanalla \koodi{and}.
+\item[howpublished] \texttt{} \\
+Kuinka jokin kirjoitus tai muu julkaistiin.
+\item[institution] \texttt{} \\
+Teknisen raportin kustantava instituutio.
+\item[journal] \texttt{} \\
+Jonkintyyppisen aikakausjulkaisun tai lehden nimi.
+\item[key] \texttt{} \\
+Käytetään tunnisteen aakkostamiseen ja luomiseen, kun \koodi{author}- ja
+\koodi{editor}-kentät puuttuvat. Tätä kenttää ei pitäisi sekoittaa sen
+\emph{tunnisteen} kanssa, joka esiintyy \verb|\cite|-komennossa ja
+tietokantamerkinnän alussa merkintätyypin jälkeen.
+\item[month] \texttt{} \\
+Se kuukausi, jolloin työ julkaistiin tai jolloin julkaisematon työ
+kirjoitettiin. Käytä kolmikirjaimisia lyhenteitä, joista kerrottiin
+yllä.
+\item[note] \texttt{} \\
+Mikä tahansa lisäinformaatio, joka voi auttaa lukijaa. Ensimmäinen sana
+pitäisi aloittaa isolla kirjaimella.
+\item[number] \texttt{} \\
+Lehden, teknisen raportin tai kirjasarjan osan numero.
+\item[organization] \texttt{} \\
+Organisaatio, joka kustantaa konferenssin tai julkaisee teknisen
+dokumentaation.
+\item[pages] \texttt{} \\
+Sivunumerot, esim.\ \verb|69--99| tai \verb|1,3,6--66,69|.
+\item[publisher] \texttt{} \\
+Kustantajan nimi.
+\item[school] \texttt{} \\
+Sen koulun nimi, missä pro gradu -tutkielma, väitöskirja,
+lisensiaatintutkielma tai vastaava kirjoitettiin.
+\item[series] \texttt{} \\
+Kirjasarjan tai -kokoelman nimi. Kun lainataan kokonaista kirjaa,
+\koodi{title}-kentän arvona on kirjan nimi ja valinnaisen
+\koodi{series}-kentän arvona on sarjan tai kokoelman nimi, jossa kirja
+julkaistiin.
+\item[title] \texttt{} \\
+Työn nimi tai otsikko.
+\item[type] \texttt{} \\
+Teknisen raportin tyyppi, esimerkiksi ''Research Note''. Käytetään myös
+määrittämään jaksollisen yksikön tyyppi \koodi{inbook}- ja
+\koodi{incollection}-tyypeissä ja tarkentamaan tutkielman tai vastaavaan
+tyyppiä tietokantamerkinnöissä\linebreak \koodi{mastersthesis} ja \koodi{phdthesis}.
+\item[url] \texttt{} \\
+WWW-sivun osoite.
+\item[volume] \texttt{} \\
+Lehden vuosikerta tai moniosaisen kirjan nide.
+\item[year] \texttt{} \\
+Ilmestymisvuosi tai julkaisemattomassa työssä kirjoittamisvuosi. Koostuu
+yleensä pelkistä numeroista, mutta voi olla myös esim.\
+\koodi{circa 1492}.
+\end{description}
+
+Jokaisella merkintätyypillä on valinnainen kenttä \koodi{KEY}, jota
+käytetään viitteen tunnisteen aakkostamiseen ja muodostamiseen. Jokaiseen
+tietokantamerkintään, josta puuttuu \koodi{AUTHOR} tai tekijän
+korvike\footnote{Esimerkiksi\ \koodi{EDITOR} tai \koodi{ORGANIZATION} voi
+merkintätyypistä riippuen korvata tekijän.}, tulisi sisällyttää
+\koodi{KEY}-kenttä.
+
+Jokaisella merkintätyypillä on myös valinnainen
+kenttä \koodi{bibitemlabel}, jonka arvolla korvataan \BibTeX-tyylin
+\bibtyyli\ automaattisesti tuottama lähteen tunniste. Kentän olemassaolo
+johtuu siitä, että tyylin \bibtyyli\ tuottamat lähteiden tunnisteet ovat
+joissain tapauksissa ''laittomia'' eli ne eivät noudata kaikkein tiukimpia
+lähteiden tunnisteita koskevia sääntöjä.\footnote{Sama pätee myös monien
+muiden \BibTeX-tyylien, kuten tyylin \koodi{alpha}, kohdalla.} Tämän vuoksi
+on ollut tarpeen antaa \BibTeX-tyylin \bibtyyli\ käyttäjälle mahdollisuus
+määrittää lähteiden tunnisteita itse. Huomaa, ettei
+\LaTeX-ladontajärjestelmän standardibibliografiatyyleissä ole kenttää
+\koodi{bibitemlabel}.
+
+Useat mainitut lähteet saattavat olla osa isompaa työtä, esimerkiksi
+artikkelit konferenssijulkaisussa. Tällöin voidaan tehdä yksi
+tietokantamerkintä konferenssijulkaisulle ja viitata tähän merkintään
+yksittäisten artikkelien merkinnöissä. Näin konferenssijulkaisun
+tietokantamerkinnässä esiintyviä kenttiä ei tarvitse kopioida artikkelien
+merkintöihin. Artikkelin jokaisen pakollisen kentän on kuitenkin oltava
+joko artikkelin tietokantamerkinnässä tai viitatussa merkinnässä.
+Tällaisia ristiviittauksia tehdään \koodi{CROSSREF}-kentän avulla
+esimerkiksi seuraavasti:
+\begin{verbatim}
+    @INPROCEEDINGS(crossrefered,
+      AUTHOR    = "John Doe",
+      TITLE     = "The Unknown",
+      PAGES     = "23--24",
+      CROSSREF  = "crossreferer")
+
+    @PROCEEDINGS(crossreferer,
+      TITLE     = "Seventh Conference on The Superunknown",
+      BOOKTITLE = "Seventh Conference on The Superunknown",
+      EDITOR    = "Jane Doe",
+      YEAR      = 2002)
+\end{verbatim}
+Ristiviitatun tietokantamerkinnän, kuten \koodi{crossreferer} esimerkissä,
+täytyy tulla \koodi{BIB}-tiedostossa kaikkien sellaisten merkintöjen
+jälkeen, jotka viittaavat siihen.
+
+\subsection{URLin mainitseminen}
+\label{url}
+
+Käytännöllinen tekniikka \mbox{URLin} mainitsemiseen
+\koodi{BIB}-tietokantatiedostossa on kirjoittaa se \koodi{NOTE}-kenttään
+esimerkiksi seuraavasti:
+\begin{verbatim}
+    @techreport{...,
+      ...,
+      NOTE = "Also available as \url{http://...}"
+    }
+\end{verbatim}
+
+Tyylissä \bibtyyli\ \mbox{URLille} on oma kenttänsä \koodi{URL}, jota
+käyttämällä edellisen esimerkin \mbox{URLin} voi ilmoittaa seuraavasti:
+\begin{verbatim}
+    @techreport{...,
+      ...,
+      URL = "http://..."
+    }
+\end{verbatim}
+Tämä lisää \BibTeX-ohjelman tuottamaan lähdeluetteloon \mbox{URLin} eteen
+tekstin \emph{URL}. Huomaa, ettei kentän \koodi{URL} kanssa käytetä
+\verb|\url|-komentoa.
+
+Pakkauksen \koodi{url} tai \koodi{hyperref} käyttö on \mbox{URLeja}
+mainitessa suositeltavaa, koska niiden sisältämä \verb|\url|-komento jättää
+oletusarvoisesti huomioon ottamatta välilyönnit parametrissaan.
+\BibTeX-ohjelmalla on tapana katkaista rivejä, joita se pitää liian
+pitkinä, ja jos tekstissä ei ole välilyöntejä tai rivivaihtoja joita
+\BibTeX\ voisi käyttää ''luonnollisina'' katkaisukohtina, se liittää
+tekstiin \verb|%|-merkin. Tämä on hyväksyttävä merkki \mbox{URLissa},
+joten \verb|\url| latoo sen. Siksi on syytä liittää ylimääräisiä
+välilyöntejä tai rivinvaihtoja itse \mbox{URLiin} \koodi{bib}-tiedostoon
+ja antaa näin \BibTeX-ohjelmalle mahdollisuus tehdä järkeviä
+rivinkatkaisupäätöksiä.
+
+\mbox{URLien} käytössä hyvännäköiseen lopputulokseen pääsee siis
+seuraavasti:
+\begin{enumerate}
+\item
+Kirjoita \LaTeX-käsikirjoitustiedoston johdanto-osuuteen\footnote{Se osa
+käsikirjoitustiedostosta, joka edeltää
+$\mathtt{\backslash}$\koodi{begin\{document\}}-komentoa.}
+\verb|\usepackage{url}| tai \verb|\usepackage{hyperref}|
+\item{\sloppy
+Kirjoita \koodi{BIB}-tiedostoon kaikkien muiden kenttien kuin
+\koodi{URL}-kentän \mbox{URLit} käyttäen \verb|\url|-komentoa, esim.\
+\verb|\url{http://www.cs.Helsinki.FI/}|, ja \koodi{URL}-ken\-tän \mbox{URLit}
+ilman mitään komentoja, esim.\ \verb|http://www.espoo.fi/|}
+\item Jos \mbox{URL} on niin pitkä, ettei se todennäköisesti mahdu yhdelle
+riville valmiissa dokumentissa, lisää siihen ylimääräisiä välilyöntejä tai
+rivinvaihtoja \koodi{BIB}-tiedostoon. Uusimpien \koodi{hyperref}-pakkausten
+kanssa tämä vaihe on tarpeeton, sillä niiden mukana tuleva
+\verb|\url|-komento poistaa ei-toivotut merkit.
+\end{enumerate}
+
+Näiden ohjeiden mukainen tietokantamerkintä voisi näyttää vaikkapa
+seuraavanlaiselta:
+{\koodikoko
+\begin{verbatim}
+    @BOOK(mp1,
+      ...,
+      YEAR      = 2003,
+      NOTE      = "Löytyy ilmestyessään osoitteesta
+                   {\url{http://www.liianpitkadomain.fi/
+                   jatkuu/ja/jatkuu/ja/jatkuu/
+                   kunnes/loppuu/jos/loppuu/
+                   index.html}}",
+      URL       = "http://www.liianpitkadomain.fi/
+                   jatkuu/ja/jatkuu/ja/jatkuu/
+                   kunnes/loppuu/jos/loppuu/
+                   index.html")
+\end{verbatim}
+}
+Huomaa, että \mbox{URL} on merkitty esimerkissä kaksi kertaa
+ainoastaan havainnollisuuden vuoksi. Oikeassa tietokantamerkinnässä riittää
+mainita \mbox{URL} vain kerran.
+
+Mikäli lähde on julkaistu ainoastaan verkossa, tietokantamerkinnän
+tyyppinä voidaan käyttää asianomaisen merkintätyypin WWW-versiota.
+Merkintätyyppien\linebreak WWW-versioita käsitellään tarkemmin
+luvussa~\ref{merkintatyypit}.
+
+\subsection{Muutama ohje kentän \koodi{TYPE} käytöstä}
+
+Kentällä \koodi{TYPE} on mahdollista muuttaa joidenkin tuotosten tyyppiä.
+Esimerkiksi merkintätyypit \koodi{techreport}, \koodi{mastersthesis} ja
+\koodi{phdthesis} ovat sellaisia, joiden ''oletustyyppiä'' on mahdollista
+muuttaa kirjoittamalla \koodi{TYPE}-kentän arvoksi jokin vaihtoehtoinen
+tyyppi. Lisäksi kentällä \koodi{TYPE} voidaan täsmentää merkintätyyppien
+\koodi{inbook} ja \koodi{incollection} jaksollinen yksikkö.
+
+Tavallisesti merkintätyypillä \koodi{mastersthesis} viitataan pro gradu
+-tutkielmaan ja merkintätyypillä \koodi{phdthesis} väitöskirjaan.
+Lisensiaatintutkielmiin ja vastaaviin voidaan viitata niin ikään
+\koodi{mastersthesis}- tai \koodi{phdthesis}-merkintätyypeillä. Tällöin
+kentän \koodi{TYPE} arvoksi on kirjoitettava se työ, joka on kyseessä,
+esim.\ seuraavasti:
+\begin{verbatim}
+    @MASTERSTHESIS(mp2,
+      ...,
+      SCHOOL  = "Helsingin yliopisto, Tietojenkäsittelytieteen laitos",
+      TYPE    = "Lisensiaatintutkimus")
+\end{verbatim}
+
+\section{Lähdeluettelon tuottaminen \BibTeX-ohjelmaa\newline käyttäen}
+%%\section{\BibTeX n osuus \LaTeX -käsikirjoitustiedostossa}
+
+\label{lahdeluettelo}
+
+\BibTeX\ on erillinen ohjelma, joka tuottaa lähdeluettelon dokumenttiin
+hankkien tiedot \koodi{BIB}-päätteisistä tietokantatiedostoista eli
+\BibTeX-tietokannoista. Tietokannan merkinnät eli tietueet näyttävät
+seuraavanlaisilta:
+\begin{verbatim}
+    @MERKINTÄTYYPPI(tunniste,
+      KENTTÄ = "arvo",
+      KENTTÄ = "arvo")
+\end{verbatim}
+Kun lähdeluettelon luomiseen käytetään \BibTeX-tyyliä \bibtyyli,
+\verb|MERKINTÄTYYPPI| on joku luvussa~\ref{merkintatyypit} mainittu
+merkintätyyppi ja KENTTÄ luvussa~\ref{kentat} mainittu tyylin \bibtyyli\
+tunnistama kenttä. Tunniste on käyttäjän keksimä tunniste lähteelle, jolla
+lähteeseen viitataan \verb|\cite|-komenolla. Jos tunniste on esimerkiksi
+\koodi{sah}, viittaus ko.\ lähteeseen tapahtuu kirjoittamalla
+\LaTeX-käsikirjoitustiedostoon komento \verb|\cite{sah}|.
+
+Kaikki viitteet sijoitetaan siis \BibTeX-tietokantoihin, joissa jokaista
+viitettä vastaa yksi tietue ja tietueen kentät vastaavat viitteen tiettyä
+ominaisuutta, kuten kirjoittajaa, nimeä, julkaisijaa, jne. Kun
+\BibTeX-ohjelmaa käyttää, se poimii tekstissä \verb|\cite|-komennolla
+viitatut lähteet tietokannasta ja kirjoittaa \koodi{BBL}-päätteiseen
+tiedostoon \verb|thebibliography|-ympäristön sisältöineen, jonka perusteella
+\LaTeX\ sitten osaa luoda lähdeluettelon dokumenttiin.
+
+%%\DescribeMacro{\bibliography}
+\BibTeX-ohjelmaa käytettäessä lähdeluettelo kootaan tietokantatiedostojen
+tiedoista. Jos lähdetiedot sijaitsevat esimerkiksi tiedostoissa
+\koodi{insect.bib} ja \koodi{animal.bib}, \LaTeX-käsikirjoitustiedostoon
+kirjoitetaan komento
+\begin{verbatim}
+    \bibliography{insect,animal}
+\end{verbatim}
+siihen kohtaan, johon valmiissa dokumentissa halutaan sijoittaa
+\BibTeX-ohjelman luoma lähdeluettelo.
+
+%%\DescribeMacro{\cite}
+Tietokantatiedostojen \koodi{insect.bib} ja \koodi{animal.bib} sisältämiin
+lähdetietoihin viitataan tekstissä \verb|\cite|-komennolla, jolla
+määritetyt lähteet \BibTeX\ poimii mukaan luomaansa lähdeluetteloon.
+Lähdeluetteloon voidaan sisällyttää myös sellaisia lähteitä, joihin ei
+viitata tekstissä \verb|\cite|-komennolla. Tämä tapahtuu
+\verb|\nocite|-komen\-nol\-la, jonka parametrina annetaan pilkulla erotettuina
+lähteiden tunnisteet. Kun lähdeluetteloon halutaan sisällyttää kaikki
+tietokantatiedostojen tietueet, tämä onnistuu kirjoittamalla
+\verb|\nocite{*}| ennen komentoa \verb|\bibliography{insect,animal}|.
+
+%%\DescribeMacro{\bibliographystyle}
+\BibTeX-ohjelman käyttöä varten \LaTeX-käsikirjoitustiedostossa täytyy olla
+jossain kohtaa \verb|\begin{document}|-komennon jälkeen komento
+\verb|\bibliographystyle|, jonka parametrina annetaan lähdeluettelon
+luomisessa käytetty \BibTeX-tyyli. \BibTeX-tyylitiedostot ovat
+\koodi{BST}-päätteisiä tiedostoja, esim.\ \koodi{alpha.bst}, mutta\linebreak
+\verb|\bibliographystyle|-komennon parametriksi kirjoitetaan vain
+tyylitiedoston nimi ilman päätettä eli tässä tapauksessa \koodi{alpha}.
+
+Kun siis tietokantatiedostot \koodi{insect.bib} ja \koodi{animal.bib}
+sisältävät niiden lähteiden tiedot, joihin käsikirjoitustiedostoon
+kirjoitetussa tekstissä viitataan \verb|\cite|-komennolla,
+käsikirjoitustiedostoon riittää kirjoittaa esimerkiksi
+\begin{verbatim}
+    \bibliographystyle{alpha}
+    \bibliography{insect,animal}
+\end{verbatim}
+siihen kohtaan, johon lähdeluettelon halutaan ilmestyvän valmiissa
+dokumentissa. Näin \BibTeX\ saa tietoonsa, mistä tietokannoista se poimii
+viitteiden tiedot ja mitä tyyliä se käyttää lähdeluettelon muokkaamiseen.
+Kun käsikirjoitustiedosto on käsitelty luvussa~\ref{ohjelmat} mainitulla
+tavalla, lähdeluettelon valmiiseen dokumenttiin tuottanut
+\koodi{thebibliography}-ympäristö eli lähdeluettelon ''käsikirjoitus''
+löytyy \koodi{BBL}-päätteisestä tiedostosta, jonka nimen alkuosa on sama
+kuin \LaTeX-käsikirjoitus\-tie\-dos\-ton.
+
+\section{Ohjelmien käyttö}
+\label{ohjelmat}
+
+Seuraavassa on lyhyt johdatus \LaTeX-ladontajärjestelmään liittyvien
+ohjelmien käyttöön. Huomaa, että ohjeet pätevät useimpiin ajantasalla
+oleviin \TeX-toteutuksiin
+mutta eivät välttämättä kaikkiin. Eroavaisuuksia saattaa löytyä ja
+parhaiten niistä osannee informoida \TeX-järjestelmäsi ylläpito.
+
+\LaTeX-käsikirjoitustiedostoista saa
+PostScript-tiedostoja kirjoittamalla seuraavat komennot
+komentoriville:
+\begin{verbatim}
+    latex <tiedosto>.tex
+    latex <tiedosto>.tex
+    dvips -o <tiedosto>.ps <tiedosto>.dvi
+\end{verbatim}
+
+Mikäli dokumentin lähdeluettelon tuottamiseen käytetään \BibTeX-ohjelmaa,
+edelliset ohjeet muuttuvat seuraavanlaisiksi:
+\begin{verbatim}
+    latex <tiedosto>.tex
+    bibtex <tiedosto>
+    latex <tiedosto>.tex
+    latex <tiedosto>.tex
+    dvips -o <tiedosto>.ps <tiedosto>.dvi
+\end{verbatim}
+
+Yllä olevien ohjeiden mukaisesti \LaTeX-käsikirjoitustiedostoista saa myös
+PDF-tie\-dos\-to\-ja, kun komento \koodi{dvips -o <tiedosto>.ps <tiedosto>.dvi}
+korvataan komennolla \koodi{dvipdf <tiedosto>.dvi}
+
+\LaTeX-käsikirjoitustiedostoista saa PDF-tiedostoja suoraan kirjoittamalla
+seuraavan komennon komentoriville:
+\begin{verbatim}
+    pdflatex <tiedosto>
+\end{verbatim}
+
+Tässä \koodi{<tiedosto>} on \LaTeX-käsikirjoitustiedostosi nimi ilman
+mitään tiedostopäätteitä, kuten \koodi{.tex} tai \koodi{.aux}. Enemmän
+tietoa ohjelmien käytöstä saa optiolla \verb|-help| tai \verb|--help|, eli
+esimerkiksi komento \koodi{latex -help} tuottaa \LaTeX-ohjelman ohjeet.
+Unix-koneissa ohjelmista saattaa löytyä man-sivu, jonka pääsee lukemaan
+komennolla \koodi{man <ohjelma>}. Esimerkiksi \LaTeX-ohjelman man-sivu
+aukeaa komennolla \koodi{man latex}.
+
+%%\section{Lisätietoja}
+%%
+%%Helsingin yliopiston Tietojenkäsittelytieteen laitoksen \LaTeX-sivun
+%%osoite on \url{http://www.cs.helsinki.fi/...}. Sivulta löytyy viitteitä
+%%sekä laitoksen omaan LaTeX-materiaaliin että muihin hyödyllisiin
+%%\LaTeX-lähteisiin. Myös tämä dokumentti on saatavilla kyseisellä
+%%WWW-sivulla.
+%%
+\lastpage
+\end{document}
+%% 
+%%
+%% End of file `tktl-ohje.tex'.

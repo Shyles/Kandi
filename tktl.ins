@@ -1,0 +1,71 @@
+%%
+%% This is file `tktl.ins', the installation file for the  
+%% `tktl' bibliography style.   
+%%
+%% Copyright (C) 2002 Mikael Puolakka.
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.2 of this license or (at your option) any later
+%% version. The latest version of this license is in
+%%
+%%    http://www.latex-project.org/lppl.txt
+%%
+%% and version 1.2 or later is part of all distributions of
+%% LaTeX version 1999/12/01 or later.
+%%
+%% --------------- start of docstrip commands ------------------
+%%
+
+\input docstrip
+
+\preamble
+
+This is a generated file.
+
+Copyright (C) 2002 Mikael Puolakka.
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.2 of this license or (at your option) any later
+version. The latest version of this license is in
+
+   http://www.latex-project.org/lppl.txt
+
+and version 1.2 or later is part of all distributions of
+LaTeX version 1999/12/01 or later.
+
+\endpreamble
+\postamble
+\endpostamble
+
+\keepsilent
+
+\generate{\file{tktl.bst}{\from{tktl.dtx}{tktl}}
+          \file{babelbst.tex}{\from{tktl.dtx}{babelbst}}
+          \file{finnbst.tex}{\from{tktl.dtx}{finnbst}}
+          \file{englbst.tex}{\from{tktl.dtx}{englbst}}
+          \file{swedbst.tex}{\from{tktl.dtx}{swedbst}}
+          \file{tktl-ohje.tex}{\from{tktl.dtx}{ohjeet}}
+          }
+
+\ifToplevel{
+\Msg{***********************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the following}
+\Msg{* files into a directory searched by TeX:}
+\Msg{*}
+\Msg{* \space\space tktl.bst}
+\Msg{* \space\space babelbst.tex}
+\Msg{* \space\space finnbst.tex}
+\Msg{* \space\space englbst.tex}
+\Msg{* \space\space swedbst.tex}
+\Msg{*}
+\Msg{* To produce the documentation run the file tktl.dtx}
+\Msg{* through LaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{***********************************************************}
+}
+
+\endbatchfile

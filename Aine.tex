@@ -1,0 +1,182 @@
+\documentclass{tktltiki}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+
+\begin{document}
+%\doublespacing
+
+
+\singlespacing
+%\onehalfspacing
+
+%\theoremstyle{plain}
+\newtheorem{lause}{Lause}
+\newtheorem{lemma}{Lemma}
+\newtheorem{kuva}{Kuva}
+
+\newcommand{\degre}{\ensuremath{^\circ}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{Q}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\diff}[1]{\, \mathrm{d} #1}
+ \newcommand{\distance}[2]{d\left( #1, #2 \right)}
+ 
+
+
+
+
+\title{Aine}
+\author{Ola Länsman}
+\date{\today}
+
+\maketitle
+
+\section{Johdanto}
+
+Käytännön kokeilla sosiaalisista verkoista muodostettu Pieni maailma-ilmiö on vaikuttanut myös tietojenkäsittelytieteeseen. Ilmiötä on yleistetty useampiin ulottuvuuksiin sekä sen tärkeimpiä ominasuuksia kuten klusteroitumista tutkittu. Ilmiön perusteella on tehty useita polunetsintä-algoritmeja jotka käyttävät ainoastaan lokaalia tietoa verkon solmuista ja kaarista. 
+
+Tutkielma pyrkii selittämään Pieni maailma-ilmiön verkkoteoriaa ja muutaman yleisen polunetsintä-algoritmin. Näiden jälkeen kiinnostuksen kohteeksi nousevat käytännön sovellukset joissa näitä käytetään. 
+
+\section{Pieni maailma}
+
+\subsection{Määritelmä}
+
+Pieni maailma-ilmiö tarkoittaa seuraavan ehdon toteumista verkossa:
+
+\begin{lemma}
+\label{pmEhto}
+Yksittäiset solmut voivat lähettää viestin verkon kaaria pitkin muihin verkon solmuihin lyhyitä polkuja pitkin käyttämällä ainoastaan paikallista tietoa.
+\end{lemma}
+
+Paikallisella tiedolla tarkoitetaan globaalin tiedon puuttumisella. Jokaisessa solmussa valitaan viestin seuraava vastaanottaja käyttäen hyväksi ainoastaan tietoa viestiä lähettävän solmun kaarista. 
+\cite{AnyGraphSW}
+
+Pieni maailma-verkot (PM) yleensä täyttävät myös seuraavat ehdot:
+
+\begin{enumerate}
+	\item \label{harva} \textit{ne ovat harvoja}\cite{TextSummary}: \ref{pmEhto} täyttyy implisiittisesti, mikäli lähtösolmusta löytyy kaari kohteeseen. Tälläiset verkot eivät ole mielenkiintoisia ilmiön kannalta.
+	\item \label{lyhyetPolut} \textit{solmujen välillä esiintyy lyhyitä polkuja} \cite{TextSummary}: \ref{pmEhto} aiheuttaa tämän suoraan.
+	\item \label{ryhmittyneet} \textit{ne ovat ryhmittyneitä ja niillä on pieni halkaisija} \cite{TextSummary}: Intuitiivisesti ehto \ref{ryhmittyneet} tarkoittaa, että mikäli solmu \( u \) ja \( v \) ovat lähellä toisiaan niin niiden välillä on todennäköisesti kaari. Yleisimmissä polunetsintä-algoritmeissa viesti lähetetään aina mahdollisimman lähelle kohdetta ehdosta \ref{ryhmittyneet} johtuen.
+\end{enumerate}
+  
+
+\subsection{Kuinka muodostetaan pieni maailma}
+
+\subsubsection{Kleinbergin malli}
+
+PM-verkkoja voidaan muodostaa monella tavalla. Aloitamme muodostamalla mallin, joka tehtiin kuvaamaan verkkoa ihmisten sosiaalisista suhteista.
+
+Mallinnamme ihmisiä solmuina. Tämä joukko solmuja muodostaa $n\times n$ ruudukon, missä
+\[
+	V =
+	\left\lbrace 
+		\left(i,j \right) : 
+		i \in{ \left\lbrace 1, 2, \ldots , n \right\rbrace },  
+		j \in{ \left\lbrace 1, 2, \ldots , n \right\rbrace } 
+	\right\rbrace .
+\]
+Olkoon ruudukkoetäisyys 
+\(
+		\distance{(i,j)}{(k,l)}
+	= \abs{ k - i } + \abs{ l - j }
+\). 
+Solmulla \(u\) on paikallinen kontakti solmun \(v\) kanssa, jos 	
+\(
+		\distance{u}{v} \leq p
+\)
+jollain vakiolla 
+\( p \geq 1\ \). 
+Solmulla \( u \) on myös vakiomäärä, \( q \geq 0 \), etäkontakteja. Etäontaktit muodostetaan satunnaisesti todennäköisyysfunktiolla joka riippuu vakiosta \( r \geq 0 \) ja etäisyydestä \( \distance{u}{v} \). Tarkemmin, etäkontakti muodostuu solmusta \( u \) solmuun \( v \) todennäköisyydellä
+
+\(
+	\left[
+		\distance{u}{u}
+	\right]
+^{-r}
+\).
+
+Tämä tapa muodostaa PM-verkko voidaan tulkita myös geometrisesti. Solmulla \(u\) on kaari jokaiseen tarpeeksi lähellä olevaan solmuun. Näiden yhteyksien lisäksi solmulla \(u\) on kaaria kauempana ruudukossa. Jos vakio \(r = 0 \), niin solmujen etäkontaktit ovat jakautuneet tasaisesti ruudukolle. Vakion \(r\) kasvaessa etäkontaktit ovat lähempänä ja lähempänä solmua itseään.
+
+\cite{Kleinberg}
+
+\section{Polunetsintä}
+
+\subsection{Strategiat}
+
+\subsubsection{Ahne reititys}
+
+Ensimmäisenä tutkimme normaalia ahnetta algoritmia lyhyen polun etsintään. Ahneissa algoritmeissa viestiä kuljettava solmu lähettää viestin aina lähimpänä kohdetta olevalle naapurilleen. Esimerkiksi Kleinbergin esittämässä ahneessa algoritmissa viestiä kuljettava solmu tietää
+
+\begin{enumerate}{}{}
+\item kaikkien solmujen paikalliset kontaktit
+\item kohteen \(y\) sijainti ruudukossa
+\item ja kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit
+\end{enumerate}.
+
+
+
+\subsubsection{Epäsuora ahne reititys}
+
+Epäsuora ahne reititys toimii kuten ahne reititys. Poikkeuksena, viestiä kuljettavalla solmulla \(u\) on tiedossa myös solmun \(v\) etäkontaktit jos solmulle pätee
+\(
+		\distance{u}{v} \leq q
+\)
+jollain etäisyysfunktiolla \(d\) ja vakiolla \(q\). Tällöin viestiä kuljettavalla solmulla on mahdollisuus lähettää viesti jonkin itseään lähellä olevan solmun kautta.
+
+\subsubsection{Naapurien naapurit}
+
+Ahneella naapurien naapurit-algoritmi toimii samalla periaatte kuin epäsuora ahne reititys. Lähellä olevien solmujen sijaan viestiä kuljettavalla solmulla on tiedossa omien naapureidensa kontaktit.
+
+
+\section{Käytännön sovellukset}
+
+\subsection{Peer-to-peer verkot}
+
+\subsection{Luonnollisen kielen tiivistäminen}
+
+Luonnollisten kielten tekstien tiivistäminen on hyödyllistä nykymaailmassa elektronisesti käsillä olevan tiedon kasvaessa. Tekstiä voi tiivistää valikoiden ydinkohdat tai esittäen nämä lyhyesti uusin sanoin. Seuraavaksi esittelemme automaattisen valikoivan tiivistämiskeinon, joka käyttää hyväkseen pienten maailmojen topologiaa. Rakennamme tekstin virkkeiden verkon ja poimimme virkkeistä ne, jotka edesauttavat verkkoa eniten olemaan pieni maailma.
+
+Määrittelemme verkon \(G = (V,E)\), jossa pisteet \(V\) ovat lauseita ja kaaret \(E\) kuvaavat virkkeiden välisiä suhteita. Virkkeellä \(L\) on lähikontakti virkkeen \(L'\) kanssa, jos virkkeet \(L\) ja \(L'\) ovat peräkkäisiä. Etäkontaktien muodostamiseen tarvitsemme keinon määrittää virkkeiden yhteyden toisiinsa. Tätä varten rakennamme tekstin tärkeimmistä sanoista joukon \(MeaningfulSet(e)\). Etäkontakti kahden virkkeen välille muodostuu vain, jos kummassakin virkkeessä esiintyy jokin joukon \(MeaningfulSet(e)\) sanoista.
+
+Joukon MeaningfulSet(e) sanojen määrä suhteessa joukkoon kaikista tekstissä esiintyvistä sanoista vaikuttaa verkon \(G\) kaarien määrän ja täten myös tiivistelmän pituuteen ja olennaisuuteen. Jos joukko \(MeaningfulSet(e)\) on liian suuri, verkko \(G\) ei näytä enää pieneltä maailmalta vaan sattumanvaraisesti muodostetulta verkolta. Kuitenkin joukon \(MeaningfulSet(e)\) ollessa liian pieni verkko \(G\) näyttää molempiin suuntiin linkitetyltä listalta josta löytyy muutama poikkeus. Tiivistysmenetelmän toimintaperiaatteen kannalta tällöin on suuresti merkitystä, miten tämä joukko valitaan. Tätä menetelmää emme esitä tässä tutkielmassa.
+
+\cite{TextSummary}
+
+\begin{kuva}[Automaattinen tekstin tiivistäminen]
+ \centering
+\includegraphics{tiivistaminen}[]
+\label{tiivistaminenKuva}
+\end{kuva}
+
+\numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}
+
+\classification{\protect{\ \\
+\  General and reference $\rightarrow$ Document types  $\rightarrow$ Surveys and overviews\  \\
+\  Applied computing  $\rightarrow$ Document management and text processing  $\rightarrow$ Document management  $\rightarrow$ Text editing\ }}
+
+
+
+\keywords{ulkoasu, tiivistelmä, lähdeluettelo}
+
+
+
+
+
+% Sitten alkaa lähdeluettelo
+%
+
+
+\nocite{*}
+\bibliographystyle{tktl}
+\bibliography{lahteet}
+
+
+
+\end{document}

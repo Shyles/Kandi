@@ -1,0 +1,19 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {2}Structure}{1}
+\contentsline {subsection}{\numberline {2.1}Abstract or summary}{1}
+\contentsline {subsection}{\numberline {2.2}Introduction}{2}
+\contentsline {subsection}{\numberline {2.3}Topic chapters}{2}
+\contentsline {subsection}{\numberline {2.4}Reference usage}{3}
+\contentsline {subsection}{\numberline {2.5}Conclusion}{4}
+\contentsline {subsection}{\numberline {2.6}Creating the list of references}{4}
+\contentsline {section}{\numberline {3}Layout}{6}
+\contentsline {subsection}{\numberline {3.1}Disposition of text sections}{6}
+\contentsline {subsection}{\numberline {3.2}General text layout}{7}
+\contentsline {subsection}{\numberline {3.3}Figures and tables}{8}
+\contentsline {subsection}{\numberline {3.4}Headings}{9}
+\contentsline {subsection}{\numberline {3.5}Using this model}{9}
+\contentsline {section}{\numberline {4}Conclusion}{10}
+\contentsline {section}{References}{10}
+\contentsline {section}{Appendices}{}
+ \contentsline {section}{\hspace {0.5cm}1 Model ABC}{}

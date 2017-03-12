@@ -1,0 +1,30 @@
+\begin{thebibliography}{DHLS06}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\input babelbst.tex
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
+
+\bibitem[BBS11]{TextSummary}
+Balinsky, H., Balinsky, A. \bbland{} Simske, S.~J., Automatic text
+  summarization and small-world networks.
+\newblock  {\em Proceedings of the 11th ACM Symposium on Document Engineering},
+  DocEng '11, New York, NY, USA, 2011, ACM, \bblpages{} 175--184,
+  \urlprefix\url{http://doi.acm.org/10.1145/2034691.2034731}.
+
+\bibitem[DHLS06]{AnyGraphSW}
+Duchon, P., Hanusse, N., Lebhar, E. \bbland{} Schabanel, N., Could any graph be
+  turned into a small-world?
+\newblock {\em Theoretical Computer Science}, 355,1(2006), \bblpages{} 96 --
+  103.
+\newblock
+  \urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0304397505009187}.
+
+\bibitem[Kle00]{Kleinberg}
+Kleinberg, J., The small-world phenomenon: An algorithmic perspective.
+\newblock  {\em Proceedings of the Thirty-second Annual ACM Symposium on Theory
+  of Computing}, STOC '00, New York, NY, USA, 2000, ACM, \bblpages{} 163--170,
+  \urlprefix\url{http://doi.acm.org.libproxy.helsinki.fi/10.1145/335305.335325}.
+
+\end{thebibliography}

@@ -1,0 +1,18 @@
+\select@language {finnish}
+\contentsline {section}{\numberline {1}Johdanto}{1}
+\contentsline {section}{\numberline {2}Lyhyt versio dokumenttiluokan \texttt {tktl\penalty \@M \hskip \z@skip \discretionary {-}{}{}\penalty \@M \hskip \z@skip tiki}\ k\"ayt\"ost\"a}{1}
+\contentsline {section}{\numberline {3}Pitk\"a versio dokumenttiluokan \texttt {tktl\penalty \@M \hskip \z@skip \discretionary {-}{}{}\penalty \@M \hskip \z@skip tiki}\ k\"ayt\"ost\"a}{3}
+\contentsline {subsection}{\numberline {3.1}Aloitus}{3}
+\contentsline {subsection}{\numberline {3.2}Otsikkosivu}{6}
+\contentsline {subsection}{\numberline {3.3}Tiivistelm\"asivu}{6}
+\contentsline {subsection}{\numberline {3.4}Sis\"allysluettelo}{8}
+\contentsline {subsection}{\numberline {3.5}Varsinainen teksti}{8}
+\contentsline {subsubsection}{\numberline {3.5.1}Suuret projektit}{9}
+\contentsline {subsubsection}{\numberline {3.5.2}Kuvien lis\"a\"aminen}{12}
+\contentsline {subsection}{\numberline {3.6}L\"ahdeluettelon tuottaminen}{13}
+\contentsline {subsubsection}{\numberline {3.6.1}{\rmfamily B\kern -.05em\textsc {i\kern -.025em b}\kern -.08emT\kern -.1667em\lower .7ex\hbox {E}\kern -.125emX}-l\"ahdetietokantaa k\"aytt\"aen}{13}
+\contentsline {subsubsection}{\numberline {3.6.2}Dokumentin sis\"aist\"a viiteymp\"arist\"o\"a k\"aytt\"aen}{15}
+\contentsline {subsection}{\numberline {3.7}Viimeinen sivu ennen liitteit\"a}{15}
+\contentsline {subsection}{\numberline {3.8}Liitteet}{16}
+\contentsline {subsection}{\numberline {3.9}Luokan k\"aytt\"aj\"an omat modifikaatiot}{16}
+\contentsline {subsection}{\numberline {3.10}Ohjelmien k\"aytt\"o}{16}

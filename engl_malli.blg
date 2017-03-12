@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: engl_malli.aux
+The style file: tktl.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: lahteet.bib
+Warning--to sort, need author or key in julkohj81
+Warning--empty author in julkohj81
+Warning--empty institution in julkohj81
+You've used 17 entries,
+            3861 wiz_defined-function locations,
+            845 strings with 8350 characters,
+and the built_in function-call counts, 6703 in all, are:
+= -- 685
+> -- 283
+< -- 12
++ -- 100
+- -- 96
+* -- 443
+:= -- 1076
+add.period$ -- 36
+call.type$ -- 17
+change.case$ -- 102
+chr.to.int$ -- 16
+cite$ -- 21
+duplicate$ -- 303
+empty$ -- 498
+format.name$ -- 126
+if$ -- 1405
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 12
+newline$ -- 82
+num.names$ -- 51
+pop$ -- 115
+preamble$ -- 1
+purify$ -- 117
+quote$ -- 0
+skip$ -- 274
+stack$ -- 0
+substring$ -- 290
+swap$ -- 59
+text.length$ -- 12
+text.prefix$ -- 6
+top$ -- 0
+type$ -- 158
+warning$ -- 3
+while$ -- 60
+width$ -- 21
+write$ -- 221
+(There were 3 warnings)

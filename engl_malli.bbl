@@ -1,0 +1,103 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{AQM{\etalchar{+}}97}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\input babelbst.tex
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
+
+\bibitem[AQM97]{abiteboul}
+Abiteboul, S., Quass, D., McHugh, J., Widom, J. \bbland{} Wiener, J., The lorel
+  query language for semistructured data.
+\newblock {\em International Journal on Digital Libraries}, 1,1(1997),
+  \bblpages{} 68--88.
+\newblock [Myös \url{http://link.springer.de/ link/service/journals/00799/
+  bibs/7001001/70010068.htm}, 18.1.2000].
+
+\bibitem[BPS98]{bray}
+Bray, T., Paoli, J. \bbland{} Sperberg-McQueen, C., {Extensible Markup Language
+  (XML) 1.0. W3C Recommendation 10-February-1998}.
+\newblock \url{http://www.w3.org/TR/1998/REC-xml-19980210}.
+\newblock [18.1.2000]
+
+\bibitem[CDM98]{crowdenetal79}
+Crowder, H., Dembo, R. \bbland{} Mulvey, J., On reporting computational
+  experiments with mathematical software.
+\newblock {\em {ACM} Transactions on Mathematical Software}, 5,2(1979),
+  \bblpages{} 193--203.
+
+\bibitem[Die99]{dietinger}
+Dietinger, T. \bbletal{}., {Dynamic Background Libraries - New Developments in
+  Distance Education Using {HIKS} (Hierarchical Interactive Knowledge System)}.
+\newblock {\em Journal of Universal Computer Science}, 5,1(1999).
+\newblock [Myös \url{http://www.iicm.edu/
+  jucs_5_1/dynamic_background_libraries_new}, 18.1.2000].
+
+\bibitem[DaT90]{dantowsley90}
+Dan, A. \bbland{} Towsley, D., An approximate analysis of the {LRU} and {FIFO}
+  buffer replacement schemes.
+\newblock  {\em Proc. {ACM} Conf.\ Measurement and Modeling of Computer
+  Systems}, Boulder, Colorado, {USA}, \bblmay{} 1990, \bblpages{} 143--152.
+
+\bibitem[ErM96]{erkiomakela96}
+Erkiö, H. \bbland{} Mäkelä, M., Opinnäytetyön ulkoasun malli.
+\newblock Tieteellisen kirjoittamisen kurssiin liittyvä julkaisematon moniste,
+  Tietojenkäsittelytieteen laitos, Helsinki, 1996.
+
+\bibitem[EMN01]{erkio01}
+Erkiö, H., Mäkelä, M., Nykänen, M. \bbland{} Verkamo, I., Opinnäytetyön
+  ulkoasun malli.
+\newblock Tieteellisen kirjoittamisen kurssiin liittyvä julkaisematon moniste,
+  Tietojenkäsittelyopin laitos, Helsinki, 2001.
+
+\bibitem[Erk94]{erkio94}
+Erkiö, H., Opinnäytetyön ulkoasun malli.
+\newblock Tieteellisen kirjoittamisen kurssiin liittyvä julkaisematon moniste,
+  Tietojenkäsittelyopin laitos, Helsinki, 1994.
+
+\bibitem[FHS89]{fogelbergetal89}
+Fogelberg, P., Herranen, M. \bbland{} Sinikara, K., {\em Tuumasta toimeen,
+  tutkielman tekijän opas}.
+\newblock Yliopistopaino, Helsinki, 1989.
+
+\bibitem[Gan89]{gannonetal89}
+Gannon, D. \bbletal{}., Programming environments for parallel algorithms.
+\newblock \capitalize\bblin{} {\em Parallel and Distributed Algorithms},
+  Cosnard, M. \bbletal{}., \bbleditors{}, North-Holland, 1989, \bblpages{}
+  101--108.
+
+\bibitem[Gri87]{grimm87}
+Grimm, S.~S., {\em How to write computer documentation for users}.
+\newblock Van Nostrand Reinhold Co., New York, 1987.
+
+\bibitem[HaP82]{harkinsplung82}
+Harkins, C. \bbland{} Plung, D.~L., \bbleditors{}, {\em A guide for writing
+  better technical papers}.
+\newblock IEEE Press, 1982.
+
+\bibitem[Jul81]{julkohj81}
+Julkaisusarjoja ja opinnäytteiden tiivistelmiä koskevat ohjeet ja suositukset.
+\newblock Helsingin yliopiston kirjastolaitoksen julkaisu {A 3}, Helsinki,
+  1981.
+
+\bibitem[Kil00]{kilpelainen00}
+Kilpeläinen, P., {WWW}-lähteisiin viittaaminen tutkielmatekstissä, 2000.
+\newblock \url{http://www.cs.helsinki.fi/u/kilpelai/TiKi/wwwlahteet.html}.
+\newblock [19.1.2000]
+
+\bibitem[Smi78b]{smith78b}
+Smith, A.~J., Sequential program prefetching in memory hierarchies.
+\newblock {\em Computer}, 11,11(1978), \bblpages{} 7--21.
+
+\bibitem[Smi78a]{smith78a}
+Smith, A.~J., Sequentiality and prefetching in database systems.
+\newblock {\em {ACM} Transactions on Database Systems}, 3,3(1978), \bblpages{}
+  223--247.
+
+\bibitem[Ver92]{verkamo92}
+Verkamo, A.~I., Opinnäytetyön ulkoasun malli.
+\newblock Tieteellisen kirjoittamisen kurssiin liittyvä julkaisematon moniste,
+  Tietojenkäsittelyopin laitos, Helsinki, 1992.
+
+\end{thebibliography}
