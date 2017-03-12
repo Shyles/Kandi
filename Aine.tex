@@ -27,6 +27,7 @@
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\diff}[1]{\, \mathrm{d} #1}
  \newcommand{\distance}[2]{d\left( #1, #2 \right)}
+ \newcommand{\fromOneToX}[2]{\( #1_{1},#1_{2}, \ldots , #1_{#2}, \)}
  
 
 
@@ -63,13 +64,15 @@ Pieni maailma-verkot (PM) yleensä täyttävät myös seuraavat ehdot:
 \begin{enumerate}
 	\item \label{harva} \textit{ne ovat harvoja}\cite{TextSummary}: \ref{pmEhto} täyttyy implisiittisesti, mikäli lähtösolmusta löytyy kaari kohteeseen. Tälläiset verkot eivät ole mielenkiintoisia ilmiön kannalta.
 	\item \label{lyhyetPolut} \textit{solmujen välillä esiintyy lyhyitä polkuja} \cite{TextSummary}: \ref{pmEhto} aiheuttaa tämän suoraan.
-	\item \label{ryhmittyneet} \textit{ne ovat ryhmittyneitä ja niillä on pieni halkaisija} \cite{TextSummary}: Intuitiivisesti ehto \ref{ryhmittyneet} tarkoittaa, että mikäli solmu \( u \) ja \( v \) ovat lähellä toisiaan niin niiden välillä on todennäköisesti kaari. Yleisimmissä polunetsintä-algoritmeissa viesti lähetetään aina mahdollisimman lähelle kohdetta ehdosta \ref{ryhmittyneet} johtuen.
+	\item \label{ryhmittyneet} \textit{ne ovat ryhmittyneitä ja niillä on pieni halkaisija} \cite{TextSummary}: Intuitiivisesti ehto \ref{ryhmittyneet} tarkoittaa, että mikäli solmu \( u \) ja \( v \) ovat lähellä toisiaan niin niiden välillä on todennäköisesti kaari. Yleisimmissä (ahneissa) polunetsintä-algoritmeissa viesti lähetetään aina mahdollisimman lähelle kohdetta ehdosta \ref{ryhmittyneet} johtuen.
 \end{enumerate}
   
 
 \subsection{Kuinka muodostetaan pieni maailma}
 
 \subsubsection{Kleinbergin malli}
+
+\label{KleinberginMalli}
 
 PM-verkkoja voidaan muodostaa monella tavalla. Aloitamme muodostamalla mallin, joka tehtiin kuvaamaan verkkoa ihmisten sosiaalisista suhteista.
 
@@ -87,24 +90,31 @@ Olkoon ruudukkoetäisyys
 		\distance{(i,j)}{(k,l)}
 	= \abs{ k - i } + \abs{ l - j }
 \). 
-Solmulla \(u\) on paikallinen kontakti solmun \(v\) kanssa, jos 	
+Solmulla \(u\) on \textit{paikallinen kontakti} solmun \(v\) kanssa, jos 	
 \(
 		\distance{u}{v} \leq p
 \)
 jollain vakiolla 
 \( p \geq 1\ \). 
-Solmulla \( u \) on myös vakiomäärä, \( q \geq 0 \), etäkontakteja. Etäontaktit muodostetaan satunnaisesti todennäköisyysfunktiolla joka riippuu vakiosta \( r \geq 0 \) ja etäisyydestä \( \distance{u}{v} \). Tarkemmin, etäkontakti muodostuu solmusta \( u \) solmuun \( v \) todennäköisyydellä
-
+Solmulla \( u \) on myös vakiomäärä, \( q \geq 0 \), \textit{etäkontakteja}. Etäkontaktit muodostetaan satunnaisesti todennäköisyysfunktiolla, joka riippuu vakiosta \( r \geq 0 \) ja etäisyydestä \( \distance{u}{v} \). Tarkemmin, etäkontakti muodostuu solmusta \( u \) solmuun \( v \) todennäköisyydellä
 \(
 	\left[
 		\distance{u}{u}
 	\right]
 ^{-r}
 \).
+\cite{Kleinberg}
+
 
 Tämä tapa muodostaa PM-verkko voidaan tulkita myös geometrisesti. Solmulla \(u\) on kaari jokaiseen tarpeeksi lähellä olevaan solmuun. Näiden yhteyksien lisäksi solmulla \(u\) on kaaria kauempana ruudukossa. Jos vakio \(r = 0 \), niin solmujen etäkontaktit ovat jakautuneet tasaisesti ruudukolle. Vakion \(r\) kasvaessa etäkontaktit ovat lähempänä ja lähempänä solmua itseään.
-
 \cite{Kleinberg}
+
+Tässä mallissa ovat \textit{etäkontaktit} mielenkiintoisimpia tarkastelun kohteita. Verkon \textit{navigoitavuuteen} vaikuttaa, kuinka tasaisesti etäkontaktit ovat jakautuneet verkkoon. Jos \( r=0\) eli etäkontaktit olisivat jakautuneet tasaisesti verkkoon, niin ahne polunetsintä-algoritmi ei tuottaisi lyhyitä polkuja luotettavasti. Vaikka algoritmi löytäisi solmulta \(x\) kaaren solmuun \(y\) joka on lähellä kohdetta \(z\), niin solmun \(y\) todennäköisyys omata etäkontakti kohteeseen \(z\) ei olisi kasvanut. Vakion \(r\) ollessa liian suuri, hyppyjen määrä olisi myös suuri sillä viesti ei pääsisi kulkemaan tarpeeksi pitkälle etäkontaktien avullakaan.
+
+Huomaamme, että etäkontaktien ei tarvitse olla satunnaisesti tuotettuja luodaksemme navigoitava PM-verkko. Etäkontaktien satunnaisuutta vähentämällä verkosta muodostuu ryhmittyneempi, joka edesauttaa mm. vertaisverkkojen virheenkestävyyttä. \cite{Independent}. Rajoitamme etäkontaktien valitsemisen satunnaisuutta rajoittamalla solmun \(u = (u_1,u_2)\) mahdollisiksi etäkontakteiksi vain solmut  \(v = (v_1,v_2)\) joille joko \( u_1 = v_1\) tai \( u_2 = v_2\). Tällöin solmun etäkontatkit sijaitsevat samalla suoralla solmun itsensä kanssa ja etäkontaktien satunnaisuus pienenee. Artikkelissa (inproceeding?) \cite{Independent} on todistettu, että etäkontaktien muodostamista rajoittamisesta huolimatta verkon navigoitavuus säilyy. Edellisen ehdon lisäksi voitaisiin myös määritellä muita ehtoja, jotka koskevat vain osaa solmuista (\textit{yhteisöt}). Myös tällöin verkolla säilyisivät samat ominaisuudet. \cite{Independent} 
+
+%% Tähän vielä voisi laittaa Kleinbergin mallin yleistyksen n-ulottuuvutten
+
 
 \section{Polunetsintä}
 
@@ -112,15 +122,17 @@ Tämä tapa muodostaa PM-verkko voidaan tulkita myös geometrisesti. Solmulla \(u\)
 
 \subsubsection{Ahne reititys}
 
+\label{AhneReititys}
+
 Ensimmäisenä tutkimme normaalia ahnetta algoritmia lyhyen polun etsintään. Ahneissa algoritmeissa viestiä kuljettava solmu lähettää viestin aina lähimpänä kohdetta olevalle naapurilleen. Esimerkiksi Kleinbergin esittämässä ahneessa algoritmissa viestiä kuljettava solmu tietää
 
 \begin{enumerate}{}{}
-\item kaikkien solmujen paikalliset kontaktit
+\item kaikkien solmujen paikalliset kontaktit,
 \item kohteen \(y\) sijainti ruudukossa
-\item ja kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit
+\item ja kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit. \cite{Kleinberg}
 \end{enumerate}.
 
-
+Luvussa \ref{KleinberginMalli} esitetylle PM-verkolle voidaan muodostaa ahne algoritmi, jonka keskimääräinen \textit{hyppyjen} (monellako solmulla viesti on käynyt) määrä on \( \mathcal{O} (log^2n) \). \cite{Kleinberg} Käytämme tätä suuretta myöhemmin vertailua varten.
 
 \subsubsection{Epäsuora ahne reititys}
 
@@ -134,6 +146,20 @@ jollain etäisyysfunktiolla \(d\) ja vakiolla \(q\). Tällöin viestiä kuljettavall
 
 Ahneella naapurien naapurit-algoritmi toimii samalla periaatte kuin epäsuora ahne reititys. Lähellä olevien solmujen sijaan viestiä kuljettavalla solmulla on tiedossa omien naapureidensa kontaktit.
 
+\subsection{NN-Ahne}
+
+Esitämme erään Naapurien Naapurit-ahneet algoritmin. Kiinnitämme huomiota muodostetun polun pituuteen, jonka merkitys on suurempi mm. vertaisverkkosovelluksissa. Erityisesti vertaamme sitä luvussa \ref{AhneReititys} mainittuun algoritmiin, jonka keskimääräinen hyppyjen määrä yhdessä PM-verkossa on \( \mathcal{O} (log^2n) \).
+
+Algoritmi viestin lähettämisestä solmuun \(u\) toiminta kulkee seuraavalla tavalla: 
+
+\begin{enumerate}{}{}
+\item Oletetaan viestin olevan solmussa \(u \neq t \). Olkoon solmut  \fromOneToX{w}{k} solmun \(u\) naapureita.
+\item Kullekin \(i\) olkoon solmut \( z_{i_1},z_{i_3}, \ldots , z_{i_k} \) solmun \( w_i \) naapureita.
+\item Oletetaan solmun \( z_{i_j} \) olevan tästä joukosta lähimpänä kohdetta \( t \).
+\item Lähetetään viesti solmuun \( z_{i_j} \) solmun \( u_j \) kautta.
+
+
+\end{enumerate}.
 
 \section{Käytännön sovellukset}
 

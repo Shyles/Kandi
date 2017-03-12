@@ -13,6 +13,22 @@ Balinsky, H., Balinsky, A. \bbland{} Simske, S.~J., Automatic text
   DocEng '11, New York, NY, USA, 2011, ACM, \bblpages{} 175--184,
   \urlprefix\url{http://doi.acm.org/10.1145/2034691.2034731}.
 
+\bibitem[CG06a]{Independent}
+Cordasco, G. \bbland{} Gargano, L., How much independent should individual
+  contacts be to form a small--world?
+\newblock  {\em Proceedings of the 17th International Conference on Algorithms
+  and Computation}, ISAAC'06, Berlin, Heidelberg, 2006, Springer-Verlag,
+  \bblpages{} 328--338,
+  \urlprefix\url{http://dx.doi.org.libproxy.helsinki.fi/10.1007/11940128_34}.
+
+\bibitem[CG06b]{Cordasco:2006:MII:2172842.2172887}
+Cordasco, G. \bbland{} Gargano, L., How much independent should individual
+  contacts be to form a small--world?
+\newblock  {\em Proceedings of the 17th International Conference on Algorithms
+  and Computation}, ISAAC'06, Berlin, Heidelberg, 2006, Springer-Verlag,
+  \bblpages{} 328--338,
+  \urlprefix\url{http://dx.doi.org.libproxy.helsinki.fi/10.1007/11940128_34}.
+
 \bibitem[DHLS06]{AnyGraphSW}
 Duchon, P., Hanusse, N., Lebhar, E. \bbland{} Schabanel, N., Could any graph be
   turned into a small-world?
