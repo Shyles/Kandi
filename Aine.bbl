@@ -1,4 +1,4 @@
-\begin{thebibliography}{DHLS06}
+\begin{thebibliography}{MNW04}
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{{\tt #1}}\fi
 \expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
@@ -13,15 +13,7 @@ Balinsky, H., Balinsky, A. \bbland{} Simske, S.~J., Automatic text
   DocEng '11, New York, NY, USA, 2011, ACM, \bblpages{} 175--184,
   \urlprefix\url{http://doi.acm.org/10.1145/2034691.2034731}.
 
-\bibitem[CG06a]{Independent}
-Cordasco, G. \bbland{} Gargano, L., How much independent should individual
-  contacts be to form a small--world?
-\newblock  {\em Proceedings of the 17th International Conference on Algorithms
-  and Computation}, ISAAC'06, Berlin, Heidelberg, 2006, Springer-Verlag,
-  \bblpages{} 328--338,
-  \urlprefix\url{http://dx.doi.org.libproxy.helsinki.fi/10.1007/11940128_34}.
-
-\bibitem[CG06b]{Cordasco:2006:MII:2172842.2172887}
+\bibitem[CG06]{Independent}
 Cordasco, G. \bbland{} Gargano, L., How much independent should individual
   contacts be to form a small--world?
 \newblock  {\em Proceedings of the 17th International Conference on Algorithms
@@ -42,5 +34,18 @@ Kleinberg, J., The small-world phenomenon: An algorithmic perspective.
 \newblock  {\em Proceedings of the Thirty-second Annual ACM Symposium on Theory
   of Computing}, STOC '00, New York, NY, USA, 2000, ACM, \bblpages{} 163--170,
   \urlprefix\url{http://doi.acm.org.libproxy.helsinki.fi/10.1145/335305.335325}.
+
+\bibitem[MNW04]{Manku}
+Manku, G.~S., Naor, M. \bbland{} Wieder, U., Know thy neighbor's neighbor: The
+  power of lookahead in randomized p2p networks.
+\newblock  {\em Proceedings of the Thirty-sixth Annual ACM Symposium on Theory
+  of Computing}, STOC '04, New York, NY, USA, 2004, ACM, \bblpages{} 54--63,
+  \urlprefix\url{http://doi.acm.org.libproxy.helsinki.fi/10.1145/1007352.1007368}.
+
+\bibitem[TM69]{Milgram}
+Travers, J. \bbland{} Milgram, S., An experimental study of the small world
+  problem.
+\newblock {\em Sociometry}, 32,4(1969), \bblpages{} 425--443.
+\newblock \urlprefix\url{http://www.jstor.org/stable/2786545}.
 
 \end{thebibliography}
