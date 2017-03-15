@@ -47,11 +47,15 @@ Tutkielma selittää pieni maailma -ilmiön tieteellisesti alkaen tarkasta määritte
 
 \section{Pieni maailma}
 
+\label{PieniMaailmaLuku}
+
 Sosiaalisissa verkoissa pieni maailma -ilmiöksi kutstuaan havaintoa lyhyiden tuttavuusketjujen muodostuminen kahden eri yksilön välillä suurella todennäköisyydellä. Traversin ja Milgramin suurta huomiota saaeessa käytännön kokeessa \cite{Milgram} Yhdysvalloissa valittiin n. 200 lähettäjää ja vastaanottajaa. Lähettäjien tehtävänä oli lähettää viesti vastaanottajalle, niin että viesti kulki ihmiseltä toiselle. Rajoitteena kokeessa viestin hallussapitäjä sai välittää viestin vain ihmiselle, jonka hän tunsi etunimellä. Kokeen tuloksena saatiin keskimäärin 6 pituisia tuttavuusketjuja, joka tunnetaan yleisesti "kuuden asteen erotuksena".
 
 Verkkoa, jossa pieni maailma -ilmiö toteutuu, kutsumme \textit{pieni maailma -verkoksi}. Tällaisia verkkoja ovat esimerkiksi erään madon hermoston muodostama verkko sekä verkko näyttelijöiden yhteistyön elokuvissa esiintymisestä\cite{CollectiveWattz}. Pieni maailma -verkoille ei ole olennaista kaarien suunta eikä esimerkiksi ruudukkomaisten verkkojen ulottuvuus. Niiden on kuitenkin oltava vahvasti yhtenäisiä, eli verkon jokaisen solmun on oltava saavutettavissa kaikista muista solmuista. Tietojenkäsittelytieteen verkkoteoriassa pieni maailma-verkoissa \textit{suurella todennäköisyydellä minkä tahansa kahden solmun välille voidaan muodostaa lyhyt polku}. Polun lyhyys todetaan sen suhteesta verkon halkaisijaan. Verkon halkaisija on pisin lyhin polku kahden solmun välillä.
 
 Pelkästään näillä ehdoilla pieni maailma -verkko ei ole välttämättä kovin mielenkiintoinen. Mikäli tekisimme verkon, jossa kaaret muodostuisivat satunnaisesti jollain todennäköisyydelä \(p\), suurella todennäköisyydellä kahden solmun välille löytyisi lyhyt polku parametrin \(p\) ollessa tarpeeksi suuri. Tällainen malli ei selitä, miten Traversin ja Milgramin tekemissä kokeissa viestin lähettäjät ovat kyenneet muodostamaan lyhyitä ketjuja käyttäen hyväksi ainoastaan viestin hallussapitäjän tietoja \cite{Kleinberg}. Kutsummekin pieni maailma -verkkoa \textit{navigoitavaksi}, mikäli \textit{verkon yksittäiset solmut voivat lähettää viestin verkon kaaria pitkin muihin verkon solmuihin lyhyitä polkuja pitkin käyttämällä ainoastaan paikallista tietoa}. Paikallisella tiedolla tarkoitetaan, että viestiä hallussa pitävällä solmulla on tiedossa ainoastaan solmusta lähtevät kaaret. 
+
+Pieni maailma -verkkojen ominaisuuksia voidaan kuvailla Wattzin ja Strogatzin \cite{CollectiveWattz} määrittelemillä suureilla \textit{keskimääräinen polun pituus} ja \ref{ryhmittymiskerroin}. Keskimääräinen polun pituus verkossa kuvaa nimensä mukaisesti keskiarvo kaikkien solmujen välisistä lyhimmistä poluista. Ryhmittymiskerroin taas kuvaa kuinka hyvin lähekkäiset solmut ovat yhdistyneet toisiinsa.
  
 Verkon solmujen välille täytyy voida laskea paino jollain painofunktiolla, jolloin verkko pysyy navigoitavana. Yleisenä logiikkana voimme tällöin pitää, että viestiä lähettävällä on solmulla on jonkinlainen käsitys mihin suuntaan viestiä tulee lähettää, jotta se saavuttaa kohteen. Ihmiset tuntevat hyvin luultavasti toisensa paremmin etunimellä, jos asuvat lähekkäin. Jos tehtävänäsi olisi lähettää viesti sinulle tuntemattomalle henkilölle Lapissa, mahdollisesti lähettäisit viestin pohjoisessa asuvalle tutullesi. Tällöin maantieteellinen etäisyys muodostaa painon kaarille sosiaalisten suhteiden verkossa.
 
@@ -68,8 +72,7 @@ Navigoitavat pieni maailma-verkot yleensä täyttävät myös seuraavat ehdot\cite{Te
 
 Ehdossa \ref{ryhmittyneet} mainittulla solmujen läheisyydellä tarkoitetaan niiden välisen painon olevan pieni. Samaan ehtoon liittyy myös verkon \textit{transitiivisuus}.   Matemaattisesti yhteys \(R\) on transitiivinen, jos \(aRb\) ja \(bRc\) aiheuttavat suoraan \(aRc\). Verkoissa transitiivisuutta voidaan ajatella seuraavalla tavalla: jos solmusta \(u\) on kaari solmuun \(v\), ja solmusta \(v\) on kaari solmuun \(w\) niin solmulla \(u\) on kaari solmuun \(w\). Vain täydelliset verkot voivat olla kokonaan transitiivisia.  Transitiivisuus on myös yksi ryhmittymisen suure: mitä suurempi transitiivisuus, sitä ryhmittyneempi verkko on\cite{TextSummary}. (Suureen laskemista varten tarvittava kaava lisätään myöhemmin.)
 
-
-Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetuiksi algoritmeiksi}. Pieni maailma -verkkoja tarkastellessa tutkitaan monesti hajautettuja algoritmeja. Mikäli on mahdollista löytää hajautettu algoritmi, joka kykenee suorittamaan toimintonsa todennäköisesti tietyssä ajassa, PM-verkko on mielenkiintoinen. Algoritmin tehokkuutta kuvataan \(\mathcal{O}\)-notaatiolla ajan ja algoritmin \textit{hyppyjen} suhteen. Algoritmin hypyillä tarkoitetaan, kuinka monella solmulla viesti on käynyt ennen kohteen saavuttamista. Tätä voidaan kutsua myös asteeksi. 
+Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetuiksi algoritmeiksi}. Pieni maailma -verkkoja tarkastellessa tutkitaan monesti hajautettuja algoritmeja. Mikäli on mahdollista löytää hajautettu algoritmi, joka kykenee suorittamaan toimintonsa todennäköisesti tietyssä ajassa, pieni maailma -verkko on mielenkiintoinen. Algoritmin tehokkuutta kuvataan \(\mathcal{O}\)-notaatiolla ajan ja algoritmin \textit{hyppyjen} suhteen. Algoritmin hypyillä tarkoitetaan, kuinka monella solmulla viesti on käynyt ennen kohteen saavuttamista. Tätä voidaan kutsua myös asteeksi. 
 
 \subsection{Kuinka muodostetaan pieni maailma}
 
@@ -120,6 +123,8 @@ Rajoitamme etäkontaktien valitsemisen satunnaisuutta rajoittamalla solmun \(u = 
 
 \section{Polunetsintä}
 
+Tässä luvussa esittelemme polunetsintä-algoritmejä, jotka soveltuvat pieni maailma -verkkoihin. Kutsumme tätä myös \textit{reititykseksi}. Ensimmäisenä tutustumme yleisiin strategioihin, jonka jälkeen siirrymme varsinaisiin algoritmeihin. Esitämme algoritmeille aikavaativuuksien ylä- ja alarajoja ja esitämme myös ylärajoja algoritmien laatimien polkujen pituuksille.
+
 Aiemmin esitetyssä käytännön kokeessa ihmiset muodostivat tuttavuusketjuja lähettäessään viestin kohteeseen. Voimme olettaa, että viestin lähettäjät pyrkivät lähettämään viestin tutulleen, jolla oli suurin todennäköisyys joko tuntea kohde tai kohteen tuttuja. Yksi hyvä strategia on viestin lähettäminen mahdollisimman lähelle kohdetta. Tämä on hyvä esimerkki \textit{ahneesta strategiasta} jonka esittelemme seuraavaksi.
 
 \label{Polunetsintä}
@@ -133,10 +138,10 @@ Ensimmäisenä tutkimme normaalia ahnetta algoritmia lyhyen polun etsintään. Ahnei
 \begin{enumerate}{}{}
 \item kaikkien solmujen paikalliset kontaktit,
 \item kohteen \(y\) sijainti ruudukossa
-\item ja kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit. \cite{Kleinberg}
+\item ja kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit.
 \end{enumerate}
 
-Luvussa \ref{KleinberginMalli} esitetylle PM-verkolle voidaan muodostaa ahne algoritmi, jonka keskimääräinen \textit{hyppyjen} (monellako solmulla viesti on käynyt) määrä on \( \mathcal{O} (log^2n) \). Käytämme tätä suuretta myöhemmin vertailua varten.
+Luvussa \ref{KleinberginMalli} esitetylle pieni maailma -verkolle voidaan muodostaa ahne algoritmi, jonka keskimääräinen \textit{hyppyjen} (monellako solmulla viesti on käynyt) määrä on \( \mathcal{O} (log^2n) \). Käytämme tätä suuretta myöhemmin vertailua varten.
 
 \subsection{Epäsuora ahne reititys}
 
@@ -163,28 +168,29 @@ Algoritmi viestin lähettämisestä solmuun \(u\) toiminta kulkee seuraavalla taval
 \item Lähetetään viesti solmuun \( z_{i_j} \) solmun \( u_j \) kautta.
 \end{enumerate}.
 
-PM-verkossa tälle algoritmille keskimääräinen hyppyjen määrä suurella todennäköisyydellä on  \( \mathcal{O} (\log^2n / \log \log n) \). \cite{Manku} Tällöin NN-Ahne algoritmi on hyvä vaihtoehto esimerkiksi vertaisverkoissa, joissa viestiä ei välttämättä haluta lähettää liian usean solmun läpi. NN-Ahneen algoritmin heikkoutena on naapurien naapurien vieruslistojen ylläpito ja muistissa säilyttäminen.
+Pieni maailma -verkossa tälle algoritmille keskimääräinen hyppyjen määrä suurella todennäköisyydellä on  \( \mathcal{O} (\log^2n / \log \log n) \) \cite{Manku}.Tällöin NN-Ahne -algoritmi on hyvä vaihtoehto esimerkiksi vertaisverkoissa, joissa viestiä ei välttämättä haluta lähettää liian usean solmun läpi. NN-Ahneen -algoritmin heikkoutena on naapurien naapurien vieruslistojen ylläpito ja muistissa säilyttäminen.
 
 \section{Käytännön sovellukset}
 
-\subsection{Peer-to-peer verkot}
+Tässä luvussa esittelemme, kuinka pieni maailma -ilmiötä voidaan käyttää hyväksi pieni maailma -verkoissa. Kuten aiemmin sanottu, pieni maailma -ilmiötä löytyy monista biologista, sosiaalisista ja teknologista verkoista. Sovelluksia tarkastellessamme käytämme hyväksi lukujen \ref{PieniMaailmaLuku} ja \ref{Polunetsintä} tuloksia ja käsitteitä.
 
-\subsection{Luonnollisen kielen tiivistäminen}
+%\subsection{Peer-to-peer verkot}
 
-Luonnollisten kielten tekstien tiivistäminen on hyödyllistä nykymaailmassa elektronisesti käsillä olevan tiedon kasvaessa. Tekstiä voi tiivistää valikoiden ydinkohdat tai esittäen nämä lyhyesti uusin sanoin. Seuraavaksi esittelemme automaattisen valikoivan tiivistämiskeinon, joka käyttää hyväkseen pienten maailmojen topologiaa. Rakennamme tekstin virkkeiden verkon ja poimimme virkkeistä ne, jotka edesauttavat verkkoa eniten olemaan pieni maailma.
+\subsection{Yhteenvedot luonnollisen kielen teksteistä}
 
-Määrittelemme verkon \(G = (V,E)\), jossa pisteet \(V\) ovat lauseita ja kaaret \(E\) kuvaavat virkkeiden välisiä suhteita. Virkkeellä \(L\) on lähikontakti virkkeen \(L'\) kanssa, jos virkkeet \(L\) ja \(L'\) ovat peräkkäisiä. Etäkontaktien muodostamiseen tarvitsemme keinon määrittää virkkeiden yhteyden toisiinsa. Tätä varten rakennamme tekstin tärkeimmistä sanoista joukon \(MeaningfulSet(e)\). Etäkontakti kahden virkkeen välille muodostuu vain, jos kummassakin virkkeessä esiintyy jokin joukon \(MeaningfulSet(e)\) sanoista.
+Luonnollisten kielten tekstien asiasisällön esittäminen tiiviimmin on hyödyllistä nykymaailmassa elektronisesti käsillä olevan tiedon kasvaessa räjähdysmäisesti. Tekstin sisällän voi joko esittää lyhyemmin muodostamalla uuden tekstin tai valikoimalla tekstistä tärkeimmät virkkeet ja kappaleet. Seuraavaksi esittelemme automaattisen, virkkeiden ja kappaleita valikoivan algoritmin, joka käyttää hyväkseen pienten maailmojen topologiaa. Rakennamme tekstin virkkeistä pieni maailma -verkon ja poimimme virkkeistä ne, jotka edesauttavat verkkoa eniten olemaan pieni maailma. Yhteenvetotyökalu on esitetty artikkelissa \cite{TextSummary}. 
 
-Joukon MeaningfulSet(e) sanojen määrä suhteessa joukkoon kaikista tekstissä esiintyvistä sanoista vaikuttaa verkon \(G\) kaarien määrän ja täten myös tiivistelmän pituuteen ja olennaisuuteen. Jos joukko \(MeaningfulSet(e)\) on liian suuri, verkko \(G\) ei näytä enää pieneltä maailmalta vaan sattumanvaraisesti muodostetulta verkolta. Kuitenkin joukon \(MeaningfulSet(e)\) ollessa liian pieni verkko \(G\) näyttää molempiin suuntiin linkitetyltä listalta josta löytyy muutama poikkeus. Tiivistysmenetelmän toimintaperiaatteen kannalta tällöin on suuresti merkitystä, miten tämä joukko valitaan. Tätä menetelmää emme esitä tässä tutkielmassa.
+Määrittelemme verkon \(G = (V,E)\), jossa pisteet \(V\) ovat virkkeitä ja kaaret \(E\) kuvaavat virkkeiden välisiä suhteita. Virkkeellä \(L\) on lähikontakti virkkeen \(L'\) kanssa, jos virkkeet \(L\) ja \(L'\) ovat peräkkäisiä. Etäkontaktien muodostamiseen tarvitsemme keinon määrittää virkkeiden yhteyden toisiinsa. Tätä varten rakennamme tekstin tärkeimmistä sanoista joukon \(MeaningfulSet(e)\). Etäkontakti kahden virkkeen välille muodostuu vain, jos kummassakin virkkeessä esiintyy jokin joukon \(MeaningfulSet(e)\) sanoista.
 
-\cite{TextSummary}
+Joukon MeaningfulSet(e) sanojen määrä suhteessa joukkoon kaikista tekstissä esiintyvistä sanoista vaikuttaa verkon \(G\) kaarien määrän ja täten myös tiivistelmän pituuteen ja olennaisuuteen. Jos joukko \(MeaningfulSet(e)\) on liian suuri, verkko \(G\) ei näytä enää pieneltä maailmalta vaan sattumanvaraisesti muodostetulta verkolta. Kuitenkin joukon \(MeaningfulSet(e)\) ollessa liian pieni verkko \(G\) näyttää molempiin suuntiin linkitetyltä listalta josta löytyy muutama poikkeus. Yhteenvetomenetelmän toimintaperiaatteen kannalta tällöin on suuresti merkitystä, miten tämä joukko valitaan. Tätä menetelmää emme esitä tässä tutkielmassa.
 
 \begin{kuva}[Automaattinen tekstin tiivistäminen]
  \centering
 \includegraphics{tiivistaminen}[]
 \label{tiivistaminenKuva}
 \end{kuva}
-a
+
+
 \numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}
 
 \classification{\protect{\ \\
