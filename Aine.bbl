@@ -48,4 +48,9 @@ Travers, J. \bbland{} Milgram, S., An experimental study of the small world
 \newblock {\em Sociometry}, 32,4(1969), \bblpages{} 425--443.
 \newblock \urlprefix\url{http://www.jstor.org/stable/2786545}.
 
+\bibitem[WS98]{CollectiveWattz}
+Watts, D.~J. \bbland{} Strogatz, S.~H., Collective dynamics of
+  'small-world'networks.
+\newblock {\em nature}, 393,6684(1998), \bblpages{} 440--442.
+
 \end{thebibliography}

@@ -41,40 +41,41 @@
 
 \section{Johdanto}
 
-Sosiaalisia verkkoja tutkivien käytännön kokeiden avulla löydetty Pieni maailma-ilmiö on vaikuttanut myös tietojenkäsittelytieteeseen. Ilmiö on nykyään tunnettu käsite verkkoteoriassa. Ilmiön perusteella on tehty useita polunetsintä-algoritmeja jotka käyttävät ainoastaan lokaalia tietoa verkon solmuista ja kaarista. 
+Pieni maailma -ilmiöksi kutsumme havaintoa lyhyiden ketjujen syntymisestä verkoissa ilman tietoa koko verkon kaarista. Verkkoja, joissa kyseinen ilmiö esiintyy, kutsutaan pieni maailma -verkoiksi ja näille verkoille on tehty useita malleja. Malliverkkojen luomisessa käytetään usein hyväksi parametreihin sidottua satunnaisuutta. Tälläisilla verkoilla on useita mielenkiintoisia ominaisuuksia, joita voidaan käyttää hyödyksi käytännön sovelluksissa. Suurin käytännön hyöty on lyhyiden polkujen etsiminen solmulta toiselle. Tätä varten on kehitetty useita algoritmejä, jotka pyrkivät optimoimaan polun pituuden ja polunetsintään kuluneen ajan.
 
-Tutkielma selittää Pieni maailma-ilmiön tieteellisesti alkaen tarkasta määrittelystä. Määrittelyn jälkeen näytämme, kuinka ilmiötä kuvaavia malleja voidaan luoda. Käytämme tähän käytännön esimerkkiä jota laajennamme yleisemmäksi muutamasta eri näkökulmasta katsoen. Luvussa \ref{Polunetsintä} esittelemme polunetsintä-strategioita ja näihin perustuvia algoritmejä. Lyhyiden polkujen etsiminen solmujen välille on ilmiön tärkein sovelluskohde tietojenkäsittelytieteessä. Tästä pääsemme loogisesti käytännön sovelluksiin kuten vertaisverkossa resurssien etsimiseen ja automaattiseen luonnollisen kielen tiivistämiseen.
+Tutkielma selittää pieni maailma -ilmiön tieteellisesti alkaen tarkasta määrittelystä. Määrittelyn jälkeen näytämme, kuinka ilmiötä kuvaavia malleja voidaan luoda. Käytämme tähän käytännön esimerkkiä jota laajennamme yleisemmäksi muutamasta eri näkökulmasta katsoen. Luvussa \ref{Polunetsintä} esittelemme polunetsintä-strategioita ja näihin perustuvia algoritmejä. Lyhyiden polkujen etsiminen solmujen välille on ilmiön tärkein sovelluskohde tietojenkäsittelytieteessä. Tästä pääsemme loogisesti käytännön sovelluksiin kuten vertaisverkossa resurssien etsimiseen ja automaattiseen luonnollisen kielen tiivistämiseen.
 
 \section{Pieni maailma}
 
-Sosiaalisissa verkoissa Pieni maailma-ilmiöksi kutstuaan havaintoa lyhyiden tuttavuusketjujen muodostuminen kahden eri yksilön välillä suurella todennäköisyydellä. Traversin ja Milgramin suurta huomiota saaeessa käytännön kokeessa \cite{Milgram} Yhdysvalloissa valittiin n. 200 lähettäjää ja vastaanottajaa. Lähettäjien tehtävänä oli lähettää viesti vastaanottajalle, niin että viesti kulki ihmiseltä toiselle. Rajoitteena kokeessa viestin hallussapitäjä sai välittää viestin vain ihmiselle, jonka hän tunsi etunimellä. Kokeen tuloksena saatiin keskimäärin 6 pituisia tuttavuusketjuja.
+Sosiaalisissa verkoissa pieni maailma -ilmiöksi kutstuaan havaintoa lyhyiden tuttavuusketjujen muodostuminen kahden eri yksilön välillä suurella todennäköisyydellä. Traversin ja Milgramin suurta huomiota saaeessa käytännön kokeessa \cite{Milgram} Yhdysvalloissa valittiin n. 200 lähettäjää ja vastaanottajaa. Lähettäjien tehtävänä oli lähettää viesti vastaanottajalle, niin että viesti kulki ihmiseltä toiselle. Rajoitteena kokeessa viestin hallussapitäjä sai välittää viestin vain ihmiselle, jonka hän tunsi etunimellä. Kokeen tuloksena saatiin keskimäärin 6 pituisia tuttavuusketjuja, joka tunnetaan yleisesti "kuuden asteen erotuksena".
 
-Tietojenkäsittelytieteen verkkoteoriassa Pieni maailma-ilmiö tarkoittaa seuraavan ehdon toteumista missä tahansa verkossa:
+Verkkoa, jossa pieni maailma -ilmiö toteutuu, kutsumme \textit{pieni maailma -verkoksi}. Tällaisia verkkoja ovat esimerkiksi erään madon hermoston muodostama verkko sekä verkko näyttelijöiden yhteistyön elokuvissa esiintymisestä\cite{CollectiveWattz}. Pieni maailma -verkoille ei ole olennaista kaarien suunta eikä esimerkiksi ruudukkomaisten verkkojen ulottuvuus. Niiden on kuitenkin oltava vahvasti yhtenäisiä, eli verkon jokaisen solmun on oltava saavutettavissa kaikista muista solmuista. Tietojenkäsittelytieteen verkkoteoriassa pieni maailma-verkoissa \textit{suurella todennäköisyydellä minkä tahansa kahden solmun välille voidaan muodostaa lyhyt polku}. Polun lyhyys todetaan sen suhteesta verkon halkaisijaan. Verkon halkaisija on pisin lyhin polku kahden solmun välillä.
 
-\begin{lemma}
-\label{pmEhto}
-Yksittäiset solmut voivat lähettää viestin verkon kaaria pitkin muihin verkon solmuihin lyhyitä polkuja pitkin käyttämällä ainoastaan paikallista tietoa.
-\end{lemma}
+Pelkästään näillä ehdoilla pieni maailma -verkko ei ole välttämättä kovin mielenkiintoinen. Mikäli tekisimme verkon, jossa kaaret muodostuisivat satunnaisesti jollain todennäköisyydelä \(p\), suurella todennäköisyydellä kahden solmun välille löytyisi lyhyt polku parametrin \(p\) ollessa tarpeeksi suuri. Tällainen malli ei selitä, miten Traversin ja Milgramin tekemissä kokeissa viestin lähettäjät ovat kyenneet muodostamaan lyhyitä ketjuja käyttäen hyväksi ainoastaan viestin hallussapitäjän tietoja \cite{Kleinberg}. Kutsummekin pieni maailma -verkkoa \textit{navigoitavaksi}, mikäli \textit{verkon yksittäiset solmut voivat lähettää viestin verkon kaaria pitkin muihin verkon solmuihin lyhyitä polkuja pitkin käyttämällä ainoastaan paikallista tietoa}. Paikallisella tiedolla tarkoitetaan, että viestiä hallussa pitävällä solmulla on tiedossa ainoastaan solmusta lähtevät kaaret. 
+ 
+Verkon solmujen välille täytyy voida laskea paino jollain painofunktiolla, jolloin verkko pysyy navigoitavana. Yleisenä logiikkana voimme tällöin pitää, että viestiä lähettävällä on solmulla on jonkinlainen käsitys mihin suuntaan viestiä tulee lähettää, jotta se saavuttaa kohteen. Ihmiset tuntevat hyvin luultavasti toisensa paremmin etunimellä, jos asuvat lähekkäin. Jos tehtävänäsi olisi lähettää viesti sinulle tuntemattomalle henkilölle Lapissa, mahdollisesti lähettäisit viestin pohjoisessa asuvalle tutullesi. Tällöin maantieteellinen etäisyys muodostaa painon kaarille sosiaalisten suhteiden verkossa.
 
-Paikallisella tiedolla tarkoitetaan globaalin tiedon puuttumisella. Jokaisessa solmussa valitaan viestin seuraava vastaanottaja käyttäen hyväksi ainoastaan tietoa viestiä lähettävän solmun kaarista. 
-\cite{AnyGraphSW}
-
-Pieni maailma-verkot (tästä lähtien PM-verkot) yleensä täyttävät myös seuraavat ehdot:
+Navigoitavat pieni maailma-verkot yleensä täyttävät myös seuraavat ehdot\cite{TextSummary}:
 
 \begin{enumerate}
-	\item \label{harva} \textit{ne ovat harvoja}\cite{TextSummary}: \ref{pmEhto} täyttyy implisiittisesti, mikäli lähtösolmusta löytyy kaari kohteeseen. Tälläiset verkot eivät ole mielenkiintoisia ilmiön kannalta.
-	\item \label{lyhyetPolut} \textit{solmujen välillä esiintyy lyhyitä polkuja} \cite{TextSummary}: \ref{pmEhto} aiheuttaa tämän suoraan.
-	\item \label{ryhmittyneet} \textit{ne ovat ryhmittyneitä ja niillä on pieni halkaisija} \cite{TextSummary}: Intuitiivisesti ehto \ref{ryhmittyneet} tarkoittaa, että mikäli solmu \( u \) ja \( v \) ovat lähellä toisiaan niin niiden välillä on todennäköisesti kaari. Yleisimmissä (ahneissa) polunetsintä-algoritmeissa viesti lähetetään aina mahdollisimman lähelle kohdetta ehdosta \ref{ryhmittyneet} johtuen.
+	\item \label{harva} \textit{ne ovat harvoja}:
+	Solmujen välillä on triviaalisti lyhyitä polkuja, jos verkon solmuilla on liikaa kaaria. Tällaiset verkot eivät ole mielenkiintoisia.
+	\item \label{ryhmittyneet} \textit{ne ovat ryhmittyneitä}: 
+	Intuitiivisesti ehto \ref{ryhmittyneet} tarkoittaa, että mikäli solmu \( u \) ja \( v \) ovat lähellä toisiaan niin niiden välillä on todennäköisesti kaari. Yleisimmissä (ahneissa) polunetsintä-algoritmeissa viesti lähetetään aina mahdollisimman lähelle kohdetta ehdosta \ref{ryhmittyneet} johtuen.
+	\item \textit{niillä on pieni halkaisija}.
+	
 \end{enumerate}
-  
+
+Ehdossa \ref{ryhmittyneet} mainittulla solmujen läheisyydellä tarkoitetaan niiden välisen painon olevan pieni. Samaan ehtoon liittyy myös verkon \textit{transitiivisuus}.   Matemaattisesti yhteys \(R\) on transitiivinen, jos \(aRb\) ja \(bRc\) aiheuttavat suoraan \(aRc\). Verkoissa transitiivisuutta voidaan ajatella seuraavalla tavalla: jos solmusta \(u\) on kaari solmuun \(v\), ja solmusta \(v\) on kaari solmuun \(w\) niin solmulla \(u\) on kaari solmuun \(w\). Vain täydelliset verkot voivat olla kokonaan transitiivisia.  Transitiivisuus on myös yksi ryhmittymisen suure: mitä suurempi transitiivisuus, sitä ryhmittyneempi verkko on\cite{TextSummary}. (Suureen laskemista varten tarvittava kaava lisätään myöhemmin.)
+
+
+Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetuiksi algoritmeiksi}. Pieni maailma -verkkoja tarkastellessa tutkitaan monesti hajautettuja algoritmeja. Mikäli on mahdollista löytää hajautettu algoritmi, joka kykenee suorittamaan toimintonsa todennäköisesti tietyssä ajassa, PM-verkko on mielenkiintoinen. Algoritmin tehokkuutta kuvataan \(\mathcal{O}\)-notaatiolla ajan ja algoritmin \textit{hyppyjen} suhteen. Algoritmin hypyillä tarkoitetaan, kuinka monella solmulla viesti on käynyt ennen kohteen saavuttamista. Tätä voidaan kutsua myös asteeksi. 
 
 \subsection{Kuinka muodostetaan pieni maailma}
 
-\subsubsection{Kleinbergin malli}
-
 \label{KleinberginMalli}
 
-PM-verkkoja voidaan muodostaa monella tavalla. Aloitamme muodostamalla mallin, jonka kehitti Jon Kleinberg cite{Kleinberg} Wattz and Strogatz-mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe.
+Pieni maailma -verkkoja voidaan muodostaa monella tavalla. Aloitamme muodostamalla mallin, jonka kehitti Jon Kleinberg \cite{Kleinberg} Wattz and Strogatz -mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe.
 
 Mallinnamme ihmisiä solmuina. Tämä joukko solmuja muodostaa $n\times n$ ruudukon, missä
 \[
@@ -85,11 +86,11 @@ Mallinnamme ihmisiä solmuina. Tämä joukko solmuja muodostaa $n\times n$ ruudukon
 		j \in{ \left\lbrace 1, 2, \ldots , n \right\rbrace } 
 	\right\rbrace .
 \]
-Olkoon ruudukkoetäisyys 
-\(
+Ruudukkoetäisyytenä toimii Manhattan-etäisyys, eli 
+\[
 		\distance{(i,j)}{(k,l)}
 	= \abs{ k - i } + \abs{ l - j }
-\). 
+.\]
 Solmulla \(u\) on \textit{paikallinen kontakti} solmun \(v\) kanssa, jos 	
 \(
 		\distance{u}{v} \leq p
@@ -103,32 +104,31 @@ Solmulla \( u \) on myös vakiomäärä, \( q \geq 0 \), \textit{etäkontakteja}. Etä
 	\right]
 ^{-r}
 \).
-\cite{Kleinberg}
+Paikalliset kontaktit ja etäkontaktit muodostuvat suunnatuilla kaarilla. Solmun \(u\) etäkontaktilla \(v\) ei siis välttämättä ole kaarta takaisin solmuun \(u\). Paikalliset kontaktit kuitenkin muodostavat suuntamattomia kaaria toistensa kanssa johtuen niiden etäisyyteen liittyvästä muodostamistavasta. 
 
 
-Tämä tapa muodostaa PM-verkko voidaan tulkita myös geometrisesti. Solmulla \(u\) on kaari jokaiseen tarpeeksi lähellä olevaan solmuun. Näiden yhteyksien lisäksi solmulla \(u\) on kaaria kauempana ruudukossa. Jos vakio \(r = 0 \), niin solmujen etäkontaktit ovat jakautuneet tasaisesti ruudukolle. Vakion \(r\) kasvaessa etäkontaktit ovat lähempänä ja lähempänä solmua itseään.
-\cite{Kleinberg}
+Tämä tapa muodostaa pieni maailma -verkko voidaan tulkita myös geometrisesti. Solmulla \(u\) on kaari jokaiseen tarpeeksi lähellä olevaan solmuun. Näiden yhteyksien lisäksi solmulla \(u\) on kaaria kauempana ruudukossa. Jos vakio \(r = 0 \), niin solmujen etäkontaktit ovat jakautuneet tasaisesti ruudukolle. Näin muodostettu verkko on pieni maailma, mutta se ei ole navigoitava. Vakion \(r\) kasvaessa solmun \(u\) etäkontaktit ovat jatkuvasti lähempänä solmua itseään.
 
-Tässä mallissa ovat \textit{etäkontaktit} mielenkiintoisimpia tarkastelun kohteita. Verkon \textit{navigoitavuuteen} vaikuttaa, kuinka tasaisesti etäkontaktit ovat jakautuneet verkkoon. Jos \( r=0\), eli etäkontaktit olisivat jakautuneet tasaisesti verkkoon, niin ahne polunetsintä-algoritmi ei tuottaisi lyhyitä polkuja luotettavasti. Vaikka algoritmi löytäisi solmulta \(x\) kaaren solmuun \(y\) joka on lähellä kohdetta \(z\), niin solmun \(y\) todennäköisyys omata etäkontakti kohteeseen \(z\) ei olisi kasvanut. Vakion \(r\) ollessa liian suuri olisi hyppyjen määrä myös liian suuri. Silloin viestit eivät pääsisi kulkemaan tarpeeksi pitkälle etäkontaktienkaan avulla..
+Tässä mallissa ovat \textit{etäkontaktit} mielenkiintoisimpia tarkastelun kohteita. Verkon \textit{navigoitavuuteen} vaikuttaa, kuinka tasaisesti etäkontaktit ovat jakautuneet verkkoon. Jos \( r=0\), eli etäkontaktit olisivat jakautuneet tasaisesti verkkoon, niin ahne polunetsintä-algoritmi ei tuottaisi lyhyitä polkuja luotettavasti. Vaikka algoritmi löytäisi solmulta \(x\) kaaren solmuun \(y\) joka on lähellä kohdetta \(z\), niin solmun \(y\) todennäköisyys omata etäkontakti kohteeseen \(z\) ei olisi kasvanut. Vakion \(r\) ollessa liian suuri olisi hyppyjen määrä myös liian suuri. Silloin viestit eivät pääsisi kulkemaan tarpeeksi pitkälle etäkontaktienkaan avulla.
 
-Tarkemman tarkastelun jälkeen voimme huomata, että etäkontaktien ei tarvitse olla satunnaisesti tuotettuja luodaksemme navigoitava PM-verkko. Etäkontaktien satunnaisuutta vähentämällä verkosta muodostuu ryhmittyneempi, joka edesauttaa mm. vertaisverkkojen virheenkestävyyttä. \cite{Independent}. 
+Tarkemman tarkastelun jälkeen voimme huomata, että etäkontaktien ei tarvitse olla satunnaisesti tuotettuja luodaksemme navigoitava PM-verkko. Etäkontaktien satunnaisuutta vähentämällä verkosta muodostuu ryhmittyneempi, joka edesauttaa mm. vertaisverkkojen virheenkestävyyttä \cite{Independent}. 
 
-Rajoitamme etäkontaktien valitsemisen satunnaisuutta rajoittamalla solmun \(u = (u_1,u_2)\) mahdollisiksi etäkontakteiksi vain solmut  \(v = (v_1,v_2)\), joille \( u_1 = v_1\) tai \( u_2 = v_2\). Tällöin solmun etäkontatkit sijaitsevat samalla suoralla solmun itsensä kanssa ja etäkontaktien valitsemisen satunnaisuus pienenee. Artikkelissa (inproceeding?) \cite{Independent} on todistettu, että etäkontaktien muodostamista rajoittamisesta huolimatta verkon navigoitavuus säilyy. Edellisen ehdon lisäksi voitaisiin myös määritellä muita ehtoja, jotka koskevat vain osaa solmuista (\textit{yhteisöt}). Myös tällöin verkolla säilyisivät samat ominaisuudet. \cite{Independent} 
+Rajoitamme etäkontaktien valitsemisen satunnaisuutta rajoittamalla solmun \(u = (u_1,u_2)\) mahdollisiksi etäkontakteiksi vain solmut  \(v = (v_1,v_2)\), joille \( u_1 = v_1\) tai \( u_2 = v_2\). Tällöin solmun etäkontatkit sijaitsevat samalla suoralla solmun itsensä kanssa ja etäkontaktien valitsemisen satunnaisuus pienenee. Artikkelissa (inproceeding?) \cite{Independent} on todistettu, että etäkontaktien muodostamista rajoittamisesta huolimatta verkon navigoitavuus säilyy. Edellisen ehdon lisäksi voitaisiin myös määritellä muita ehtoja, jotka koskevat vain osaa solmuista (\textit{yhteisöt}), säilyttäen verkon pieni maailma -ominaisuudet.
 
 %% Tähän vielä voisi laittaa Kleinbergin mallin yleistyksen n-ulottuuvutten
 
 
 \section{Polunetsintä}
 
+Aiemmin esitetyssä käytännön kokeessa ihmiset muodostivat tuttavuusketjuja lähettäessään viestin kohteeseen. Voimme olettaa, että viestin lähettäjät pyrkivät lähettämään viestin tutulleen, jolla oli suurin todennäköisyys joko tuntea kohde tai kohteen tuttuja. Yksi hyvä strategia on viestin lähettäminen mahdollisimman lähelle kohdetta. Tämä on hyvä esimerkki \textit{ahneesta strategiasta} jonka esittelemme seuraavaksi.
+
 \label{Polunetsintä}
 
-\subsection{Strategiat}
-
-\subsubsection{Ahne reititys}
+\subsection{Ahne reititys}
 
 \label{AhneReititys}
 
-Ensimmäisenä tutkimme normaalia ahnetta algoritmia lyhyen polun etsintään. Ahneissa algoritmeissa viestiä kuljettava solmu lähettää viestin aina lähimpänä kohdetta olevalle naapurilleen. Esimerkiksi Kleinbergin esittämässä ahneessa algoritmissa viestiä kuljettava solmu tietää
+Ensimmäisenä tutkimme normaalia ahnetta algoritmia lyhyen polun etsintään. Ahneissa algoritmeissa viestiä kuljettava solmu lähettää viestin aina lähimpänä kohdetta olevalle naapurilleen. Esimerkiksi Kleinbergin  \cite{Kleinberg}  esittämässä ahneessa algoritmissa viestiä kuljettava solmu tietää
 
 \begin{enumerate}{}{}
 \item kaikkien solmujen paikalliset kontaktit,
@@ -136,9 +136,9 @@ Ensimmäisenä tutkimme normaalia ahnetta algoritmia lyhyen polun etsintään. Ahnei
 \item ja kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit. \cite{Kleinberg}
 \end{enumerate}
 
-Luvussa \ref{KleinberginMalli} esitetylle PM-verkolle voidaan muodostaa ahne algoritmi, jonka keskimääräinen \textit{hyppyjen} (monellako solmulla viesti on käynyt) määrä on \( \mathcal{O} (log^2n) \). \cite{Kleinberg} Käytämme tätä suuretta myöhemmin vertailua varten.
+Luvussa \ref{KleinberginMalli} esitetylle PM-verkolle voidaan muodostaa ahne algoritmi, jonka keskimääräinen \textit{hyppyjen} (monellako solmulla viesti on käynyt) määrä on \( \mathcal{O} (log^2n) \). Käytämme tätä suuretta myöhemmin vertailua varten.
 
-\subsubsection{Epäsuora ahne reititys}
+\subsection{Epäsuora ahne reititys}
 
 Epäsuora ahne reititys toimii kuten ahne reititys. Poikkeuksena, viestiä kuljettavalla solmulla \(u\) on tiedossa myös solmun \(v\) etäkontaktit jos solmulle pätee
 \(
@@ -146,7 +146,7 @@ Epäsuora ahne reititys toimii kuten ahne reititys. Poikkeuksena, viestiä kuljett
 \)
 jollain etäisyysfunktiolla \(d\) ja vakiolla \(q\). Tällöin viestiä kuljettavalla solmulla on mahdollisuus lähettää viesti jonkin itseään lähellä olevan solmun kautta.
 
-\subsubsection{Naapurien naapurit}
+\subsection{Naapurien naapurit}
 
 Ahneella naapurien naapurit-algoritmi toimii samalla periaatte kuin epäsuora ahne reititys. Lähellä olevien solmujen sijaan viestiä kuljettavalla solmulla on tiedossa omien naapureidensa kontaktit.
 
@@ -184,7 +184,7 @@ Joukon MeaningfulSet(e) sanojen määrä suhteessa joukkoon kaikista tekstissä esii
 \includegraphics{tiivistaminen}[]
 \label{tiivistaminenKuva}
 \end{kuva}
-
+a
 \numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}
 
 \classification{\protect{\ \\
