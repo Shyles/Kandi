@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.7)  15 MAR 2017 17:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.7)  16 MAR 2017 13:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -266,33 +266,34 @@ e
 \c@lause=\count104
 \c@lemma=\count105
 \c@kuva=\count106
+\c@maaritelma=\count107
 
 [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 56.
+(Font)              <12> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 56.
+(Font)              <8> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 56.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 56.
+(Font)              <6> on input line 57.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 57.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [1]
+) [1] [2] [3]
+[4]
 
-LaTeX Warning: Reference `ryhmittymiskerroin' on page ii undefined on input lin
-e 58.
+LaTeX Warning: Reference `AhneReititys' on page v undefined on input line 157.
 
-[2] [3] [4]
-Overfull \hbox (4.80325pt too wide) in paragraph at lines 160--161
+
+Overfull \hbox (4.80325pt too wide) in paragraph at lines 157--158
 \T1/cmr/m/n/12 Esit‰mme er‰‰n Naa-pu-rien Naapurit-ahneet al-go-rit-min. Kiin-n
 i-t‰m-me huo-mio-ta muo-
  []
 
 [5]
-Overfull \hbox (7.48732pt too wide) in paragraph at lines 183--184
+Overfull \hbox (7.48732pt too wide) in paragraph at lines 180--181
 \T1/cmr/m/n/12 muo-dos-tuu vain, jos kum-mas-sa-kin virk-kees-s‰ esiin-tyy jo-k
 in jou-kon $\OML/cmm/m/it/12 MeaningfulSet\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 e\O
 T1/cmr/m/n/12 )$
@@ -302,7 +303,7 @@ T1/cmr/m/n/12 )$
 File: images/tiivistaminen.png Graphic file (type png)
 
 <use images/tiivistaminen.png>
-Package pdftex.def Info: images/tiivistaminen.png used on input line 189.
+Package pdftex.def Info: images/tiivistaminen.png used on input line 186.
 (pdftex.def)             Requested size: 208.52855pt x 425.33801pt.
  [6] (./Aine.bbl (./babelbst.tex (./finnbst.tex))
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 14.
@@ -320,13 +321,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3162 strings out of 493014
- 43495 string characters out of 6133352
- 118057 words of memory out of 5000000
- 6633 multiletter control sequences out of 15000+600000
+ 3167 strings out of 493014
+ 43548 string characters out of 6133352
+ 118046 words of memory out of 5000000
+ 6638 multiletter control sequences out of 15000+600000
  13140 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,4n,25p,1032b,314s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,4n,25p,1042b,314s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
 /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
@@ -342,7 +343,7 @@ e/2016/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/
 16/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2016
 /texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2016/t
 exmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Aine.pdf (9 pages, 229107 bytes).
+Output written on Aine.pdf (9 pages, 232915 bytes).
 PDF statistics:
  94 PDF objects out of 1000 (max. 8388607)
  66 compressed objects within 1 object stream
