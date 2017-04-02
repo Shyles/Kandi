@@ -83,7 +83,7 @@ Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetu
 
 \label{KleinberginMalli}
 
-Pieni maailma -verkkoja voidaan muodostaa monella tavalla. Aloitamme muodostamalla mallin, jonka kehitti Jon Kleinberg \cite{Kleinberg} Wattz and Strogatz -mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe.
+Pieni maailma -verkkoja voidaan muodostaa monella tavalla. Aloitamme muodostamalla mallin, jonka kehitti Jon Kleinberg \cite{Kleinberg} Wattz and Strogatz\cite{CollectiveWattz} -mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe.
 
 Mallinnamme ihmisiä solmuina. Tämä joukko solmuja muodostaa $n\times n$ ruudukon, missä
 \[
@@ -105,14 +105,22 @@ Solmulla \(u\) on \textit{paikallinen kontakti} solmun \(v\) kanssa, jos
 \)
 jollain vakiolla 
 \( p \geq 1\ \). 
-Solmulla \( u \) on myös vakiomäärä, \( q \geq 0 \), \textit{etäkontakteja}. Etäkontaktit solmujen \(u\) ja \(v\) välille muodostetaan satunnaisesti todennäköisyysfunktiolla, joka riippuu vakiosta \( r \geq 0 \) ja etäisyydestä \( \distance{u}{v} \). Tarkemmin, etäkontakti muodostuu solmusta \( u \) solmuun \( v \) todennäköisyydellä
-\(
+Solmulla \( u \) on myös vakiomäärä, \( q \geq 0 \), \textit{etäkontakteja}. Etäkontaktit solmujen \(u\) ja \(v\) välille muodostetaan satunnaisesti todennäköisyysfunktiolla, joka riippuu vakiosta \( r \geq 0 \) ja etäisyydestä \( \distance{u}{v} \). Tarkemmin, etäkontakti muodostetaan satunnaiskokeella solmusta \( u \) solmuun \( v \) todennäköisyydellä
+\[
+\frac{
 	\left[
-		\distance{u}{u}
+		\distance{u}{v}
 	\right]
-^{-r}
-\).
-Paikalliset kontaktit ja etäkontaktit muodostuvat suunnatuilla kaarilla. Solmun \(u\) etäkontaktilla \(v\) ei siis välttämättä ole kaarta takaisin solmuun \(u\). Paikalliset kontaktit kuitenkin muodostavat suuntamattomia kaaria toistensa kanssa johtuen niiden etäisyyteen liittyvästä muodostamistavasta. 
+	^{-r}
+}{
+	\Sigma_{v}
+	\left[
+		\distance{u}{v}
+	\right]
+	^{-r}
+}
+\]
+Edellä mainituilla tavoin muodostetut kaaret ovat suunnattuja. Solmun \(u\) etäkontaktilla \(v\) ei siis välttämättä ole kaarta takaisin solmuun \(u\). Paikalliset kontaktit kuitenkin muodostavat suuntamattomia kaaria toistensa kanssa, koska niiden etäisyyteen liittyvä muodostamistapa on symmetrinen.
 
 
 Tämä tapa muodostaa pieni maailma -verkko voidaan tulkita myös geometrisesti. Solmulla \(u\) on kaari jokaiseen tarpeeksi lähellä olevaan solmuun. Näiden yhteyksien lisäksi solmulla \(u\) on kaaria kauempana ruudukossa. Jos vakio \(r = 0 \), niin solmujen etäkontaktit ovat jakautuneet tasaisesti ruudukolle. Näin muodostettu verkko on pieni maailma, mutta se ei ole navigoitava. Vakion \(r\) kasvaessa solmun \(u\) etäkontaktit ovat jatkuvasti lähempänä solmua itseään.
@@ -130,19 +138,27 @@ Rajoitamme etäkontaktien valitsemisen satunnaisuutta rajoittamalla solmun \(u = 
 
 Tässä luvussa esittelemme polunetsintä-algoritmejä, jotka soveltuvat pieni maailma -verkkoihin. Kutsumme tätä myös \textit{reititykseksi}. Ensimmäisenä tutustumme yleisiin strategioihin, jonka jälkeen siirrymme varsinaisiin algoritmeihin. Esitämme algoritmeille aikavaativuuksien ylä- ja alarajoja ja esitämme myös ylärajoja algoritmien laatimien polkujen pituuksille.
 
+\subsection{Ahne reititys}
+
 Aiemmin esitetyssä käytännön kokeessa ihmiset muodostivat tuttavuusketjuja lähettäessään viestin kohteeseen. Voimme olettaa, että viestin lähettäjät pyrkivät lähettämään viestin tutulleen, jolla oli suurin todennäköisyys joko tuntea kohde tai kohteen tuttuja. Yksi hyvä strategia on viestin lähettäminen mahdollisimman lähelle kohdetta. Tämä on hyvä esimerkki \textit{ahneesta strategiasta} jonka esittelemme seuraavaksi.
 
 \label{Polunetsintä}
 
-Ensimmäisenä tutkimme normaalia ahnetta algoritmia lyhyen polun etsintään. Ahneissa algoritmeissa viestiä kuljettava solmu lähettää viestin aina lähimpänä kohdetta olevalle naapurilleen. Esimerkiksi Kleinbergin  \cite{Kleinberg}  esittämässä ahneessa algoritmissa viestiä kuljettava solmu tietää
+Ensimmäisenä tutkimme normaalia ahnetta strategiaa lyhyen polun etsintään. Ahneissa polunetsintäalgoritmeissa viestiä kuljettava solmu lähettää viestin aina lähimpänä kohdetta olevalle naapurilleen. Otamme esimerkiksi Kleinbergin  \cite{Kleinberg}  esittämän termin \textit{hajautettu algoritmi}, jossa viestiä kuljettava solmu tietää
 
 \begin{enumerate}{}{}
-\item kaikkien solmujen paikalliset kontaktit,
+\item kaikkien solmujen paikalliset kontaktit
 \item kohteen \(y\) sijainti ruudukossa
-\item ja kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit.
+\item kaikkien viestiä kuljettaneiden solmujen etäkontaktit ja sijainnit.
 \end{enumerate}
 
-Luvussa \ref{KleinberginMalli} esitetylle pieni maailma -verkolle voidaan muodostaa ahne algoritmi, jonka keskimääräinen \textit{hyppyjen} (monellako solmulla viesti on käynyt) määrä on \( \mathcal{O} (log^2n) \). Käytämme tätä suuretta myöhemmin vertailua varten.
+Osoitamme, että eräälle luvussa \ref{KleinberginMalli} esitetyllä mallilla muodostetulle pieni maailma -verkolle voidaan kehittää hajautettu algoritmi, jonka keskimääräinen \textit{hyppyjen} (monellako solmulla viesti on käynyt) määrä on \( \mathcal{O} (log^2n) \). Kyseisellä mallilla parametrien arvot ovat \(r=2\) ja \(p = q = 1\). Näytämme myös, että tämä on ainoa Kleinbergin esittämistä malleista, josta voidaan muodostaa navigoituva pieni maailma -verkko jossa hajautetut algoritmit ovat tehokkaita. Huomaammekin, kuinka tärkeä verkon rakenne on lyhyiden reittien löytämisen vain paikallisella tiedolla.
+
+
+
+
+
+
 
 Epäsuora ahne reititys toimii kuten ahne reititys. Poikkeuksena, viestiä kuljettavalla solmulla \(u\) on tiedossa myös solmun \(v\) etäkontaktit jos solmulle pätee
 \(
