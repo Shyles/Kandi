@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.7)  2 APR 2017 21:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.7)  4 APR 2017 15:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -282,52 +282,53 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 57.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [1] [2] [3]
-[4]
+[4] [5]
 
-LaTeX Warning: Reference `AhneReititys' on page v undefined on input line 173.
+LaTeX Warning: Reference `AhneReititys' on page vi undefined on input line 199.
 
 
-Overfull \hbox (4.80325pt too wide) in paragraph at lines 173--174
+
+Overfull \hbox (4.80325pt too wide) in paragraph at lines 199--200
 \T1/cmr/m/n/12 Esit‰mme er‰‰n Naa-pu-rien Naapurit-ahneet al-go-rit-min. Kiin-n
 i-t‰m-me huo-mio-ta muo-
  []
 
-[5]
-Overfull \hbox (7.48732pt too wide) in paragraph at lines 196--197
+[6]
+Overfull \hbox (7.48732pt too wide) in paragraph at lines 222--223
 \T1/cmr/m/n/12 muo-dos-tuu vain, jos kum-mas-sa-kin virk-kees-s‰ esiin-tyy jo-k
 in jou-kon $\OML/cmm/m/it/12 MeaningfulSet\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 e\O
 T1/cmr/m/n/12 )$
  []
 
-<images/tiivistaminen.png, id=34, 208.52907pt x 425.33907pt>
+<images/tiivistaminen.png, id=38, 208.52907pt x 425.33907pt>
 File: images/tiivistaminen.png Graphic file (type png)
 
 <use images/tiivistaminen.png>
-Package pdftex.def Info: images/tiivistaminen.png used on input line 202.
+Package pdftex.def Info: images/tiivistaminen.png used on input line 228.
 (pdftex.def)             Requested size: 208.52855pt x 425.33801pt.
- [6] (./Aine.bbl (./babelbst.tex (./finnbst.tex))
+ [7] (./Aine.bbl (./babelbst.tex (./finnbst.tex))
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 14.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [7 <./images/tiivistaminen.png>]
+) [8 <./images/tiivistaminen.png>]
 Underfull \hbox (badness 1194) in paragraph at lines 52--55
 []\T1/cmr/m/n/12 Watts, D. J. ja Stro-gatz, S. H., Col-lec-ti-ve dy-na-mics of 
 'small-
  []
 
-) [8] (./Aine.aux)
+) [9] (./Aine.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3167 strings out of 493014
- 43548 string characters out of 6133352
- 118048 words of memory out of 5000000
- 6638 multiletter control sequences out of 15000+600000
+ 3170 strings out of 493014
+ 43605 string characters out of 6133352
+ 118071 words of memory out of 5000000
+ 6641 multiletter control sequences out of 15000+600000
  13140 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,4n,25p,1042b,314s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,5n,25p,1042b,314s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
 /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
@@ -343,10 +344,10 @@ e/2016/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/
 16/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2016
 /texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2016/t
 exmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Aine.pdf (9 pages, 233969 bytes).
+Output written on Aine.pdf (10 pages, 239016 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
+ 97 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

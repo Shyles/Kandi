@@ -154,8 +154,34 @@ Ensimm‰isen‰ tutkimme normaalia ahnetta strategiaa lyhyen polun etsint‰‰n. Ahnei
 
 Osoitamme, ett‰ er‰‰lle luvussa \ref{KleinberginMalli} esitetyll‰ mallilla muodostetulle pieni maailma -verkolle voidaan kehitt‰‰ hajautettu algoritmi, jonka keskim‰‰r‰inen \textit{hyppyjen} (monellako solmulla viesti on k‰ynyt) m‰‰r‰ on \( \mathcal{O} (log^2n) \). Kyseisell‰ mallilla parametrien arvot ovat \(r=2\) ja \(p = q = 1\). N‰yt‰mme myˆs, ett‰ t‰m‰ on ainoa Kleinbergin esitt‰mist‰ malleista, josta voidaan muodostaa navigoituva pieni maailma -verkko jossa hajautetut algoritmit ovat tehokkaita. Huomaammekin, kuinka t‰rke‰ verkon rakenne on lyhyiden reittien lˆyt‰misen vain paikallisella tiedolla.
 
+Et‰kontaktit levitty‰tyv‰t verkkoon tasaisesti, kun parametri \(r=0\). T‰llˆin mink‰ tahansa kahden solmun v‰lille lˆytyy lyhyt reitti suurella todenn‰kˆisyydell‰. Hajautettu algoritmimme ei kuitenkaan kykene lˆyt‰m‰‰n sit‰ luotettavasti, sill‰ verkolla ei ole heuristiikkaa, jota algoritmi voisi hyˆdynt‰‰.
+
+\begin{lause}
+\label{Ei voi lˆyt‰‰}
+On olemassa vakio \( \alpha_0 \), joka riippuu vakioista \(p\) ja \(q\), niin ett‰, kun vakio \(r=0\), on hyppyjen odotusarvo v‰hint‰‰n \( \alpha_0 n^{2/3}. \)
+\end{lause}
+
+Kun parametria \(r\) kasvatetaan, 
+
+\begin{lause}
+\label{Logaritmisesti nopein}
+On olemassa hajautettu algoritmi \( \mathcal{A} \) ja vakio \( \alpha_2 \), riippumaton vakiosta \( n \), niin ett‰ kun \( r=2 \) ja \( p = q = 1 \), niin algoritmin \( \mathcal{A} \)  hyppyjen odotusarvo on enimmill‰‰n \( \alpha_2 \left( \log{n} \right) \).
+\end{lause}
 
 
+
+\begin{lause}
+\label{Hitaampi kun ei 2}
+\begin{list}{}{}
+	\item[(a)]
+Olkoon \( 0 \leq r \leq 2 \). On olemassa vakio \( \alpha_r \), riippuen vakioista \( p,q,r \), mutta riippumaton vakiosta \(n\), niin ett‰ odotettu toimitusaika mille tahana hajautetulle algoritmille on ainakin \( \alpha_r n^{\left( 2-r \right) /3} \).
+	\item[(b)]
+Olkoon \( r > 2 \). On olemassa vakio \( \alpha_r \), riippuen vakioista \( p,q,r \), mutta riippumaton vakiosta \(n\), niin ett‰ odotettu toimitusaika mille tahana hajautetulle algoritmille on ainakin \( \alpha_r  \left( r-2 \right) / \left( r-1 \right). \)
+\end{list}
+\end{lause}
+
+Lauseet \ref{Logaritmisesti nopein} ja \ref{Hitaampi kun ei 2}
+kertovat odotetun toimitusajan olevan enimmill‰‰n logaritmisesti riippuva vakiosta \( n\), jos ja vain jos \( r = 2\). Algoritmi \( \mathcal{A} \) pyrkii aina l‰hett‰m‰‰n viesti‰ mahdollisimman l‰helle kohdetta \( y\). Mik‰li et‰kontaktit eiv‰t riipu tarpeeksi et‰isyydest‰, \(r  < 2\), niin viestin seuraavalla vastaanottajalla on huonompi todenn‰kˆisyys olla et‰kontakti kohteen l‰hell‰. T‰h‰n myˆs perustuu Lauseen \ref{Ei voi lˆyt‰‰} todistus. Mik‰li et‰kontaktit ovat muodostettu t‰ysin sattumanvaraisesti, algoritmi ei voi luotettavasti lˆyt‰‰ solmuja joilla on et‰kontakti entist‰ l‰hemp‰n‰ kohdetta. Jos et‰kontaktit riippuvat liikaa et‰isyydest‰ \( r > 2 \), algoritmin nopeus l‰henty‰ kohdetta pienenee et‰kontaktien ollessa l‰hemp‰n‰ viesti‰ l‰hett‰v‰‰ solmua.
 
 
 
