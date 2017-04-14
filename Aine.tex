@@ -2,6 +2,7 @@
 \usepackage{epsfig}
 \usepackage{subfigure}
 \usepackage{url}
+\usepackage{amsmath}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 
@@ -29,6 +30,11 @@
 \newcommand{\diff}[1]{\, \mathrm{d} #1}
  \newcommand{\distance}[2]{d\left( #1, #2 \right)}
  \newcommand{\fromOneToX}[2]{\( #1_{1},#1_{2}, \ldots , #1_{#2}, \)}
+ \newcommand{\NN}{ \(\mathcal{N} \) }
+ \newcommand{\MSet}{ \(MeaningfulSet(e)\) }
+ 
+ 
+
  
 
 
@@ -49,6 +55,8 @@ Tutkielma selittää pieni maailma -ilmiön tieteellisesti alkaen tarkasta määritte
 \section{Pieni maailma}
 
 \label{PieniMaailmaLuku}
+
+\subsection{Määritelmä}
 
 Sosiaalisissa verkoissa pieni maailma -ilmiöksi kutstuaan havaintoa lyhyiden tuttavuusketjujen muodostuminen kahden eri yksilön välillä suurella todennäköisyydellä. Traversin ja Milgramin suurta huomiota saaeessa käytännön kokeessa \cite{Milgram} Yhdysvalloissa valittiin n. 200 lähettäjää ja vastaanottajaa. Lähettäjien tehtävänä oli lähettää viesti vastaanottajalle niin ,että viesti kulki ihmiseltä toiselle. Rajoitteena kokeessa viestin hallussapitäjä sai välittää viestin vain ihmiselle, jonka hän tunsi etunimellä. Kokeen tuloksena saatiin keskimäärin 6 pituisia tuttavuusketjuja, joka tunnetaan yleisesti "kuuden asteen erotuksena".
 
@@ -75,7 +83,17 @@ Navigoitavat pieni maailma-verkot yleensä täyttävät myös seuraavat ehdot \cite{T
 	
 \end{enumerate}
 
-Ehdossa \ref{ryhmittyneet} mainittulla solmujen läheisyydellä tarkoitetaan niiden välisen painon olevan pieni. Samaan ehtoon liittyy myös verkon \textit{transitiivisuus}.   Matemaattisesti yhteys \(R\) on transitiivinen, jos \(aRb\) ja \(bRc\) aiheuttavat suoraan \(aRc\). Verkoissa transitiivisuutta voidaan ajatella seuraavalla tavalla: jos solmusta \(u\) on kaari solmuun \(v\), ja solmusta \(v\) on kaari solmuun \(w\) niin solmulla \(u\) on kaari solmuun \(w\). Vain täydelliset verkot voivat olla kokonaan transitiivisia.  Transitiivisuus on myös yksi ryhmittymisen suure: mitä suurempi transitiivisuus, sitä ryhmittyneempi verkko on \cite{TextSummary}. (Suureen laskemista varten tarvittava kaava lisätään myöhemmin.)
+Ehdossa \ref{ryhmittyneet} mainittulla solmujen läheisyydellä tarkoitetaan niiden välisen painon olevan pieni. Samaan ehtoon liittyy myös verkon \textit{transitiivisuus}.   Matemaattisesti yhteys \(R\) on transitiivinen, jos \(aRb\) ja \(bRc\) aiheuttavat suoraan \(aRc\). Verkoissa transitiivisuutta voidaan ajatella seuraavalla tavalla: jos solmusta \(u\) on kaari solmuun \(v\), ja solmusta \(v\) on kaari solmuun \(w\) niin solmulla \(u\) on kaari solmuun \(w\). Vain täydelliset verkot voivat olla kokonaan transitiivisia.  Transitiivisuus on myös yksi ryhmittymisen suure: mitä suurempi transitiivisuus, sitä ryhmittyneempi verkko on \cite{TextSummary}.
+
+Verkon transitiivisuus voidaan laskea yhdistyneiden kolmikoiden ja kolmioiden suhteena
+
+\[
+C = \frac
+		{( \text{kolmiot} ) \times 3}
+		{( \text{yhdistyneet kolmikot} )}
+.\]
+
+Kolmio tarkoittaa kolmen solmun joukkoja, joista jokaisen välillä on kaari. Yhdistynyt kolmikko tarkoittaa solmuja \(u, v \text{ ja } w\) jossa solmusta \( u \) on kaari solmuihin \( v \text{ ja } w \). Osoittajan kerroin 3 tulee kolmioiden ja yhdistyneiden kolmikoiden laskutavasta. Yhdistyneitä kolmikoita laskiessa jokainen kolmio lasketaan kolmesti.
 
 Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetuiksi algoritmeiksi}. Pieni maailma -verkkoja tarkastellessa tutkitaan monesti hajautettuja algoritmeja. Mikäli on mahdollista löytää hajautettu algoritmi, joka kykenee suorittamaan toimintonsa todennäköisesti tietyssä ajassa, pieni maailma -verkko on mielenkiintoinen. Algoritmin tehokkuutta kuvataan \(\mathcal{O}\)-notaatiolla ajan ja algoritmin \textit{hyppyjen} suhteen. Algoritmin hypyillä tarkoitetaan, kuinka monella solmulla viesti on käynyt ennen kohteen saavuttamista. Tätä voidaan kutsua myös asteeksi. 
 
@@ -125,7 +143,7 @@ Edellä mainituilla tavoin muodostetut kaaret ovat suunnattuja. Solmun \(u\) etäk
 
 Tämä tapa muodostaa pieni maailma -verkko voidaan tulkita myös geometrisesti. Solmulla \(u\) on kaari jokaiseen tarpeeksi lähellä olevaan solmuun. Näiden yhteyksien lisäksi solmulla \(u\) on kaaria kauempana ruudukossa. Jos vakio \(r = 0 \), niin solmujen etäkontaktit ovat jakautuneet tasaisesti ruudukolle. Näin muodostettu verkko on pieni maailma, mutta se ei ole navigoitava. Vakion \(r\) kasvaessa solmun \(u\) etäkontaktit ovat jatkuvasti lähempänä solmua itseään.
 
-Tässä mallissa ovat \textit{etäkontaktit} mielenkiintoisimpia tarkastelun kohteita. Verkon \textit{navigoitavuuteen} vaikuttaa, kuinka tasaisesti etäkontaktit ovat jakautuneet verkkoon. Jos \( r=0\), eli etäkontaktit olisivat jakautuneet tasaisesti verkkoon, niin ahne polunetsintä-algoritmi ei tuottaisi lyhyitä polkuja luotettavasti. Vaikka algoritmi löytäisi solmulta \(x\) kaaren solmuun \(y\) joka on lähellä kohdetta \(z\), niin solmun \(y\) todennäköisyys omata etäkontakti kohteeseen \(z\) ei olisi kasvanut. Vakion \(r\) ollessa liian suuri olisi hyppyjen määrä myös liian suuri. Silloin viestit eivät pääsisi kulkemaan tarpeeksi pitkälle etäkontaktienkaan avulla.
+Tässä mallissa ovat \textit{etäkontaktit} mielenkiintoisimpia tarkastelun kohteita. Verkon navigoitavuuteen vaikuttaa, kuinka tasaisesti etäkontaktit ovat jakautuneet verkkoon. Jos \( r=0\), eli etäkontaktit olisivat jakautuneet tasaisesti verkkoon, niin ahne polunetsintä-algoritmi ei tuottaisi lyhyitä polkuja luotettavasti. Vaikka algoritmi löytäisi solmulta \(x\) kaaren solmuun \(y\) joka on lähellä kohdetta \(z\), niin solmun \(y\) todennäköisyys omata etäkontakti kohteeseen \(z\) ei olisi kasvanut. Vakion \(r\) ollessa liian suuri olisi hyppyjen määrä myös liian suuri. Silloin viestit eivät pääsisi kulkemaan tarpeeksi pitkälle etäkontaktienkaan avulla.
 
 Tarkemman tarkastelun jälkeen voimme huomata, että etäkontaktien ei tarvitse olla satunnaisesti tuotettuja luodaksemme navigoitava PM-verkko. Etäkontaktien satunnaisuutta vähentämällä verkosta muodostuu ryhmittyneempi, joka edesauttaa mm. vertaisverkkojen virheenkestävyyttä \cite{Independent}. 
 
@@ -136,13 +154,15 @@ Rajoitamme etäkontaktien valitsemisen satunnaisuutta rajoittamalla solmun \(u = 
 
 \section{Polunetsintä}
 
+\label{Polunetsintä}
+
 Tässä luvussa esittelemme polunetsintä-algoritmejä, jotka soveltuvat pieni maailma -verkkoihin. Kutsumme tätä myös \textit{reititykseksi}. Ensimmäisenä tutustumme yleisiin strategioihin, jonka jälkeen siirrymme varsinaisiin algoritmeihin. Esitämme algoritmeille aikavaativuuksien ylä- ja alarajoja ja esitämme myös ylärajoja algoritmien laatimien polkujen pituuksille.
 
 \subsection{Ahne reititys}
 
 Aiemmin esitetyssä käytännön kokeessa ihmiset muodostivat tuttavuusketjuja lähettäessään viestin kohteeseen. Voimme olettaa, että viestin lähettäjät pyrkivät lähettämään viestin tutulleen, jolla oli suurin todennäköisyys joko tuntea kohde tai kohteen tuttuja. Yksi hyvä strategia on viestin lähettäminen mahdollisimman lähelle kohdetta. Tämä on hyvä esimerkki \textit{ahneesta strategiasta} jonka esittelemme seuraavaksi.
 
-\label{Polunetsintä}
+\label{AhneReititys}
 
 Ensimmäisenä tutkimme normaalia ahnetta strategiaa lyhyen polun etsintään. Ahneissa polunetsintäalgoritmeissa viestiä kuljettava solmu lähettää viestin aina lähimpänä kohdetta olevalle naapurilleen. Otamme esimerkiksi Kleinbergin  \cite{Kleinberg}  esittämän termin \textit{hajautettu algoritmi}, jossa viestiä kuljettava solmu tietää
 
@@ -161,44 +181,50 @@ Etäkontaktit levittyätyvät verkkoon tasaisesti, kun parametri \(r=0\). Tällöin m
 On olemassa vakio \( \alpha_0 \), joka riippuu vakioista \(p\) ja \(q\), niin että, kun vakio \(r=0\), on hyppyjen odotusarvo vähintään \( \alpha_0 n^{2/3}. \)
 \end{lause}
 
-Kun parametria \(r\) kasvatetaan, 
+Kun parametria \(r\) kasvatetaan, kykenee algoritmi hyödyntämään syntyvää heuristiikkaa. Tämä parametrin \(r\) arvo on 2.
 
 \begin{lause}
 \label{Logaritmisesti nopein}
 On olemassa hajautettu algoritmi \( \mathcal{A} \) ja vakio \( \alpha_2 \), riippumaton vakiosta \( n \), niin että kun \( r=2 \) ja \( p = q = 1 \), niin algoritmin \( \mathcal{A} \)  hyppyjen odotusarvo on enimmillään \( \alpha_2 \left( \log{n} \right) \).
 \end{lause}
 
+Lauseiden \ref{Ei voi löytää} ja \ref{Logaritmisesti nopein} todistusten taustalla olevat ideat esitetään seuraavaksi. Lauseen \ref{Logaritmisesti nopein} hajautettu algoritmi \( \mathcal{A} \) etenee vaiheittain: sanommekin, että algoritmi on vaiheessa \(j\), jos käsittelyssä olevan solmun etäisyys kohteeseen on arvojen \(j^2\) ja \( j^{2+1} \) välissä. Voidaan osoittaa, että odotusarvo hyppyjen määrälle ennen kuin käsittelyssä olevalla solmulla on etäkontakti solmuun, jonka etäisyys kohteesta on pienempi kuin  \(j^2\), on verrannollinen arvoon \( \log{n} \). Tällöin odottettu hyppyjen määrä on enimmillään \( \log{n} +1 \). Lauseen \ref{Ei voi löytää} raja perustuu todennäköisyyslaskentaan. Muodostamme joukon \( U \), johon kuuluvat kaikki solmut joiden etäisyys kohteeseen on enimmillään \( n^{2/3} \). Tällöin lähtösolmu suurella todennäköisyydellä ei kuulu joukkoon \( U \), jolloin matka kohteeseen ilman etäkontakteja on ainakin \( n^{2/3} \). Todennäköisyys sille, että millä tahansa solmulla olisi etäkontakti joukossa \( U \) on kuitenkin karkeasti suhteessa arvoon  \( n^{-2/3} \). Tämän seurauksena odotettujen hyppyjen määrä on suhteessa arvoon \( n^{2/3} \).
 
+Seuraavien lauseiden pohjalta voimme todeta, että odotettu hyppyjen määrä on logaritmisesti suhteessa solmujen määrään ainoastaan, kun \( r = 0 \).
 
 \begin{lause}
 \label{Hitaampi kun ei 2}
 \begin{list}{}{}
 	\item[(a)]
+	\label{3a}
 Olkoon \( 0 \leq r \leq 2 \). On olemassa vakio \( \alpha_r \), riippuen vakioista \( p,q,r \), mutta riippumaton vakiosta \(n\), niin että odotettu toimitusaika mille tahana hajautetulle algoritmille on ainakin \( \alpha_r n^{\left( 2-r \right) /3} \).
 	\item[(b)]
+		\label{3b}
 Olkoon \( r > 2 \). On olemassa vakio \( \alpha_r \), riippuen vakioista \( p,q,r \), mutta riippumaton vakiosta \(n\), niin että odotettu toimitusaika mille tahana hajautetulle algoritmille on ainakin \( \alpha_r  \left( r-2 \right) / \left( r-1 \right). \)
 \end{list}
 \end{lause}
 
-Lauseet \ref{Logaritmisesti nopein} ja \ref{Hitaampi kun ei 2}
-kertovat odotetun toimitusajan olevan enimmillään logaritmisesti riippuva vakiosta \( n\), jos ja vain jos \( r = 2\). Algoritmi \( \mathcal{A} \) pyrkii aina lähettämään viestiä mahdollisimman lähelle kohdetta \( y\). Mikäli etäkontaktit eivät riipu tarpeeksi etäisyydestä, \(r  < 2\), niin viestin seuraavalla vastaanottajalla on huonompi todennäköisyys olla etäkontakti kohteen lähellä. Tähän myös perustuu Lauseen \ref{Ei voi löytää} todistus. Mikäli etäkontaktit ovat muodostettu täysin sattumanvaraisesti, algoritmi ei voi luotettavasti löytää solmuja joilla on etäkontakti entistä lähempänä kohdetta. Jos etäkontaktit riippuvat liikaa etäisyydestä \( r > 2 \), algoritmin nopeus lähentyä kohdetta pienenee etäkontaktien ollessa lähempänä viestiä lähettävää solmua.
+\begin{kuva}[Odotettujen hyppyjen määrä suhteessa parametrin \(r\) arvoon.]
+\includegraphics{Kleinberginkuva}[]
+\label{tiivistaminenKuva}
+\end{kuva}
+
+Lauseen \ref{3a} \((a)\) todistus on samalainen kuin lauseen \ref{Ei voi löytää}. Kohdan  \ref{3a} \((b)\) todistus sen sijaan perustuu etäkontaktien liialliseen keskittymiseen solmun lähelle. Algoritmi ei enää pääse tarpeeksi lähelle kohdetta etäkontaktien avullakaan.
 
 
+
+\subsection{Epäsuora reititys ja Naapurien naapurit}
 
 
 Epäsuora ahne reititys toimii kuten ahne reititys. Poikkeuksena, viestiä kuljettavalla solmulla \(u\) on tiedossa myös solmun \(v\) etäkontaktit jos solmulle pätee
 \(
 		\distance{u}{v} \leq q
 \)
-jollain etäisyysfunktiolla \(d\) ja vakiolla \(q\). Tällöin viestiä kuljettavalla solmulla on mahdollisuus lähettää viesti jonkin itseään lähellä olevan solmun kautta.
+jollain etäisyysfunktiolla \(d\) ja vakiolla \(q\). Tällöin viestiä kuljettavalla solmulla on mahdollisuus lähettää viesti jonkin itseään lähellä olevan solmun kautta. Naapurien naapurit -strategia toimii samalla periaatteella kuin epäsuora ahne reititys. Lähellä olevien solmujen sijaan viestiä kuljettavalla solmulla on tiedossa omien naapureidensa kontaktit. Solmun naapureilla tarkoitamme solmuja, joilla on joko etäkontakti tai paikallinen kontakti kyseiseen solmuun.
 
-Ahneella naapurien naapurit-algoritmi toimii samalla periaatte kuin epäsuora ahne reititys. Lähellä olevien solmujen sijaan viestiä kuljettavalla solmulla on tiedossa omien naapureidensa kontaktit.
+Seuraavaksi esitämme erään Naapurien naapurit -algoritmin, jota kutsumme algoritmiksi \NN. Kiinnitämme huomiota muodostetun polun pituuteen, jonka merkitys on suurempi mm. vertaisverkkosovelluksissa. Erityisesti vertaamme sitä luvussa \ref{AhneReititys} mainittuun algoritmiin. Tulokset eivät ole täysin verrannollisia, koska emme käytä lukuun \ref{KleinberginMalli} perustuvaa mallia molempien algoritmien tulosten toteuttamiseen. Poistamme mallista konseptit etä- ja lähikontaktit, mutta pidämme lauseessa \ref{Logaritmisesti nopein} määritellyn parametrin \(r\) arvon 2 mukana. Muodostamme solmulle \(u\) kaaren solmuun \(v\) todennäköisyydellä \( d(u,v)^{-2} \).
 
-\subsection{NN-Ahne}
-
-Esitämme erään Naapurien Naapurit-ahneet algoritmin. Kiinnitämme huomiota muodostetun polun pituuteen, jonka merkitys on suurempi mm. vertaisverkkosovelluksissa. Erityisesti vertaamme sitä luvussa \ref{AhneReititys} mainittuun algoritmiin, jonka keskimääräinen hyppyjen määrä yhdessä PM-verkossa on \( \mathcal{O} (\log^2n) \).
-
-Algoritmi viestin lähettämisestä solmuun \(u\) toiminta kulkee seuraavalla tavalla: 
+Algoritmin \NN viestin lähettämisestä solmuun \(u\) etenee seuraavasti: 
 
 \begin{enumerate}{}{}
 \item Oletetaan viestin olevan solmussa \(u \neq t \). Olkoon solmut  \fromOneToX{w}{k} solmun \(u\) naapureita.
@@ -207,27 +233,42 @@ Algoritmi viestin lähettämisestä solmuun \(u\) toiminta kulkee seuraavalla taval
 \item Lähetetään viesti solmuun \( z_{i_j} \) solmun \( u_j \) kautta.
 \end{enumerate}
 
-Pieni maailma -verkossa tälle algoritmille keskimääräinen hyppyjen määrä suurella todennäköisyydellä on  \( \mathcal{O} (\log^2n / \log \log n) \) \cite{Manku}.Tällöin NN-Ahne -algoritmi on hyvä vaihtoehto esimerkiksi vertaisverkoissa, joissa viestiä ei välttämättä haluta lähettää liian usean solmun läpi. NN-Ahneen -algoritmin heikkoutena on naapurien naapurien vieruslistojen ylläpito ja muistissa säilyttäminen.
+Algoritmin \NN keskimääräinen hyppyjen määrä mallissamme suurella todennäköisyydellä on  \( \mathcal{O} (\log{n} / \log{ \log{ n}} ) \) \cite{Manku}. Intuitiivisestikin voidaan ajatella, että naapurien naapurit -strategia löytää tehokkaammin lyhyitä reittejä kuin ahne reititys, jonka odotetty hyppyjen määrä oli \( log{n} \) samankaltaisessa verkossa. Tämä tulos ei kuitenkaan suoraan todista väitettä.
+
+Epäsuoraan ahneeseen reititykseen ja naapurien naapurit -strategiaan liittyy kuitenkin haittapuolensa. Nämä ovat lisätietojen vaatima muistin käytön kasvu useampien solmujen naapurien säilyttämiseen. Käsittelemme näitä tarkemmin seuraavassa luvussa vertaisverkkojen ohella. 
 
 \section{Käytännön sovellukset}
 
 Tässä luvussa esittelemme, kuinka pieni maailma -ilmiötä voidaan käyttää hyväksi pieni maailma -verkoissa. Kuten aiemmin sanottu, pieni maailma -ilmiötä löytyy monista biologista, sosiaalisista ja teknologista verkoista. Sovelluksia tarkastellessamme käytämme hyväksi lukujen \ref{PieniMaailmaLuku} ja \ref{Polunetsintä} tuloksia ja käsitteitä.
 
-%\subsection{Peer-to-peer verkot}
+\subsection{Peer-to-peer verkot}
+
+Peer-to-peer verkoissa, eli vertaisverkoissa, ovat asiakkaat ja palvelimet ovat sama asia. Jokainen verkkoon liittyvä kone voi käyttää muiden verkossa olevien koneiden resursseja, sekä sen resursseja voidaan käyttää. Nämä resurssit voivat olla esimerkiksi levytila tai laskentateho. Meitä kiinnostava kohde ovat juuri nämä resurssit ja niiden löydettävyys. Löydettävyys on tärkeä osa vertaisverkkoja, koska koneet eivät voi ylläpitää yhteyttä joka ainoaan muuhun verkon koneeseen. Tiettyjä palveluita joita voivat tarjota vain osa koneista on kuitenkin kyettävä löytämään tästä huolimatta aiheuttamatta liikaa kuormitusta. Pieni maailma -verkot toimivatkin motivaationa vertaisverkoille. Aiemmin esittämiemme tulosten perusteella, yhteyksiä muihin koneisiin ei tarvitse olla useita ja silti puuttuvat resurssit voidaan löytää tehokkaasti. 
+
+Vertaisverkkojen huonoja puolia ovat 
 
 \subsection{Yhteenvedot luonnollisen kielen teksteistä}
 
-Luonnollisten kielten tekstien asiasisällön esittäminen tiiviimmin on hyödyllistä nykymaailmassa elektronisesti käsillä olevan tiedon kasvaessa räjähdysmäisesti. Tekstin sisällän voi joko esittää lyhyemmin muodostamalla uuden tekstin tai valikoimalla tekstistä tärkeimmät virkkeet ja kappaleet. Seuraavaksi esittelemme automaattisen, virkkeiden ja kappaleita valikoivan algoritmin, joka käyttää hyväkseen pienten maailmojen topologiaa. Rakennamme tekstin virkkeistä pieni maailma -verkon ja poimimme virkkeistä ne, jotka edesauttavat verkkoa eniten olemaan pieni maailma. Yhteenvetotyökalu on esitetty artikkelissa \cite{TextSummary}. 
+Luonnollisten kielten tekstien asiasisällön esittäminen tiiviimmin on hyödyllistä nykymaailmassa elektronisesti käsillä olevan tiedon kasvaessa räjähdysmäisesti. Tekstin sisällön voi esittää lyhyemmin muodostamalla uuden tekstin tai valikoimalla tekstistä tärkeimmät virkkeet ja kappaleet. Seuraavaksi esittelemme virkkeitä ja kappaleita valikoivan algoritmin, joka käyttää hyväkseen pieni maailma -ilmiötä \cite{TextSummary} . Algoritmi rakentaa tekstin virkkeistä pieni maailma -verkon ja poimii virkkeistä ne, jotka edesauttavat verkkoa eniten olemaan pieni maailma.
 
-Määrittelemme verkon \(G = (V,E)\), jossa pisteet \(V\) ovat virkkeitä ja kaaret \(E\) kuvaavat virkkeiden välisiä suhteita. Virkkeellä \(L\) on lähikontakti virkkeen \(L'\) kanssa, jos virkkeet \(L\) ja \(L'\) ovat peräkkäisiä. Etäkontaktien muodostamiseen tarvitsemme keinon määrittää virkkeiden yhteyden toisiinsa. Tätä varten rakennamme tekstin tärkeimmistä sanoista joukon \(MeaningfulSet(e)\). Etäkontakti kahden virkkeen välille muodostuu vain, jos kummassakin virkkeessä esiintyy jokin joukon \(MeaningfulSet(e)\) sanoista.
+Aloitamme määrittelemällä verkon \(G = (V,E)\), jossa pisteet \(V\) ovat virkkeitä ja kaaret \(E\) kuvaavat virkkeiden välisiä suhteita. Virkkeellä \(L\) on lähikontakti virkkeen \(L'\) kanssa, jos virkkeet \(L\) ja \(L'\) ovat peräkkäisiä. Etäkontaktien muodostamiseen tarvitsemme keinon määrittää virkkeiden yhteyden toisiinsa, joka muodostaa verkon heuristiikan. Tätä varten rakennamme tekstin tärkeimmistä sanoista joukon \MSet . Etäkontakti kahden virkkeen välille muodostuu vain, jos kummassakin virkkeessä esiintyy jokin joukon \(MeaningfulSet(e)\) sanoista. Parametri \(e\) määrittää, kuinka suuri joukko \MSet on, asettamalla rajan jota suurempi sanan \textit{merkityksen} on oltava, jotta se valitaan joukkoon \MSet{}. Sanan merkitys voidaan laskea jollekin osajoukolle täydestä tekstistä Helmholtz periaatteen avulla. Nämä osajoukot voivat olla esimerkiksi kappaleita tai viiden virkkeen joukkoja teksteissä, joissa kappalejakoa ei ole. Sanan merkitystä laskiessa käytetään hyväksi sanan esiintymisten lukumäärää koko tekstissä ja kappaleessa. Tällä tavoin konjunktioille ja muille yleisille sanoille saadaan pieni merkitys, mikäli sana esiintyy koko tekstissä erittäin monesti. Sanan merkitykseksi valitaan eri osajoukoille lasketuista merkityksistä suurin. 
 
-Joukon MeaningfulSet(e) sanojen määrä suhteessa joukkoon kaikista tekstissä esiintyvistä sanoista vaikuttaa verkon \(G\) kaarien määrän ja täten myös tiivistelmän pituuteen ja olennaisuuteen. Jos joukko \(MeaningfulSet(e)\) on liian suuri, verkko \(G\) ei näytä enää pieneltä maailmalta vaan sattumanvaraisesti muodostetulta verkolta. Kuitenkin joukon \(MeaningfulSet(e)\) ollessa liian pieni verkko \(G\) näyttää molempiin suuntiin linkitetyltä listalta josta löytyy muutama poikkeus. Yhteenvetomenetelmän toimintaperiaatteen kannalta tällöin on suuresti merkitystä, miten tämä joukko valitaan. Tätä menetelmää emme esitä tässä tutkielmassa.
+Joukon MeaningfulSet(e) sanojen määrä suhteessa joukkoon kaikista tekstissä esiintyvistä sanoista vaikuttaa verkon \(G\) kaarien määrän ja täten myös tiivistelmän pituuteen ja olennaisuuteen. Jos joukko \(MeaningfulSet(e)\) on liian suuri, verkko \(G\) ei näytä enää pieneltä maailmalta vaan sattumanvaraisesti muodostetulta verkolta. Kuitenkin joukon \(MeaningfulSet(e)\) ollessa liian pieni verkko \(G\) näyttää molempiin suuntiin linkitetyltä listalta josta löytyy muutama poikkeus. Yhteenvetomenetelmän toimintaperiaatteen kannalta tällöin on suuresti merkitystä, miten tämä joukko valitaan, joten parametrin \(e\) valinta on tärkeää. Tätä ongelmaa voidaan verrata luvussa \ref{KleinberginMalli} esitettyyn pieni maailma -verkon malliin. Myös tiivistämisalgoritmia varten pieni maailma -verkon rakentamisen kannalta on parametrilla \(e\) tietty arvo, jolloin usein verkosta muodostuu tehokas pieni maailma.
 
 \begin{kuva}[Automaattinen tekstin tiivistäminen]
  \centering
 \includegraphics{tiivistaminen}[]
 \label{tiivistaminenKuva}
 \end{kuva}
+
+Algoritmin toimintaan liittyy oleellisesti myös pieni maailma -verkkojen ominaisuuksien testaaminen. Tähän algoritmi käyttää aiemmin määrittelemiämme suureita ryhmittymiskerroin ja transitiivisuus. Mikäli virkkeistä muodostettu verkko ei toteuta annettuja ehtoja ryhmittymiskertoimen ja transitiivisuuden suhteen, asetetaan parametrille \(e\) uusi arvo ja yritetään uudestaan. Ehtojen vihdoin täytyttyä etsitään virkkeet jotka eniten edistävät verkkoa olemaan pieni maailma. Nämä virkkeet muodostavat yhteenvedon. Virkkeiden panosta pienen maailman rakentumiseen voidaan mitata tietyillä mittareilla. Näille mittareille on tärkeää suuri arvojoukko, jolloin yhteenveto saadaan muodostettua tarpeeksi lyhyeksi kaikkein merkityksellisimmistä virkkeistä.
+
+Seuraava kappale on Yhdysvaltain presidentin vuonna 2011 pitämän Kansakunnan tila -puheen tärkein kappale parametrin \(e\) arvolla 2. 
+
+\textit{The plan that has made all of this possible, from the tax cuts to the jobs, is the Recovery Act. That's right, the Recovery Act, also known as the stimulus bill. Economists on the left and the right say this bill has helped save jobs and avert disaster. But you don't have to take their word for it. Talk to the small business in Phoenix that will triple its workforce because of the Recovery Act. Talk to the window manufacturer in Philadelphia who said he used to be skeptical about the Recovery Act, until he had to add two more work shifts just because of the business it created. Talk to the single teacher raising two kids who was told by her principal in the last week of school that because of the Recovery Act, she wouldn't be laid off after all. }
+
+Tärkein lause taas oli \textit{The plan that has made all of this possible, from the tax cuts to the jobs, is the Recovery Act}. Nämä lainaukset johtavatkin suureen haasteeseen, nimittäin yhteenvetojen arviointiin. Olisiko pelkkä ensimmäinen kappale riittävä yhteenveto Obaman puheesta?
+
 
 
 \numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}
