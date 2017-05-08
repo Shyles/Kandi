@@ -41,7 +41,7 @@
 
 
 
-\title{Aine}
+\title{Pieni maailma -ilmiö}
 \author{Ola Länsman}
 \date{\today}
 
@@ -122,12 +122,14 @@ Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetu
 
 Wattzin ja Strogatzin malli \cite{CollectiveWattz} perustuu säännöllisten verkkojen ja satunnaisverkkojen yhdistämiseen. Tavoitteena heillä oli yhdistää suuri ryhmittymiskerroin pienen keskimääräisen polun pituuden kanssa. Tällöin verkosta löytyy lyhyitä polkuja, vaikka se onkin harva. Kuten Kleinberg myöhemmin osoitti \cite{Kleinberg}, Wattzin ja Strogatzin malli ei ole navigoitava. Satunnaiset verkot ovat muodostettu jonkin todennäköisyysfunktion perusteella, jolloin jokaisella solmulla   on mielivaltainen määrä kaaria. Säännöllisten verkkojen solmuilla on aina tietty määrä kaaria. Yleensä satunnaisilla verkoilla on pieni ryhmittymiskerroin, mutta pieni keskimääräinen polun pituus. Säännöllisillä verkoilla tämän sijaan on suuri ryhmittymiskerroin, mutta suuri keskimääräisen polun pituus.
 
-Wattzin ja Strogatzin malli muodostetaan virittämällä olemassa olevia kaaria säännöllisestä verkosta, jossa on luvun \(n\) määrä solmuja ja luvun \(k\) verran kaaria kullakin solmulla. Kuvassa \ref{B0} on säännöllinen verkko.  Jokaiselle solmusta lähtevälle kaarelle valitaan uusi maalisolmu satunnaisesti todennäköisyydellä \( 0 < p < 1\). (Kuvissa \ref{B0}, \ref{B15}, \ref{B50} ja \ref{B1} parametrilla \( \beta \) tarkoitetaan todennäköisyyttä \(p\)). Todennäköisyyden \(p\) arvolla 0 verkko pysyy säännöllisenä verkkona ja arvolla 1 verkosta muodostuu satunnainen verkko, jonka kaaret ovat jakautuneet tasaisesti verkon solmujen yli, kuten kuvassa \ref{B1}. Tälläisella menetelmällä voisimme muodostaa verkkoja, jotka eivät ole yhtenäisiä. Nämä verkot eivät meitä kuitenkaan kiinnosta joten meidän on vaadittava verkolta tiettyjä ominaisuuksia. Nämä ominaisuudet ovat \(n >> k >> \ln{(n)} >> 1 \). Ehto \( k >> \ln{(n)} \) varmistaa, että satunnaisverkko on vahvasti yhdistynyt \cite{Yhdistynyt}. 
+Wattzin ja Strogatzin malli muodostetaan virittämällä olemassa olevia kaaria säännöllisestä verkosta, jossa on luvun \(n\) määrä solmuja ja luvun \(k\) verran kaaria kullakin solmulla. Jokaiselle solmusta lähtevälle kaarelle valitaan uusi maalisolmu satunnaisesti todennäköisyydellä \( 0 < p < 1\). Todennäköisyyden \(p\) arvolla 0 verkko pysyy säännöllisenä verkkona ja arvolla 1 verkosta muodostuu satunnainen verkko, jonka kaaret ovat jakautuneet tasaisesti verkon solmujen yli. Tälläisella menetelmällä voisimme muodostaa verkkoja, jotka eivät ole yhtenäisiä. Nämä verkot eivät meitä kuitenkaan kiinnosta joten meidän on vaadittava verkolta tiettyjä ominaisuuksia. Nämä ominaisuudet ovat \(n >> k >> \ln{(n)} >> 1 \). Ehto \( k >> \ln{(n)} \) varmistaa, että satunnaisverkko on vahvasti yhdistynyt \cite{Yhdistynyt}. Kuvassa \ref{P0} on esimerkki säännöllisestä verkosta ylimpänä. Samassa kuvassa on myös kyseisestä säännöllisestä verkosta muodostetut kaksi pieni maailma -verkkoa Wattzin ja Strogatzin kaarien viritysmenetelmällä. Todennäköisyyksillä \( p=0,15 \text{ ja } p=0,05 \) lasketuista verkoista huomaa, kuinka alkuperäisen säännöllisen verkon ryhmittyneisyys vähenee asteittan parametrin \( p \) kasvaessa.  
+
+
 \begin{figure}[H]
 \ \newline
 \begin{center}
 \epsfig{figure=P0,  width=0.70\textwidth}
-\caption{Säännöllinen verkko, jossa jokaisella solmulla on \(k\) kaarta}
+\caption{Säännöllinen verkko, jossa jokaisella solmulla on \(k\) kaarta. Kuva on tehty}
 \label{P0}
 \end{center}
 \end{figure}
@@ -286,19 +288,20 @@ Tässä luvussa esittelemme, kuinka pieni maailma -ilmiötä voidaan käyttää hyväksi
 
 Peer-to-peer verkoissa, eli vertaisverkoissa, ovat asiakkaat ja palvelimet ovat sama asia. Jokainen verkkoon liittyvä kone voi käyttää muiden verkossa olevien koneiden resursseja, sekä sen resursseja voidaan käyttää. Nämä resurssit voivat olla esimerkiksi levytila tai laskentateho. Meitä kiinnostava kohde ovat juuri nämä resurssit ja niiden löydettävyys. Löydettävyys on tärkeä osa vertaisverkkoja, koska koneet eivät voi ylläpitää yhteyttä joka ainoaan muuhun verkon koneeseen. Tiettyjä palveluita joita voivat tarjota vain osa koneista on kuitenkin kyettävä löytämään tästä huolimatta aiheuttamatta liikaa kuormitusta. Pieni maailma -verkot toimivatkin motivaationa vertaisverkoille. Aiemmin esittämiemme tulosten perusteella, yhteyksiä muihin koneisiin ei tarvitse olla useita ja silti puuttuvat resurssit voidaan löytää tehokkaasti. 
 
-Kuten aiemmin todettu, pieni maailma verkoilla on myös pyritty mallintamaan fyysisesti löytyviä verkkoja. Seuraavassa taulukossa on esitetty pieni maailma -verkkojen ominaisuuksien parametreja, sekä Wattzin ja Strogatzin mallin pohjalta luotuja verkkoja todennäköisyydellä \(p = 0\). Jokaisella mallin pohjalta luodulla verkolla on yhtä paljon solmuja ja sama keskimääräinen kaarten määrä solmua kohden kuin varsinaisella verkolla, johon niitä verrataan.
+Kuten aiemmin todettu, pieni maailma verkoilla on myös pyritty mallintamaan fyysisesti löytyviä verkkoja. Seuraavassa taulukossa on esitetty mitattuja pieni maailma -verkkojen ominaisuuksia keskimääräinen polun pituus \(L\) ja ryhmittymiskerroin \(C\) . Samassa taulukossa on myös mallinnettu kyseisiä verkkoja satunnaisverkoilla . Jokaisella mallin pohjalta luodulla verkolla on yhtä paljon solmuja ja sama keskimääräinen kaarten määrä solmua kohden kuin varsinaisella verkolla, johon niitä verrataan. 
 
 
 \[
 \begin{array}{ | l | l | l | l | l | }
 \hline
-	\text{L = keskimääräinen polun pituus} & \text{C = ryhmittymiskerroin} & \  & \  & \  \\ \hline
-	 & \text{L-realisoitunut} & \text{L-satunnainen} & \text{C-realisoitunut} & \text{C-satunnainen} \\ \hline
-	\text{Näyttelijät elokuvissa} & 3.65 & 2.99 & 0.79 & 2.6999999999999999E-5 \\ \hline
-	\text{USA:n sähköverkko} & 18.7 & 12.4 & 0.08 & 5.0000000000000001E-3 \\ \hline
-	\text{Madon hermosto} & 2.65 & 2.25 & 0.28000000000000003 & 0.5 \\ \hline
+	 & L & L_{satunnainen} & C & C_{satunnainen}  \\ \hline
+	\text{Näyttelijät elokuvissa} & 3.65 & 2.99 & 0.79 & 0,00026 \\ \hline
+	\text{USA:n sähköverkko} & 18.7 & 12.4 & 0.08 & 0,005 \\ \hline
+	\text{Madon hermosto} & 2.65 & 2.25 & 0.28000000000000003 & 0.05 \\ \hline
 \end{array}
 \]
+
+Taulukosta huomaa, kuinka keskimääräienn polun pituus on hieman pidempi mitatuissa verkoissa kuin näihin verratuissa satunnaisverkoissa. Kuitenkin ryhmittymiskerroin on ainakin kymmenkertainen varsinaissa verkoissa.  
 
 Pieni maailma -verkoilla on myös mallinnettu tautien leviämistä populaatiossa \cite{CollectiveWattz}. Ihmisestä ihmiseen tarttuvat taudit leviävät pienessä maailmassa nopeasti, mahdollistaen taudin tehokkaan leviämisen koko populaatioon. Wattzin ja Strogatzin simulaatiossa käytettiin heidän malliaan, joka on esitelty luvussa \ref{WatzzinStrogatzinMalli}. Ajankohtana \(t = 0\) verkosta valitaan yksi solmu, joka sairastuu tautiin. Aika etenee hypyittäin. Jokaisen hypyn jälkeen edellisellä hypyllä sairastuneet solmut poistetaan verkosta, joka kuvaa ihmisen kuolemista tai immuniteetin hankkimista. Jokaisen hypyn jälkeen solmulla kuitenkin on ollut mahdollista tartuttaa tauti naapureihinsa todennäköisyydellä \(r\). Hypyt jatkuvat, kunnes koko populaatio on tartutettu, tai kunnes viimeinenkin taudinkantaja poistetaan verkosta. Tällä tavalla mallinnettu tauti leviää sitä nopeammin, mitä ryhmittyneempi verkko on. Taudin ollessa tarpeeksi helposti leviävä sairastuttaaksen koko populaatien verkon rakenteesta huolimatta, populaation sairastuttamiseen kuluva aika pieneni samassa suhteessa keskimääräisen polun pituuden pienenemiseen parametrin \(p\) funktiona. Toinen mallista havaittu tulos oli parametrin \(p\) arvon vähäisen kasvattamisen riittäminen pienentämään kriittistä infektiivisyyttä \( r-50\), jolloin tauti kuoli tartutettuaan populaatiosta puolet. Tämä näkyy kuvassa \ref{InfektioKuva}. Useasta muusta taudinleviämismallista eroten, Wattzin ja Strogatzin pieni maailma -verkossa pystytään seuraamaan taudin leviämisnopeutta verkon rakenteen funktiona. 
 
@@ -306,7 +309,7 @@ Pieni maailma -verkoilla on myös mallinnettu tautien leviämistä populaatiossa \c
 \ \newline
 \begin{center}
 \epsfig{figure=InfektioKuva,  width=0.9\textwidth}
-\caption{Automaattinen tekstin tiivistäminen}
+\caption{Kriittisen infektiotodennäköisyys verrattuna parametriin p. Kuva on tehty mukailemalla Wattzin ja Strogatzin kuvaajasta \cite{CollectiveWattz}.}
 \label{InfektioKuva}
 \end{center}
 \end{figure}
@@ -355,12 +358,8 @@ Pieni maailma -verkoilla on tiettyjä ominaisuuksia, joista tärkein ominaisuus on
 
 Jatkolukemisena lukijalle löytyy useita vaihtoehtoja eri käytännön sovelluksista täysin teoreettisiin kirjoituksiin.
 
-
-\numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}
-
-\classification{\protect{\ \\
-\  General and reference $\rightarrow$ Document types  $\rightarrow$ Surveys and overviews\  \\
-\  Applied computing  $\rightarrow$ Document management and text processing  $\rightarrow$ Document management  $\rightarrow$ Text editing\ }}
+\lastpage
+\appendices
 
 
 
