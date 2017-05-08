@@ -60,7 +60,7 @@
 
 Tämän tutkielman tavoitteena on tutustuttaa lukija pieni maailma -ilmiöön, jolla selitetään lyhyiden polkujen olemassaoloa harvoissa verkoissa. Tämä 'kuuden asteen erotus' erotellaan useammaksi eri verkon ominaisuudeksi, joita käytetään myöhemmin esitellyissä käytännön sovelluksissa. Yksi sovelluskohteista on luonnollisen kielen teksteistä yhteenvetoja tekevä algoritmi, joka osoittaa hyvin, kuinka pieni maailma -ilmiön ominaisuudet ovat laskettavissa.
 
-Myös polunetsinnän perusteet esitellään tutkielmassa osana pieni maailma -ilmiön hyödyntämistä. Lyhyiden polkujen olemassaolo ei vielä takaa niiden nopeaa löytymistä. Tutkielmassa osoitetaan, kuinka verkkojen topologia vaikuttaa näiden lyhyiden polkujen etsimiseen. Erityisesti osoitamme ainoastaan paikallisella tiedolla toimivien polunetsintäalgoritmien vaativan verkolta topologiaa, jotta lyhyet polut voivat löytyä nopeasti.
+Myös polunetsinnän perusteet esitellään tutkielmassa osana pieni maailma -ilmiön hyödyntämistä. Lyhyiden polkujen olemassaolo ei vielä takaa niiden nopeaa löytymistä. Tutkielmassa osoitetaan, kuinka verkkojen topologia vaikuttaa näiden lyhyiden polkujen etsimiseen. Erityisesti osoitamme ainoastaan paikallisella tiedolla toimivien polunetsintäalgoritmien vaativan verkolta jonkinlaista heuristiikka, jotta lyhyet polut voivat löytyä nopeasti.
 
 \end{abstract}
 
@@ -70,7 +70,16 @@ Myös polunetsinnän perusteet esitellään tutkielmassa osana pieni maailma -ilmiön
 
 Pieni maailma -ilmiöksi kutsumme havaintoa lyhyiden polkujen olemassaolosta harvoissa verkoissa. Verkkoja, joissa kyseinen ilmiö esiintyy, kutsutaan pieni maailma -verkoiksi, ja näille verkoille on tehty useita erilaisia malleja. Malliverkkojen luomisessa käytetään usein hyväksi parametreihin sidottua satunnaisuutta. Tälläisilla verkoilla on useita mielenkiintoisia ominaisuuksia, joita voidaan käyttää hyödyksi käytännön sovelluksissa ja verkkojen mallintamisessa. 
 
-Tutkielma käsittelee kyseistä ilmiötä useasta eri näkökulmasta. Ensimmäiseksi selitetään, miten ilmiö on saanut 
+Tutkielma on tarkoitettu pieni maailma -ilmiöstä kiinnostuneille henkilöille perehdytykseksi. Pieni maailma -ilmiö voi kiinnostaa, mikäli haluat ymmärtää miten dynaamisten verkkojen mallintaminen on kehittynyt nykyiselleen. 
+
+Tutkielma käsittelee kyseistä ilmiötä useasta eri näkökulmasta. Ensimmäiseksi selitetään, miten ilmiö on saanut nimensä Yhdysvalloissa suoritetusta käytännön kokeesta. Samassa luvussa esitetään tämän kokeen pohjalta tehdyt mallit kuvaamaan ilmiötä. Nämä kaksi mallia ovat Wattzin ja Strogatzin malli sekä Kleinbergin malli. Näiden mallien ominaisuuksia ovat ryhmittyneisyys ja lyhyiden polkujen olemassaolo. Näille ominaisuuksille esitetään verkoille laskettavia suureita, joita käytetään hyväksi myöhemmin tutkielmassa. 
+
+Seuravaaksi teksti etenee lyhyiden polkujen etsintään ilmiötä mallintavissa verkoissa. Polunetsinnässä tarkastelun kohteeksi joutuvat ahneet algoritmin ja niiden suorituskyky malleissamme. Osoitamme, että Wattzin ja Strogatzin mallilta puuttuu rakenne, jonka avulla lyhyitä polkuja on helpompi löytää käyttämättä hyväkseen tietoa koko verkon kaarista. Kleinbergin mallissa tämä on toisaalta mahdollista jopa logaritmisessa ajassa suhteessa verkon solmujen määrään.
+
+Lopuksi tarkastellaan, minkälaisista verkoista ilmiötä on havaittu. Esimerkkeinä käytämme biologista, sosiaalista ja tietoteknistä verkkoa. Vertaamme näiden verkkojen ominaisuuksia ja huomaamme, että pieni maailma -ilmiö tosiaan näkyy niissä. Luvun lopussa esitellään luonnolisen kielen teksteistä yhteenvetoja tekevä algoritmi, joka käyttää hyväkseen pieni maailma -ilmiötä. Algoritmissa luodaan tekstistä erilaisia verkkoja niin pitkään, kunnes verkon pieni maailma -ominaisuudet ilmenevät. 
+
+Sivuhuomiona mainitaan, kuinka verkkoteoria on edistynyt verkkojen mallinuksesta pieni maailma -ilmiöstä eteenpäin. Skaalavapaista verkoista mainitaan niiden mahdollisuus kuvata jatkuvasti eläviä verkkoja niin, että uudet solmut kiinnittyvät mieluummin jo paljon kaaria omaaviin solmuihin. 
+
 
 
 
@@ -97,7 +106,7 @@ Navigoitavat pieni maailma -verkot yleensä täyttävät myös seuraavat ehdot \cite{
 	\item \label{harva} \textit{ne ovat harvoja}:
 	Solmujen välillä on triviaalisti lyhyitä polkuja, jos verkon solmuilla on liikaa kaaria. Tällaiset verkot eivät ole mielenkiintoisia.
 	\item \label{ryhmittyneet} \textit{ne ovat ryhmittyneitä}: 
-	Intuitiivisesti ehto \ref{ryhmittyneet} tarkoittaa, että mikäli solmu \( u \) ja \( v \) ovat lähellä toisiaan niin niiden välillä on todennäköisesti kaari. Yleisimmissä (ahneissa) polunetsintä-algoritmeissa viesti lähetetään aina mahdollisimman lähelle kohdetta, jolloin ehdon \ref{ryhmittyneet} mukaan viesti pääsee luultavasti nopeammin perille.
+	 Ehto \ref{ryhmittyneet} tarkoittaa, että mikäli solmu \( u \) ja \( v \) ovat lähellä toisiaan niin niiden välillä on todennäköisesti kaari. Yleisimmissä (ahneissa) polunetsintä-algoritmeissa viesti lähetetään aina mahdollisimman lähelle kohdetta, jolloin ehdon \ref{ryhmittyneet} mukaan viesti pääsee luultavasti nopeammin perille.
 	\item \textit{niillä on pieni halkaisija}.
 	
 \end{enumerate}
@@ -122,7 +131,7 @@ Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetu
 
 \textbf{Wattzin ja Strogatzin malli}:
 
-Wattzin ja Strogatzin malli \cite{CollectiveWattz} perustuu säännöllisten verkkojen ja satunnaisverkkojen yhdistämiseen. Tavoitteena heillä oli yhdistää suuri ryhmittymiskerroin pienen keskimääräisen polun pituuden kanssa. Tällöin verkosta löytyy lyhyitä polkuja, vaikka se onkin harva. Kuten Kleinberg myöhemmin osoitti \cite{Kleinberg}, Wattzin ja Strogatzin malli ei ole navigoitava. Satunnaiset verkot ovat muodostettu jonkin todennäköisyysfunktion perusteella, jolloin jokaisella solmulla   on mielivaltainen määrä kaaria. Säännöllisten verkkojen solmuilla on aina tietty määrä kaaria. Yleensä satunnaisilla verkoilla on pieni ryhmittymiskerroin, mutta pieni keskimääräinen polun pituus. Säännöllisillä verkoilla tämän sijaan on suuri ryhmittymiskerroin, mutta suuri keskimääräisen polun pituus.
+Wattzin ja Strogatzin malli \cite{CollectiveWattz} perustuu säännöllisten verkkojen ja satunnaisverkkojen yhdistämiseen. Tavoitteena on yhdistää suuri ryhmittymiskerroin pienen keskimääräisen polun pituuden kanssa. Tällöin verkosta löytyy lyhyitä polkuja, vaikka se onkin harva. Kuten Kleinberg myöhemmin osoitti \cite{Kleinberg}, Wattzin ja Strogatzin malli ei ole navigoitava. Satunnaiset verkot ovat muodostettu jonkin todennäköisyysfunktion perusteella, jolloin jokaisella solmulla   on mielivaltainen määrä kaaria. Säännöllisten verkkojen solmuilla on aina tietty määrä kaaria. Yleensä satunnaisilla verkoilla on pieni ryhmittymiskerroin, mutta pieni keskimääräinen polun pituus. Säännöllisillä verkoilla tämän sijaan on suuri ryhmittymiskerroin, mutta suuri keskimääräisen polun pituus.
 
 Wattzin ja Strogatzin malli muodostetaan virittämällä olemassa olevia kaaria säännöllisestä verkosta, jossa on luvun \(n\) määrä solmuja ja luvun \(k\) verran kaaria kullakin solmulla. Jokaiselle solmusta lähtevälle kaarelle valitaan uusi maalisolmu satunnaisesti todennäköisyydellä \( 0 < p < 1\). Todennäköisyyden \(p\) arvolla 0 verkko pysyy säännöllisenä verkkona ja arvolla 1 verkosta muodostuu satunnainen verkko, jonka kaaret ovat jakautuneet tasaisesti verkon solmujen yli. Tälläisella menetelmällä voisimme muodostaa verkkoja, jotka eivät ole yhtenäisiä. Nämä verkot eivät meitä kuitenkaan kiinnosta joten meidän on vaadittava verkolta tiettyjä ominaisuuksia. Nämä ominaisuudet ovat \(n >> k >> \ln{(n)} >> 1 \). Ehto \( k >> \ln{(n)} \) varmistaa, että satunnaisverkko on vahvasti yhdistynyt \cite{Yhdistynyt}. Kuvassa \ref{P0} on esimerkki säännöllisestä verkosta ylimpänä. Samassa kuvassa on myös kyseisestä säännöllisestä verkosta muodostetut kaksi pieni maailma -verkkoa Wattzin ja Strogatzin kaarien viritysmenetelmällä. Todennäköisyyksillä \( p=0,15 \text{ ja } p=0,05 \) lasketuista verkoista huomaa, kuinka alkuperäisen säännöllisen verkon ryhmittyneisyys vähenee asteittan parametrin \( p \) kasvaessa.  
 
@@ -141,7 +150,7 @@ Wattzin ja Strogatzin malli muodostetaan virittämällä olemassa olevia kaaria sää
 
 \textbf{Kleinbergin malli}:
 
-Seuraavaksi muodostamme mallin, jonka kehitti Jon Kleinberg \cite{Kleinberg} Wattzin ja Strogatzin  mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe.
+Seuraavaksi muodostamme mallin, jonka kehitti Jon Kleinberg \cite{Kleinberg} Wattzin ja Strogatzin  mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe sekä Wattzin ja Strogatzin mallista puuttuva navigoitavuus -ominaisuus.
 
 Mallinnamme ihmisiä solmuina. Tämä joukko solmuja muodostaa $n\times n$ ruudukon, missä
 \[
@@ -360,8 +369,7 @@ Pieni maailma -verkoilla on tiettyjä ominaisuuksia, joista tärkein ominaisuus on
 
 Jatkolukemisena lukijalle löytyy useita vaihtoehtoja eri käytännön sovelluksista täysin teoreettisiin kirjoituksiin.
 
-\lastpage
-\appendices
+
 
 
 
@@ -378,7 +386,8 @@ Jatkolukemisena lukijalle löytyy useita vaihtoehtoja eri käytännön sovelluksista
 \nocite{*}
 \bibliographystyle{tktl}
 \bibliography{lahteet}
-
+\lastpage
+\appendices
 
 
 \end{document}
