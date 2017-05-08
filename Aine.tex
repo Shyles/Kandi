@@ -4,6 +4,7 @@
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{float}
 \graphicspath{ {images/} }
 
 
@@ -49,20 +50,17 @@
 \numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}
 
 \classification{\protect{\ \\
-\  General and reference $\rightarrow$ Document types  $\rightarrow$ Surveys and overviews\  \\
-\  Applied computing  $\rightarrow$ Document management and text processing  $\rightarrow$ Document management  $\rightarrow$ Text editing\ }}
+\  Networks $\rightarrow$ Network properties }}
 
 
 
-\keywords{ulkoasu, tiivistelmä, lähdeluettelo}
+\keywords{verkko, pieni maailma, reititys, algoritmi}
 
 \begin{abstract}
 
-Tämä kirjoitus on tarkoitettu Helsingin yliopiston
-Tietojenkäsittelytieteen laitoksen alempien opinnäytteiden ja
-harjoitusten ulkoasun ja rakenteen ohjeeksi. Ohje soveltuu siten kandidaattitutkielmien
-kirjoittamisen kurssille, ohjelmistotuotantoprojekteihin, seminaareihin ja pro gradu
--tutkielmiin. Tämän ohjeen lisäksi on seurattava niitä ohjeita, jotka opastavat valitsemaan kuhunkin osioon tieteellisesti kiinnostavaa, syvällisesti pohdittua sisältöä.
+Tämän tutkielman tavoitteena on tutustuttaa lukija pieni maailma -ilmiöön, jolla selitetään lyhyiden polkujen olemassaoloa harvoissa verkoissa. Tämä 'kuuden asteen erotus' erotellaan useammaksi eri verkon ominaisuudeksi, joita käytetään myöhemmin esitellyissä käytännön sovelluksissa. Yksi sovelluskohteista on luonnollisen kielen teksteistä yhteenvetoja tekevä algoritmi, joka osoittaa hyvin, kuinka pieni maailma -ilmiön ominaisuudet ovat laskettavissa.
+
+Myös polunetsinnän perusteet esitellään tutkielmassa osana pieni maailma -ilmiön hyödyntämistä. Lyhyiden polkujen olemassaolo ei vielä takaa niiden nopeaa löytymistä. Tutkielmassa osoitetaan, kuinka verkkojen topologia vaikuttaa näiden lyhyiden polkujen etsimiseen. Erityisesti osoitamme ainoastaan paikallisella tiedolla toimivien polunetsintäalgoritmien vaativan verkolta topologiaa, jotta lyhyet polut voivat löytyä nopeasti.
 
 \end{abstract}
 
@@ -72,7 +70,7 @@ kirjoittamisen kurssille, ohjelmistotuotantoprojekteihin, seminaareihin ja pro g
 
 Pieni maailma -ilmiöksi kutsumme havaintoa lyhyiden ketjujen syntymisestä verkoissa ilman tietoa koko verkon kaarista. Verkkoja, joissa kyseinen ilmiö esiintyy, kutsutaan pieni maailma -verkoiksi, ja näille verkoille on tehty useita erilaisia malleja. Malliverkkojen luomisessa käytetään usein hyväksi parametreihin sidottua satunnaisuutta. Tälläisilla verkoilla on useita mielenkiintoisia ominaisuuksia, joita voidaan käyttää hyödyksi käytännön sovelluksissa. Hyödyllisin näistä ominaisuuksista on lyhyiden polkujen olemassaolo, sekä niiden löytämisen helppous. Lyhyiden polkujen etsimistä varten on kehitetty useita algoritmejä, jotka pyrkivät optimoimaan polun pituuden ja polunetsintään kuluneen ajan.  
 
-Tutkielma selittää pieni maailma -ilmiön tieteellisesti alkaen tarkasta määrittelystä. Määrittelyn jälkeen näytämme, kuinka ilmiötä kuvaavia malleja voidaan luoda. Käytämme tähän käytännön esimerkkiä, jota laajennamme yleisemmäksi muutamasta eri näkökulmasta katsoen. Luvussa \ref{Polunetsintä} esittelemme polunetsintästrategioita ja näihin perustuvia algoritmejä. Lyhyiden polkujen etsiminen solmujen välille on ilmiön tärkein sovelluskohde tietojenkäsittelytieteessä. Tästä pääsemme loogisesti käytännön sovelluksiin kuten vertaisverkossa resurssien etsimiseen ja automaattiseen luonnollisen kielen tiivistämiseen.
+Tutkielma selittää pieni maailma -ilmiön tieteellisesti alkaen tarkasta määrittelystä. Määrittelyn jälkeen näytämme, kuinka ilmiötä kuvaavia malleja voidaan luoda. Käytämme tähän käytännön esimerkkiä, jota laajennamme yleisemmäksi muutamasta eri näkökulmasta katsoen. Luvussa \ref{Polunetsintä} esittelemme polunetsintästrategioita ja näihin perustuvia algoritmejä. Lyhyiden polkujen etsiminen solmujen välille on ilmiön tärkein sovelluskohde tietojenkäsittelytieteessä. Tästä pääsemme käytännön sovelluksiin kuten vertaisverkossa resurssien etsimiseen ja automaattiseen luonnollisen kielen tiivistämiseen.
 
 
 \section{Pieni maailma}
@@ -81,15 +79,15 @@ Tutkielma selittää pieni maailma -ilmiön tieteellisesti alkaen tarkasta määritte
 
 \subsection{Määritelmä}
 
-Sosiaalisissa verkoissa pieni maailma -ilmiöksi kutsutaan havaintoa lyhyiden tuttavuusketjujen muodostuminen kahden eri yksilön välillä suurella todennäköisyydellä. Traversin ja Milgramin suurta huomiota saaeessa käytännön kokeessa \cite{Milgram} Yhdysvalloissa valittiin n. 200 lähettäjää ja vastaanottajaa. Lähettäjien tehtävänä oli lähettää viesti vastaanottajalle niin, että viesti kulki ihmiseltä toiselle. Rajoitteena kokeessa viestin hallussapitäjä sai välittää viestin vain ihmiselle, jonka hän tunsi etunimellä. Kokeen tuloksena saatiin keskimäärin 6 pituisia tuttavuusketjuja, mikä tunnetaan yleisesti "kuuden asteen erotuksena".
+Sosiaalisissa verkoissa pieni maailma -ilmiöksi kutsutaan havaintoa lyhyiden tuttavuusketjujen muodostuminen kahden eri yksilön välillä suurella todennäköisyydellä. Ilmiön nimi on peräisin Traversin ja Milgramin suurta huomiota saanessa käytännön kokeessa \cite{Milgram} Yhdysvalloissa 1960-luvulla. Kokeessa. valittiin n. 200 viestin lähettäjää ja vastaanottajaa. Lähettäjien tehtävänä oli lähettää viesti vastaanottajalle niin, että viesti kulki ihmiseltä toiselle. Rajoitteena kokeessa viestin hallussapitäjä sai välittää viestin vain ihmiselle, jonka tunsi etunimellä. Viestin lähettämistä jatkettiin, kunnes viesti saavutti kohteensa. Päämäärän saavuttaneet viestit kulkivat keskimäärin 5-6 ihmisen kautta ennen kohteeseen päätymistä. Tämä luku on populärisoitu "6 asteen erotukseksi", jonka mukaan jokainen maailman asukas tuntee toisensa enintään 6 ystävän ystävän kautta. 
 
 Verkkoa, jossa pieni maailma -ilmiö toteutuu, kutsumme \textit{pieni maailma -verkoksi}. Tällaisia verkkoja ovat esimerkiksi erään madon hermoston muodostama verkko sekä verkko, joka on luotu perustuen dataan näyttelijöiden esiintymisestä yhdessä samoissa elokuvissa  \cite{CollectiveWattz}. Pieni maailma -verkoille ei ole olennaista kaarien suunta eikä esimerkiksi ruudukkomaisten verkkojen ulotteisuus. Niiden on kuitenkin oltava vahvasti yhtenäisiä, eli verkon jokaisen solmun on oltava saavutettavissa kaikista muista solmuista. Tietojenkäsittelytieteen verkkoteoriassa pieni maailma-verkoissa \textit{suurella todennäköisyydellä minkä tahansa kahden solmun välille voidaan muodostaa lyhyt polku}. Polun lyhyys todetaan sen suhteesta verkon halkaisijaan. Verkon halkaisija on pisin lyhin polku kahden solmun välillä.
 
-Pelkästään näillä ehdoilla pieni maailma -verkko ei ole välttämättä kovin mielenkiintoinen. Mikäli tekisimme verkon, jossa jokaisen solmupärin välille muodostuisi kaari jollain todennäköisyydelä \(p\), suurella todennäköisyydellä kahden solmun välille löytyisi lyhyt polku parametrin \(p\) ollessa tarpeeksi suuri. Tällainen malli ei selitä, miten Traversin ja Milgramin tekemissä kokeissa viestin lähettäjät ovat kyenneet muodostamaan lyhyitä ketjuja käyttäen hyväksi ainoastaan viestin hallussapitäjän tietoja \cite{Kleinberg}. Kutsummekin pieni maailma -verkkoa \textit{navigoitavaksi}, mikäli \textit{verkon yksittäiset solmut voivat lähettää viestin verkon kaaria pitkin muihin verkon solmuihin lyhyitä polkuja pitkin käyttämällä ainoastaan paikallista tietoa}. Paikallisella tiedolla tarkoitetaan, että viestiä hallussa pitävällä solmulla on tiedossa ainoastaan solmusta lähtevät kaaret. 
+Pelkästään näillä ehdoilla pieni maailma -verkko ei ole välttämättä kovin mielenkiintoinen. Mikäli tekisimme verkon, jossa jokaisen solmupärin välille muodostuisi kaari jollain todennäköisyydelä \(p\), suurella todennäköisyydellä kahden solmun välille löytyisi lyhyt polku parametrin \(p\) ollessa tarpeeksi suuri. Solmujen määrän lisäksi, pieni maailma -verkkoa mudostaessa on otettava myös huomioon, miten Traversin ja Milgramin tekemissä kokeissa viestin lähettäjät ovat kyenneet muodostamaan lyhyitä ketjuja käyttäen hyväksi ainoastaan viestin hallussapitäjän tietoja \cite{Kleinberg}. Kutsummekin pieni maailma -verkkoa \textit{navigoitavaksi}, mikäli \textit{verkon yksittäiset solmut voivat lähettää viestin verkon kaaria pitkin muihin verkon solmuihin lyhyitä polkuja pitkin käyttämällä ainoastaan paikallista tietoa}. Paikallisella tiedolla tarkoitetaan, että viestiä hallussa pitävällä solmulla on tiedossa ainoastaan solmusta lähtevät kaaret. 
 
-Pieni maailma -verkkojen ominaisuuksia voidaan kuvailla Wattzin ja Strogatzin \cite{CollectiveWattz} määrittelemillä suureilla \textit{keskimääräinen polun pituus} ja \textit{ryhmittymiskerroin}. Keskimääräinen polun pituus verkossa kuvaa nimensä mukaisesti keskiarvoa kaikkien solmuparien välisistä lyhimmistä poluista. Ryhmittymiskerroin \( \mathcal{C} \) taas kuvaa kuinka hyvin lähekkäiset solmut ovat yhdistyneet toisiinsa. Esimerkiksi sosiaalisissa verkoissa suure vastaa kysymykseen, kuinka monet ystävistäni on ystävyksiä keskenään. 
+Pieni maailma -verkkojen ominaisuuksia voidaan kuvailla Wattzin ja Strogatzin \cite{CollectiveWattz} määrittelemillä suureilla \textit{keskimääräinen polun pituus} \(L\) ja \textit{ryhmittymiskerroin} \( \mathcal{C} \) . Keskimääräinen polun pituus verkossa kuvaa nimensä mukaisesti keskiarvoa kaikkien solmuparien välisistä lyhimmistä poluista. Ryhmittymiskerroin \( \mathcal{C} \) taas kuvaa kuinka hyvin lähekkäiset solmut ovat yhdistyneet toisiinsa. Esimerkiksi sosiaalisissa verkoissa suure vastaa kysymykseen, kuinka monet ystävistäni on ystävyksiä keskenään. 
  
-Verkon solmujen välille täytyy voida laskea paino jollain heuristiikalla, jolloin verkko pysyy navigoitavana. Yleisenä logiikkana voimme tällöin pitää, että viestiä lähettävällä on solmulla on jonkinlainen käsitys mihin suuntaan viestiä tulee lähettää, jotta se saavuttaa kohteen. Ihmiset tuntevat hyvin luultavasti toisensa paremmin etunimellä, jos asuvat lähekkäin. Jos tehtävänäsi olisi lähettää viesti sinulle tuntemattomalle henkilölle Lapissa, mahdollisesti lähettäisit viestin pohjoisessa asuvalle tutullesi. Tällöin maantieteellinen etäisyys muodostaa heuristiikan sosiaalisten suhteiden verkossa.
+Navigoitavien pieni maailma -verkkojen solmujen välille täytyy voida laskea etäisyys jollain heuristiikalla. Yleisenä logiikkana voimme tällöin pitää, että viestiä lähettävällä on solmulla on jonkinlainen käsitys mihin suuntaan viestiä tulee lähettää, jotta se saavuttaa kohteen. Ihmiset tuntevat hyvin luultavasti toisensa paremmin etunimellä, jos asuvat lähekkäin. Jos tehtävänäsi olisi lähettää viesti sinulle tuntemattomalle henkilölle Lapissa, mahdollisesti lähettäisit viestin pohjoisessa asuvalle tutullesi. Tällöin maantieteellinen etäisyys muodostaa heuristiikan sosiaalisten suhteiden verkossa.
 
 Navigoitavat pieni maailma -verkot yleensä täyttävät myös seuraavat ehdot \cite{TextSummary}:
 
@@ -102,25 +100,44 @@ Navigoitavat pieni maailma -verkot yleensä täyttävät myös seuraavat ehdot \cite{
 	
 \end{enumerate}
 
-Ehdossa \ref{ryhmittyneet} mainittulla solmujen läheisyydellä tarkoitetaan läheisyyttä sen heuristiikan mukaan, jotka kulloinkin käytetään. Samaan ehtoon liittyy myös verkon \textit{transitiivisuus}.   Matemaattisesti yhteys \(R\) on transitiivinen, jos \(aRb\) ja \(bRc\) aiheuttavat suoraan \(aRc\). Verkoissa transitiivisuutta voidaan ajatella seuraavalla tavalla: jos solmusta \(u\) on kaari solmuun \(v\), ja solmusta \(v\) on kaari solmuun \(w\) niin solmulla \(u\) on kaari solmuun \(w\). Transitiivisuus on myös yksi ryhmittymisen suure: mitä suurempi transitiivisuus, sitä ryhmittyneempi verkko on \cite{TextSummary}.
+Ehdossa \ref{ryhmittyneet} mainittulla solmujen läheisyydellä tarkoitetaan läheisyyttä sen heuristiikan mukaan, jotka kulloinkin käytetään. Samaan ehtoon liittyy myös verkon \textit{transitiivisuus}.   Matemaattisesti yhteys \(R\) on transitiivinen, jos \(aRb\) ja \(bRc\) aiheuttavat suoraan \(aRc\). Verkoissa transitiivisuutta voidaan ajatella seuraavalla tavalla: jos solmusta \(u\) on kaari solmuun \(v\), ja solmusta \(v\) on kaari solmuun \(w\) niin solmulla \(u\) on kaari solmuun \(w\). Transitiivisuus on myös yksi ryhmittymisen suure, ja verkon transitiivisuudelle voidaan laskea arvo. Mitä suurempi verkon transitiivisuus on, sitä ryhmittyneempi verkko on \cite{TextSummary}.
 
 Verkon transitiivisuus voidaan laskea yhdistyneiden kolmikoiden ja kolmioiden suhteena
 
 \[
-C = \frac
+T = \frac
 		{( \text{kolmiot} ) \times 3}
 		{( \text{yhdistyneet kolmikot} )}
 .\]
 
 Kolmio tarkoittaa kolmen solmun joukkoja, joista jokaisen välillä on kaari. Yhdistynyt kolmikko tarkoittaa solmuja \(u, v \text{ ja } w\) jossa solmusta \( u \) on kaari solmuihin \( v \text{ ja } w \). Osoittajan kerroin 3 tulee kolmioiden ja yhdistyneiden kolmikoiden laskutavasta. Yhdistyneitä kolmikoita laskiessa jokainen kolmio lasketaan kolmesti.
 
-Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetuiksi algoritmeiksi}. Pieni maailma -verkkoja tarkastellessa tutkitaan monesti hajautettuja algoritmeja. Mikäli on mahdollista löytää hajautettu algoritmi, joka kykenee suorittamaan toimintonsa todennäköisesti tietyssä ajassa, pieni maailma -verkko on mielenkiintoinen. Algoritmin tehokkuutta kuvataan \(\mathcal{O}\)-notaatiolla ajan ja algoritmin \textit{hyppyjen} suhteen. Algoritmin hypyillä tarkoitetaan, kuinka monella solmulla viesti on käynyt ennen kohteen saavuttamista. 
+Algoritmejä, jotka käyttävät vain paikallista tietoa, kutsumme \textit{hajautetuiksi algoritmeiksi}. Pieni maailma -verkkoja tarkastellessa tutkitaan monesti hajautettuja algoritmeja. Mikäli on mahdollista löytää hajautettu algoritmi, joka kykenee suorittamaan toimintonsa todennäköisesti tietyssä ajassa, pieni maailma -verkko on mielenkiintoinen. Algoritmin tehokkuutta kuvataan algoritmin \textit{hyppyjen} suhteen. Algoritmin hypyillä tarkoitetaan, kuinka monella solmulla viesti on käynyt ennen kohteen saavuttamista. 
 
 \subsection{Kuinka muodostetaan pieni maailma}
 
+\label{WatzzinStrogatzinMalli}
+
+\textbf{Wattzin ja Strogatzin malli}:
+
+Wattzin ja Strogatzin malli \cite{CollectiveWattz} perustuu säännöllisten verkkojen ja satunnaisverkkojen yhdistämiseen. Tavoitteena heillä oli yhdistää suuri ryhmittymiskerroin pienen keskimääräisen polun pituuden kanssa. Tällöin verkosta löytyy lyhyitä polkuja, vaikka se onkin harva. Kuten Kleinberg myöhemmin osoitti \cite{Kleinberg}, Wattzin ja Strogatzin malli ei ole navigoitava. Satunnaiset verkot ovat muodostettu jonkin todennäköisyysfunktion perusteella, jolloin jokaisella solmulla   on mielivaltainen määrä kaaria. Säännöllisten verkkojen solmuilla on aina tietty määrä kaaria. Yleensä satunnaisilla verkoilla on pieni ryhmittymiskerroin, mutta pieni keskimääräinen polun pituus. Säännöllisillä verkoilla tämän sijaan on suuri ryhmittymiskerroin, mutta suuri keskimääräisen polun pituus.
+
+Wattzin ja Strogatzin malli muodostetaan virittämällä olemassa olevia kaaria säännöllisestä verkosta, jossa on luvun \(n\) määrä solmuja ja luvun \(k\) verran kaaria kullakin solmulla. Kuvassa \ref{B0} on säännöllinen verkko.  Jokaiselle solmusta lähtevälle kaarelle valitaan uusi maalisolmu satunnaisesti todennäköisyydellä \( 0 < p < 1\). (Kuvissa \ref{B0}, \ref{B15}, \ref{B50} ja \ref{B1} parametrilla \( \beta \) tarkoitetaan todennäköisyyttä \(p\)). Todennäköisyyden \(p\) arvolla 0 verkko pysyy säännöllisenä verkkona ja arvolla 1 verkosta muodostuu satunnainen verkko, jonka kaaret ovat jakautuneet tasaisesti verkon solmujen yli, kuten kuvassa \ref{B1}. Tälläisella menetelmällä voisimme muodostaa verkkoja, jotka eivät ole yhtenäisiä. Nämä verkot eivät meitä kuitenkaan kiinnosta joten meidän on vaadittava verkolta tiettyjä ominaisuuksia. Nämä ominaisuudet ovat \(n >> k >> \ln{(n)} >> 1 \). Ehto \( k >> \ln{(n)} \) varmistaa, että satunnaisverkko on vahvasti yhdistynyt \cite{Yhdistynyt}. 
+\begin{figure}[H]
+\ \newline
+\begin{center}
+\epsfig{figure=P0,  width=0.70\textwidth}
+\caption{Säännöllinen verkko, jossa jokaisella solmulla on \(k\) kaarta}
+\label{P0}
+\end{center}
+\end{figure}
+
+
 \label{KleinberginMalli}
 
-Pieni maailma -verkkoja voidaan muodostaa monella tavalla. Aloitamme muodostamalla mallin, jonka kehitti Jon Kleinberg \cite{Kleinberg} Wattz and Strogatz \cite{CollectiveWattz} -mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe.
+\textbf{Kleinbergin malli}:
+
+Seuraavaksi muodostamme mallin, jonka kehitti Jon Kleinberg \cite{Kleinberg} Wattzin ja Strogatzin  mallin pohjalta. Inspiraationa toimi Traversin ja Milgramin suorittama käytännön koe.
 
 Mallinnamme ihmisiä solmuina. Tämä joukko solmuja muodostaa $n\times n$ ruudukon, missä
 \[
@@ -219,7 +236,7 @@ Seuraavien lauseiden pohjalta voimme todeta, että odotettu hyppyjen määrä on log
 Olkoon \( 0 \leq r \leq 2 \). On olemassa vakio \( \alpha_r \), riippuen vakioista \( p,q,r \), mutta riippumaton vakiosta \(n\), niin että odotettu toimitusaika mille tahana hajautetulle algoritmille on ainakin \( \alpha_r n^{\left( 2-r \right) /3} \).
 	\item[(b)]
 		\label{3b}
-Olkoon \( r > 2 \). On olemassa vakio \( \alpha_r \), riippuen vakioista \( p,q,r \), mutta riippumaton vakiosta \(n\), niin että odotettu toimitusaika mille tahana hajautetulle algoritmille on ainakin \( \alpha_r  \left( r-2 \right) / \left( r-1 \right). \)
+Olkoon \( r > 2 \). On olemassa vakio \( \alpha_r \), riippuen vakioista \( p,q,r \), mutta riippumaton vakiosta \(n\), niin että odotettu toimitusaika mille tahana hajautetulle algoritmille on ainakin \( \alpha_r n^{\left( r-2 \right) / \left( r-1 \right)}. \)
 \end{list}
 \end{lause}
 
@@ -229,9 +246,9 @@ Lauseen \ref{3a} \((a)\) todistus on samalainen kuin lauseen \ref{Ei voi löytää}
 \begin{figure}[h]
 \ \newline
 \begin{center}
-\epsfig{figure=Kleinberginkuva,  width=0.9\textwidth}
+\epsfig{figure=Kleinberginkuva2,  width=0.9\textwidth}
 %\epsfig{figure=kuvaesimerkki.eps, angle=-90, width=0.75\textwidth}
-\caption{Odotettujen hyppyjen määrä suhteessa parametrin \(r\) arvoon.}
+\caption{Odotettujen hyppyjen määrä T suhteessa parametrin \(r\) arvoon. Odotettujen hyppyjen määrä on y-akselilla muodossa \( \log_n T   \). Kuvaaja on tehty Kleinbergin \cite{Kleinberg} artikkelissa esitettyä kuvaajaa mukaillen. }
 \label{KleinberginKuva}
 \end{center}
 \end{figure}
@@ -261,31 +278,48 @@ Algoritmin \NN keskimääräinen hyppyjen määrä mallissamme suurella todennäköisyyd
 
 Epäsuoraan ahneeseen reititykseen ja naapurien naapurit -strategiaan liittyy kuitenkin haittapuolensa. Nämä ovat lisätietojen vaatima muistin käytön kasvu useampien solmujen naapurien säilyttämiseen. Käsittelemme näitä tarkemmin seuraavassa luvussa vertaisverkkojen ohella. 
 
-\section{Käytännön sovellukset}
+\section{Käytännön sovellukset ja mallit fyysisesti löytyvistä verkoista}
 
 Tässä luvussa esittelemme, kuinka pieni maailma -ilmiötä voidaan käyttää hyväksi pieni maailma -verkoissa. Kuten aiemmin sanottu, pieni maailma -ilmiötä löytyy monista biologista, sosiaalisista ja teknologista verkoista. Sovelluksia tarkastellessamme käytämme hyväksi lukujen \ref{PieniMaailmaLuku} ja \ref{Polunetsintä} tuloksia ja käsitteitä.
 
-\subsection{Peer-to-peer verkot}
+\subsection{Oikean maailman verkkojen mallintaminen}
 
 Peer-to-peer verkoissa, eli vertaisverkoissa, ovat asiakkaat ja palvelimet ovat sama asia. Jokainen verkkoon liittyvä kone voi käyttää muiden verkossa olevien koneiden resursseja, sekä sen resursseja voidaan käyttää. Nämä resurssit voivat olla esimerkiksi levytila tai laskentateho. Meitä kiinnostava kohde ovat juuri nämä resurssit ja niiden löydettävyys. Löydettävyys on tärkeä osa vertaisverkkoja, koska koneet eivät voi ylläpitää yhteyttä joka ainoaan muuhun verkon koneeseen. Tiettyjä palveluita joita voivat tarjota vain osa koneista on kuitenkin kyettävä löytämään tästä huolimatta aiheuttamatta liikaa kuormitusta. Pieni maailma -verkot toimivatkin motivaationa vertaisverkoille. Aiemmin esittämiemme tulosten perusteella, yhteyksiä muihin koneisiin ei tarvitse olla useita ja silti puuttuvat resurssit voidaan löytää tehokkaasti. 
 
-Vertaisverkkojen huonoja puolia ovat 
+Kuten aiemmin todettu, pieni maailma verkoilla on myös pyritty mallintamaan fyysisesti löytyviä verkkoja. Seuraavassa taulukossa on esitetty pieni maailma -verkkojen ominaisuuksien parametreja, sekä Wattzin ja Strogatzin mallin pohjalta luotuja verkkoja todennäköisyydellä \(p = 0\). Jokaisella mallin pohjalta luodulla verkolla on yhtä paljon solmuja ja sama keskimääräinen kaarten määrä solmua kohden kuin varsinaisella verkolla, johon niitä verrataan.
+
+
+\[
+\begin{array}{ | l | l | l | l | l | }
+\hline
+	\text{L = keskimääräinen polun pituus} & \text{C = ryhmittymiskerroin} & \  & \  & \  \\ \hline
+	 & \text{L-realisoitunut} & \text{L-satunnainen} & \text{C-realisoitunut} & \text{C-satunnainen} \\ \hline
+	\text{Näyttelijät elokuvissa} & 3.65 & 2.99 & 0.79 & 2.6999999999999999E-5 \\ \hline
+	\text{USA:n sähköverkko} & 18.7 & 12.4 & 0.08 & 5.0000000000000001E-3 \\ \hline
+	\text{Madon hermosto} & 2.65 & 2.25 & 0.28000000000000003 & 0.5 \\ \hline
+\end{array}
+\]
+
+Pieni maailma -verkoilla on myös mallinnettu tautien leviämistä populaatiossa \cite{CollectiveWattz}. Ihmisestä ihmiseen tarttuvat taudit leviävät pienessä maailmassa nopeasti, mahdollistaen taudin tehokkaan leviämisen koko populaatioon. Wattzin ja Strogatzin simulaatiossa käytettiin heidän malliaan, joka on esitelty luvussa \ref{WatzzinStrogatzinMalli}. Ajankohtana \(t = 0\) verkosta valitaan yksi solmu, joka sairastuu tautiin. Aika etenee hypyittäin. Jokaisen hypyn jälkeen edellisellä hypyllä sairastuneet solmut poistetaan verkosta, joka kuvaa ihmisen kuolemista tai immuniteetin hankkimista. Jokaisen hypyn jälkeen solmulla kuitenkin on ollut mahdollista tartuttaa tauti naapureihinsa todennäköisyydellä \(r\). Hypyt jatkuvat, kunnes koko populaatio on tartutettu, tai kunnes viimeinenkin taudinkantaja poistetaan verkosta. Tällä tavalla mallinnettu tauti leviää sitä nopeammin, mitä ryhmittyneempi verkko on. Taudin ollessa tarpeeksi helposti leviävä sairastuttaaksen koko populaatien verkon rakenteesta huolimatta, populaation sairastuttamiseen kuluva aika pieneni samassa suhteessa keskimääräisen polun pituuden pienenemiseen parametrin \(p\) funktiona. Toinen mallista havaittu tulos oli parametrin \(p\) arvon vähäisen kasvattamisen riittäminen pienentämään kriittistä infektiivisyyttä \( r-50\), jolloin tauti kuoli tartutettuaan populaatiosta puolet. Tämä näkyy kuvassa \ref{InfektioKuva}. Useasta muusta taudinleviämismallista eroten, Wattzin ja Strogatzin pieni maailma -verkossa pystytään seuraamaan taudin leviämisnopeutta verkon rakenteen funktiona. 
+
+\begin{figure}[H]
+\ \newline
+\begin{center}
+\epsfig{figure=InfektioKuva,  width=0.9\textwidth}
+\caption{Automaattinen tekstin tiivistäminen}
+\label{InfektioKuva}
+\end{center}
+\end{figure}
 
 \subsection{Yhteenvedot luonnollisen kielen teksteistä}
 
-Luonnollisten kielten tekstien asiasisällön esittäminen tiiviimmin on hyödyllistä nykymaailmassa elektronisesti käsillä olevan tiedon kasvaessa räjähdysmäisesti. Tekstin sisällön voi esittää lyhyemmin muodostamalla uuden tekstin tai valikoimalla tekstistä tärkeimmät virkkeet ja kappaleet. Seuraavaksi esittelemme virkkeitä ja kappaleita valikoivan algoritmin, joka käyttää hyväkseen pieni maailma -ilmiötä \cite{TextSummary} . Algoritmi rakentaa tekstin virkkeistä pieni maailma -verkon ja poimii virkkeistä ne, jotka edesauttavat verkkoa eniten olemaan pieni maailma.
+Luonnollisten kielten tekstien asiasisällön esittäminen tiiviimmin on hyödyllistä nykymaailmassa elektronisesti käsillä olevan tiedon kasvaessa räjähdysmäisesti. Tekstin sisällön voi esittää lyhyemmin muodostamalla uuden tekstin tai valikoimalla tekstistä tärkeimmät virkkeet ja kappaleet. Seuraavaksi esittelemme virkkeitä ja kappaleita valikoivan algoritmin, joka käyttää hyväkseen pieni maailma -ilmiötä \cite{TextSummary} . Algoritmi rakentaa tekstin virkkeistä pieni maailma -verkon ja poimii virkkeistä ne, jotka edesauttavat verkkoa eniten olemaan pieni maailma. // solmuista yhdistyneimmän, määrittele yhdistyinein
 
 Aloitamme määrittelemällä verkon \(G = (V,E)\), jossa pisteet \(V\) ovat virkkeitä ja kaaret \(E\) kuvaavat virkkeiden välisiä suhteita. Virkkeellä \(L\) on lähikontakti virkkeen \(L'\) kanssa, jos virkkeet \(L\) ja \(L'\) ovat peräkkäisiä. Etäkontaktien muodostamiseen tarvitsemme keinon määrittää virkkeiden yhteyden toisiinsa, joka muodostaa verkon heuristiikan. Tätä varten rakennamme tekstin tärkeimmistä sanoista joukon \MSet . Etäkontakti kahden virkkeen välille muodostuu vain, jos kummassakin virkkeessä esiintyy jokin joukon \(MeaningfulSet(e)\) sanoista. Parametri \(e\) määrittää, kuinka suuri joukko \MSet on, asettamalla rajan jota suurempi sanan \textit{merkityksen} on oltava, jotta se valitaan joukkoon \MSet{}. Sanan merkitys voidaan laskea jollekin osajoukolle täydestä tekstistä Helmholtz periaatteen avulla. Nämä osajoukot voivat olla esimerkiksi kappaleita tai viiden virkkeen joukkoja teksteissä, joissa kappalejakoa ei ole. Sanan merkitystä laskiessa käytetään hyväksi sanan esiintymisten lukumäärää koko tekstissä ja kappaleessa. Tällä tavoin konjunktioille ja muille yleisille sanoille saadaan pieni merkitys, mikäli sana esiintyy koko tekstissä erittäin monesti. Sanan merkitykseksi valitaan eri osajoukoille lasketuista merkityksistä suurin. 
 
 Joukon MeaningfulSet(e) sanojen määrä suhteessa joukkoon kaikista tekstissä esiintyvistä sanoista vaikuttaa verkon \(G\) kaarien määrän ja täten myös tiivistelmän pituuteen ja olennaisuuteen. Jos joukko \(MeaningfulSet(e)\) on liian suuri, verkko \(G\) ei näytä enää pieneltä maailmalta vaan sattumanvaraisesti muodostetulta verkolta. Kuitenkin joukon \(MeaningfulSet(e)\) ollessa liian pieni verkko \(G\) näyttää molempiin suuntiin linkitetyltä listalta josta löytyy muutama poikkeus. Yhteenvetomenetelmän toimintaperiaatteen kannalta tällöin on suuresti merkitystä, miten tämä joukko valitaan, joten parametrin \(e\) valinta on tärkeää. Tätä ongelmaa voidaan verrata luvussa \ref{KleinberginMalli} esitettyyn pieni maailma -verkon malliin. Myös tiivistämisalgoritmia varten pieni maailma -verkon rakentamisen kannalta on parametrilla \(e\) tietty arvo, jolloin usein verkosta muodostuu tehokas pieni maailma.
 
-\begin{kuva}[Automaattinen tekstin tiivistäminen]
- \centering
-\includegraphics{tiivistaminen}[]
-\label{tiivistaminenKuva}
-\end{kuva}
-
-Algoritmin toimintaan liittyy oleellisesti myös pieni maailma -verkkojen ominaisuuksien testaaminen. Tähän algoritmi käyttää aiemmin määrittelemiämme suureita ryhmittymiskerroin ja transitiivisuus. Mikäli virkkeistä muodostettu verkko ei toteuta annettuja ehtoja ryhmittymiskertoimen ja transitiivisuuden suhteen, asetetaan parametrille \(e\) uusi arvo ja yritetään uudestaan. Ehtojen vihdoin täytyttyä etsitään virkkeet jotka eniten edistävät verkkoa olemaan pieni maailma. Nämä virkkeet muodostavat yhteenvedon. Virkkeiden panosta pienen maailman rakentumiseen voidaan mitata tietyillä mittareilla. Näille mittareille on tärkeää suuri arvojoukko, jolloin yhteenveto saadaan muodostettua tarpeeksi lyhyeksi kaikkein merkityksellisimmistä virkkeistä.
+Algoritmin toimintaan liittyy oleellisesti myös pieni maailma -verkkojen ominaisuuksien testaaminen. Tähän algoritmi käyttää aiemmin määrittelemiämme suureita ryhmittymiskerroin ja transitiivisuus. Mikäli virkkeistä muodostettu verkko ei toteuta annettuja ehtoja ryhmittymiskertoimen ja transitiivisuuden suhteen, asetetaan parametrille \(e\) uusi arvo ja yritetään uudestaan. Ehtojen vihdoin täytyttyä etsitään virkkeet jotka eniten edistävät verkkoa olemaan pieni maailma. Nämä virkkeet muodostavat yhteenvedon. Virkkeiden panosta pienen maailman rakentumiseen voidaan mitata tietyillä mittareilla. Näille mittareille on tärkeää suuri arvojoukko, jolloin yhteenveto saadaan muodostettua tarpeeksi lyhyeksi kaikkein merkityksellisimmistä virkkeistä. Algoritmin tarkemmat vaiheet on kuvattu pseudokoodina kuvassa \ref{tiivistaminenKuva}. 
 
 Seuraava kappale on Yhdysvaltain presidentin vuonna 2011 pitämän Kansakunnan tila -puheen tärkein kappale parametrin \(e\) arvolla 2. 
 
@@ -293,6 +327,33 @@ Seuraava kappale on Yhdysvaltain presidentin vuonna 2011 pitämän Kansakunnan til
 
 Tärkein lause taas oli \textit{The plan that has made all of this possible, from the tax cuts to the jobs, is the Recovery Act}. Nämä lainaukset johtavatkin suureen haasteeseen, nimittäin yhteenvetojen arviointiin. Olisiko pelkkä ensimmäinen kappale riittävä yhteenveto Obaman puheesta?
 
+\begin{figure}[H]
+\ \newline
+\begin{center}
+\epsfig{figure=YhteenvetoKuva, width=0.65\textwidth}
+\caption{Automaattinen tekstin tiivistäminen}
+\label{tiivistaminenKuva}
+\end{center}
+\end{figure}
+
+\section{Mallien parantaminen}
+
+Pieni maailma -verkoilla on pyritty mallintamaan useita oikeassa maailmassa esiintyviä kompleksisia verkkoja \cite{CollectiveWattz}. Esittämiemme mallien lähtökohtana on kuitenkin ollut verkkoja, joissa solmujen määrä ei ole muuttunut ajan suhteen. Kuitenkaan tämä ei ole totta useassa käyttämässämme esimerkissämmekään, kuten sosiaalisten suhteiden muodostamassa verkossa. Uusia kaaria muodostetaan jatkuvasti ajan kuluessa ystävyyksien syntyessä. Uusia ihmisiä syntyy maailmaan luoden uusia solmuja. Myös päinvastaista tapahtuu ihmisten menehtyessä. Emme voikaan sanoa, että pieni maailma -verkot kuvaavat tällaisia verkkoja hyvin muulloin kuin tiettyä ajankohtaa tarkasteltaessa.
+
+Kaarien ja solmujen määrän lisäksi komplekseilta verkoilta on löytynyt toinen ominaisuus. Verkkoon liittyvät uudet solmut muodostavat kaaria todennäköisemmin solmuihin, joilla on jo paljon kaaria \cite{Barabasi}. Tätä kutsutaan \textit{suosivaksi kiinnitymiseksi}. Esimerkiksi WWW-sivujen linkkien muodostamassa verkossa, uusilla sivuilla on todennäköisemmin linkki jo erittäin tunnettuihin sivustoihin. 
+
+Pieni maailma -verkot ovatkin auttaneet skaalavapaiden verkkojen teorian kehittämistä. Skaalavapaat verkot pyrkivät mallintamaan tarkemmin kompleksisia verkkoja, joiden rakenteesta ei vielä tiedetä kaikkea \cite{Barabasi}. Skaalavapailta verkoilta löytyy myös pieni maailma -verkkojen tärkeimmät ominaisuudet, eli pieni keskimääräinen polun pituus ja suuri ryhmittymiskerroin. 
+
+
+
+
+\section{Yhteenveto}
+
+Tämä tutkielma avasi lukijalle ilmiön pienestä maailmasta käytännöllisin, maanläheisin esimerkein ja yleiseen verkkoteoriaan yleistettyinä ominaisuuksina. 
+
+Pieni maailma -verkoilla on tiettyjä ominaisuuksia, joista tärkein ominaisuus on lyhyiden polkujen löytyminen lyhyessä ajassa solmulta toiselle. Kyseisiä verkkoja voidaan luoda keinotekoisesti niin, että sitä voidaan helposti hyödyntää kulloiseenkiin käyttötarkoitukseen.
+
+Jatkolukemisena lukijalle löytyy useita vaihtoehtoja eri käytännön sovelluksista täysin teoreettisiin kirjoituksiin.
 
 
 \numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}

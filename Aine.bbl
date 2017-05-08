@@ -6,6 +6,20 @@
 \newcommand{\Capitalize}[1]{\uppercase{#1}}
 \newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
 
+\bibitem[BA95]{Yhdistynyt}
+Benz, W. \bbland{} Asphaug, E., Simulations of brittle solids using smooth
+  particle hydrodynamics.
+\newblock {\em Computer Physics Communications}, 87,1(1995), \bblpages{} 253 --
+  265.
+\newblock
+  \urlprefix\url{http://www.sciencedirect.com/science/article/pii/0010465594001763}.
+
+\bibitem[BA99]{Barabasi}
+Barab{\'a}si, A.-L. \bbland{} Albert, R., Emergence of scaling in random
+  networks.
+\newblock {\em Science}, 286,5439(1999), \bblpages{} 509--512.
+\newblock \urlprefix\url{http://science.sciencemag.org/content/286/5439/509}.
+
 \bibitem[BBS11]{TextSummary}
 Balinsky, H., Balinsky, A. \bbland{} Simske, S.~J., Automatic text
   summarization and small-world networks.
